@@ -2,6 +2,7 @@
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ChatWidget from "@/components/ChatWidget";
 import { Toaster } from "react-hot-toast";
 import { useLocaleStore } from "@/lib/store";
 import { useEffect } from "react";
@@ -36,6 +37,7 @@ export default function ClientLayout({
       <Navbar />
       <main className="flex-1 bg-[#0a0a0a]">{children}</main>
       <Footer />
+      <ChatWidget />
     </>
   );
 }

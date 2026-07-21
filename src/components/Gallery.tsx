@@ -5,12 +5,12 @@ import { useLocaleStore } from "@/lib/store";
 import Image from "next/image";
 
 const images = [
-  { src: "https://images.unsplash.com/photo-1516594915697-87eb3b1c14ea?w=800&h=600&fit=crop", alt: "Olive grove" },
-  { src: "https://images.unsplash.com/photo-1598170845058-32b9d6a5da37?w=600&h=600&fit=crop", alt: "Green olives" },
-  { src: "https://images.unsplash.com/photo-1589927986089-35812388d1f4?w=600&h=600&fit=crop", alt: "Pickles in jar" },
-  { src: "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=800&h=600&fit=crop", alt: "Olive platter" },
-  { src: "https://images.unsplash.com/photo-1609177026932-2ff0e9e9bd6a?w=600&h=600&fit=crop", alt: "Olives bowl" },
-  { src: "https://images.unsplash.com/photo-1590005354167-6da97870c757?w=600&h=600&fit=crop", alt: "Mixed pickles" },
+  { src: "https://images.unsplash.com/photo-1520950236293-7b21e8406a8e?w=800&h=600&fit=crop&q=80", alt: "Olive grove" },
+  { src: "https://images.unsplash.com/photo-1506806732259-39c2d0268443?w=600&h=600&fit=crop&q=80", alt: "Kalamata olives" },
+  { src: "https://images.unsplash.com/photo-1589927986089-35812388d1f4?w=600&h=600&fit=crop&q=80", alt: "Pickles in jar" },
+  { src: "https://images.unsplash.com/photo-1498579397066-22750a3cb424?w=800&h=600&fit=crop&q=80", alt: "Olive platter" },
+  { src: "https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?w=600&h=600&fit=crop&q=80", alt: "Olives bowl" },
+  { src: "https://images.unsplash.com/photo-1590005354167-6da97870c757?w=600&h=600&fit=crop&q=80", alt: "Mixed pickles" },
 ];
 
 export default function Gallery() {

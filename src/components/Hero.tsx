@@ -22,8 +22,8 @@ export default function Hero() {
       {/* Background */}
       <motion.div style={{ y: bgY }} className="absolute inset-0">
         <div
-          className="absolute inset-0 bg-cover bg-center opacity-40"
-          style={{ backgroundImage: `url('https://images.unsplash.com/photo-1516594915697-87eb3b1c14ea?w=1920&h=1080&fit=crop')` }}
+          className="absolute inset-0 bg-cover bg-center opacity-30"
+          style={{ backgroundImage: `url('https://images.unsplash.com/photo-1520950236293-7b21e8406a8e?w=1920&h=1080&fit=crop&q=80')` }}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a] via-[#0a0a0a]/80 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-[#0a0a0a]/60" />
@@ -173,8 +173,8 @@ export default function Hero() {
               {/* Main image */}
               <div className="absolute inset-12 rounded-full overflow-hidden border-2 border-[#c9a96e]/30 gold-glow-strong">
                 <img
-                  src="https://images.unsplash.com/photo-1598170845058-32b9d6a5da37?w=600&h=600&fit=crop"
-                  alt="Premium Olives"
+                  src="https://images.unsplash.com/photo-1506806732259-39c2d0268443?w=600&h=600&fit=crop&q=80"
+                  alt="Kalamata Olives"
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/60 to-transparent" />
