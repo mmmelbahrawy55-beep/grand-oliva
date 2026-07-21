@@ -10,7 +10,7 @@ const IMG = {
   olivesPlate: "https://images.unsplash.com/photo-1516594915697-87eb3b1c14ea?w=600&h=600&fit=crop",
   oliveClose: "https://images.unsplash.com/photo-1603569283837-711a18e5b236?w=600&h=600&fit=crop",
   medFood: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=600&h=600&fit=crop",
-  olivesJar: "https://images.unsplash.com/photo-1571290274554-6a2eaa74d75b?w=600&h=600&fit=crop",
+  oliveJar: "https://images.unsplash.com/photo-1571290274554-6a2eaa74d75b?w=600&h=600&fit=crop",
   greenOlives: "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=600&h=600&fit=crop",
   blackOlives: "https://images.unsplash.com/photo-1498579397066-22750a3cb424?w=600&h=600&fit=crop",
   oliveTree: "https://images.unsplash.com/photo-1520950236293-7b21e8406a8e?w=600&h=600&fit=crop",
