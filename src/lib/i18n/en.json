@@ -1,0 +1,72 @@
+{
+  "nav": {
+    "home": "Home",
+    "products": "Products",
+    "about": "About Us",
+    "contact": "Contact",
+    "cart": "Cart",
+    "admin": "Dashboard",
+    "login": "Login",
+    "logout": "Logout"
+  },
+  "hero": {
+    "title": "Grand Oliva",
+    "subtitle": "Finest Olives & Pickles",
+    "description": "We bring you the finest handcrafted olives and pickles made with the best natural ingredients",
+    "cta": "Explore Products",
+    "cta2": "Contact Us"
+  },
+  "products": {
+    "title": "Our Products",
+    "subtitle": "Discover our wide range of premium olives and pickles",
+    "all": "All",
+    "olive": "Olives",
+    "pickles": "Pickles",
+    "sauces": "Sauces",
+    "add_to_cart": "Add to Cart",
+    "view_details": "View Details",
+    "price": "Price",
+    "quantity": "Quantity",
+    "in_stock": "In Stock",
+    "out_of_stock": "Out of Stock"
+  },
+  "about": {
+    "title": "About Us",
+    "description": "Grand Oliva is a leading company in manufacturing and exporting the finest olives and pickles. Founded by a family passionate about quality and authentic taste, we pride ourselves on delivering products that satisfy all our customers' tastes.",
+    "mission": "Our Mission",
+    "mission_text": "To deliver the finest natural olives and pickles with the highest quality standards and authentic taste",
+    "vision": "Our Vision",
+    "vision_text": "To be the first choice in olives and pickles across the Arab world and internationally",
+    "values": "Our Values",
+    "values_text": "Quality, Authenticity, Trust, and Innovation"
+  },
+  "cart_page": {
+    "title": "Shopping Cart",
+    "empty": "Your cart is empty",
+    "subtotal": "Subtotal",
+    "total": "Total",
+    "checkout": "Checkout",
+    "continue_shopping": "Continue Shopping",
+    "remove": "Remove",
+    "quantity": "Quantity"
+  },
+  "footer": {
+    "rights": "All Rights Reserved",
+    "address": "Address",
+    "phone": "Phone",
+    "email": "Email",
+    "follow_us": "Follow Us"
+  },
+  "admin": {
+    "dashboard": "Dashboard",
+    "products": "Products",
+    "orders": "Orders",
+    "users": "Users",
+    "add_product": "Add Product",
+    "edit_product": "Edit Product",
+    "delete_product": "Delete Product",
+    "save": "Save",
+    "cancel": "Cancel",
+    "confirm": "Confirm"
+  }
+}
