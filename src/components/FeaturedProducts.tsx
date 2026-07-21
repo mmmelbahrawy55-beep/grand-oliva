@@ -7,11 +7,21 @@ import ProductCard from "./ProductCard";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { products } from "@/lib/data/products";
+import { useState } from "react";
+import QuickView from "./QuickView";
+import type { Product } from "@/lib/types";
 
 export default function FeaturedProducts() {
   const { locale } = useLocaleStore();
   const dir = useLocaleStore((s) => s.dir());
   const featured = products.filter((p) => p.featured).slice(0, 8);
+  const [quickViewProduct, setQuickViewProduct] = useState<Product | null>(null);
+  const [isQuickViewOpen, setIsQuickViewOpen] = useState(false);
+
+  const handleQuickView = (product: Product) => {
+    setQuickViewProduct(product);
+    setIsQuickViewOpen(true);
+  };
 
   return (
     <section className="py-28 bg-[#0a0a0a]" dir={dir}>
@@ -40,7 +50,12 @@ export default function FeaturedProducts() {
         {/* Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {featured.map((product, i) => (
-            <ProductCard key={product.id} product={product} index={i} />
+            <ProductCard
+              key={product.id}
+              product={product}
+              index={i}
+              onQuickView={handleQuickView}
+            />
           ))}
         </div>
 
@@ -60,6 +75,13 @@ export default function FeaturedProducts() {
           </Link>
         </motion.div>
       </div>
+
+      {/* Quick View Modal */}
+      <QuickView
+        product={quickViewProduct}
+        isOpen={isQuickViewOpen}
+        onClose={() => setIsQuickViewOpen(false)}
+      />
     </section>
   );
 }

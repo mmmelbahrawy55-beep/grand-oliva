@@ -5,6 +5,7 @@ import FeaturedProducts from "@/components/FeaturedProducts";
 import Testimonials from "@/components/Testimonials";
 import Newsletter from "@/components/Newsletter";
 import Gallery from "@/components/Gallery";
+import AnimatedCounter from "@/components/AnimatedCounter";
 import { motion } from "framer-motion";
 import { useLocaleStore } from "@/lib/store";
 import { Truck, ShieldCheck, Clock, Headphones, Award, Leaf, Heart, Globe } from "lucide-react";
@@ -32,11 +33,14 @@ function Features() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="card-luxury rounded-2xl p-8 text-center"
+              className="card-luxury rounded-2xl p-8 text-center group"
             >
-              <div className="w-14 h-14 rounded-xl bg-[#c9a96e]/10 border border-[#c9a96e]/20 flex items-center justify-center mx-auto mb-5">
+              <motion.div
+                whileHover={{ scale: 1.1, rotate: 5 }}
+                className="w-14 h-14 rounded-xl bg-[#c9a96e]/10 border border-[#c9a96e]/20 flex items-center justify-center mx-auto mb-5 group-hover:border-[#c9a96e]/50 transition-all"
+              >
                 <f.icon className="w-6 h-6 text-[#c9a96e]" />
-              </div>
+              </motion.div>
               <h3 className="font-bold text-white mb-2">{f.title}</h3>
               <p className="text-gray-500 text-sm">{f.desc}</p>
             </motion.div>
@@ -52,10 +56,10 @@ function Stats() {
   const dir = useLocaleStore((s) => s.dir());
 
   const stats = [
-    { icon: Globe, value: "25+", label: locale === "ar" ? "دولة" : "Countries" },
-    { icon: Award, value: "50+", label: locale === "ar" ? "منتج فاخر" : "Products" },
-    { icon: Heart, value: "10K+", label: locale === "ar" ? "عميل سعيد" : "Clients" },
-    { icon: Leaf, value: "100%", label: locale === "ar" ? "طبيعي" : "Natural" },
+    { icon: Globe, value: 25, suffix: "+", label: locale === "ar" ? "دولة" : "Countries" },
+    { icon: Award, value: 50, suffix: "+", label: locale === "ar" ? "منتج فاخر" : "Products" },
+    { icon: Heart, value: 10000, suffix: "+", label: locale === "ar" ? "عميل سعيد" : "Clients" },
+    { icon: Leaf, value: 100, suffix: "%", label: locale === "ar" ? "طبيعي" : "Natural" },
   ];
 
   return (
@@ -73,7 +77,7 @@ function Stats() {
             >
               <s.icon className="w-8 h-8 text-[#c9a96e]/50 mx-auto mb-4" />
               <div className="text-4xl md:text-5xl font-bold text-gold mb-2" style={{ fontFamily: "'Playfair Display', serif" }}>
-                {s.value}
+                <AnimatedCounter target={s.value} suffix={s.suffix} />
               </div>
               <div className="text-gray-500 text-sm tracking-wider">{s.label}</div>
             </motion.div>
@@ -124,10 +128,15 @@ function Categories() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              whileHover={{ y: -5 }}
+              whileHover={{ y: -8, scale: 1.02 }}
               className="card-luxury rounded-2xl p-8 text-center group cursor-pointer"
             >
-              <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">{cat.icon}</div>
+              <motion.div
+                whileHover={{ scale: 1.2, rotate: 10 }}
+                className="text-5xl mb-4 transition-transform duration-300"
+              >
+                {cat.icon}
+              </motion.div>
               <div className="text-white font-bold text-lg mb-1">{cat.title}</div>
               <div className="text-[#c9a96e]/60 text-sm">
                 {cat.count} {locale === "ar" ? "منتج" : "products"}
@@ -156,7 +165,13 @@ function CTA() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <div className="text-6xl mb-6">🫒</div>
+          <motion.div
+            animate={{ y: [0, -10, 0] }}
+            transition={{ duration: 3, repeat: Infinity }}
+            className="text-7xl mb-8"
+          >
+            🫒
+          </motion.div>
           <h2
             className="text-4xl md:text-6xl font-bold text-white mb-6"
             style={{ fontFamily: "'Playfair Display', serif" }}

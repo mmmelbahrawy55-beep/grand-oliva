@@ -2,7 +2,9 @@
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import ChatWidget from "@/components/ChatWidget";
+import LoadingScreen from "@/components/LoadingScreen";
+import CustomCursor from "@/components/CustomCursor";
+import ParticleBackground from "@/components/ParticleBackground";
 import { Toaster } from "react-hot-toast";
 import { useLocaleStore } from "@/lib/store";
 import { useEffect } from "react";
@@ -22,6 +24,9 @@ export default function ClientLayout({
 
   return (
     <>
+      <LoadingScreen />
+      <CustomCursor />
+      <ParticleBackground />
       <Toaster
         position={dir === "rtl" ? "top-left" : "top-right"}
         toastOptions={{
@@ -35,9 +40,8 @@ export default function ClientLayout({
         }}
       />
       <Navbar />
-      <main className="flex-1 bg-[#0a0a0a]">{children}</main>
+      <main className="flex-1 bg-[#0a0a0a] relative z-10">{children}</main>
       <Footer />
-      <ChatWidget />
     </>
   );
 }

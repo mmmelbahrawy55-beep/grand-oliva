@@ -5,20 +5,21 @@ import { useLocaleStore, useCartStore } from "@/lib/store";
 import { ShoppingCart, Eye, Star, Heart } from "lucide-react";
 import type { Product } from "@/lib/types";
 import toast from "react-hot-toast";
-import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 
 interface ProductCardProps {
   product: Product;
   index?: number;
+  onQuickView?: (product: Product) => void;
 }
 
-export default function ProductCard({ product, index = 0 }: ProductCardProps) {
+export default function ProductCard({ product, index = 0, onQuickView }: ProductCardProps) {
   const { locale } = useLocaleStore();
   const dir = useLocaleStore((s) => s.dir());
   const addItem = useCartStore((s) => s.addItem);
   const [isLiked, setIsLiked] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   const name = locale === "ar" ? product.name_ar : product.name;
   const description = locale === "ar" ? product.description_ar : product.description;
@@ -34,25 +35,36 @@ export default function ProductCard({ product, index = 0 }: ProductCardProps) {
     });
   };
 
+  const handleQuickView = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    onQuickView?.(product);
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay: index * 0.08, duration: 0.6 }}
-      className="group card-luxury rounded-2xl overflow-hidden"
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ delay: index * 0.06, duration: 0.5 }}
+      className="group card-luxury rounded-2xl overflow-hidden cursor-pointer"
       dir={dir}
     >
       {/* Image */}
       <div className="relative aspect-[4/3] overflow-hidden bg-[#111]">
+        {/* Loading skeleton */}
+        {!imageLoaded && (
+          <div className="absolute inset-0 bg-[#1a1a1a] animate-pulse" />
+        )}
         <Image
           src={product.image}
           alt={name}
           fill
-          className="object-cover transition-transform duration-700 group-hover:scale-110"
+          className={`object-cover transition-all duration-700 group-hover:scale-110 ${imageLoaded ? "opacity-100" : "opacity-0"}`}
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+          onLoad={() => setImageLoaded(true)}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent opacity-80" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent opacity-70" />
 
         {/* Badge */}
         {badge && (
@@ -66,20 +78,20 @@ export default function ProductCard({ product, index = 0 }: ProductCardProps) {
         {/* Like */}
         <button
           onClick={(e) => { e.preventDefault(); setIsLiked(!isLiked); }}
-          className="absolute top-4 right-4 z-10 w-9 h-9 bg-[#0a0a0a]/60 backdrop-blur-sm rounded-lg flex items-center justify-center border border-[#2a2a2a] hover:border-[#c9a96e]/50 transition-all"
+          className="absolute top-4 right-4 z-10 w-9 h-9 bg-[#0a0a0a]/60 backdrop-blur-sm rounded-lg flex items-center justify-center border border-[#2a2a2a] hover:border-[#c9a96e]/50 transition-all opacity-0 group-hover:opacity-100"
         >
           <Heart className={`w-4 h-4 ${isLiked ? "fill-[#c9a96e] text-[#c9a96e]" : "text-gray-500"}`} />
         </button>
 
         {/* Quick actions */}
         <div className="absolute bottom-4 left-4 right-4 z-10 flex gap-2 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
-          <Link
-            href={`/products/${product.id}`}
+          <button
+            onClick={handleQuickView}
             className="flex-1 bg-[#0a0a0a]/80 backdrop-blur-sm text-white py-2.5 rounded-lg text-xs font-semibold flex items-center justify-center gap-2 border border-[#2a2a2a] hover:border-[#c9a96e]/50 transition-all"
           >
             <Eye className="w-3.5 h-3.5" />
-            {locale === "ar" ? "عرض" : "View"}
-          </Link>
+            {locale === "ar" ? "عرض سريع" : "Quick View"}
+          </button>
           <button
             onClick={handleAddToCart}
             className="flex-1 btn-gold py-2.5 rounded-lg text-xs font-semibold flex items-center justify-center gap-2"
