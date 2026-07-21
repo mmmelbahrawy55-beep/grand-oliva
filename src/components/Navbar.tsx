@@ -24,85 +24,63 @@ export default function Navbar() {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${
         scrolled
-          ? "bg-white/80 backdrop-blur-2xl shadow-xl shadow-black/5 border-b border-gray-100"
+          ? "bg-[#0a0a0a]/95 backdrop-blur-xl border-b border-[#2a2a2a]"
           : "bg-transparent"
       }`}
       dir={dir}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between h-24">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 group">
-            <motion.div
-              whileHover={{ rotate: 360 }}
-              transition={{ duration: 0.6 }}
-              className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-green-600 rounded-2xl flex items-center justify-center shadow-lg shadow-emerald-500/30 group-hover:shadow-emerald-500/50 transition-shadow"
-            >
-              <span className="text-white font-bold text-xl font-serif">G</span>
-            </motion.div>
+          <Link href="/" className="flex items-center gap-4 group">
+            <div className="w-12 h-12 border border-[#c9a96e]/40 rounded-xl flex items-center justify-center group-hover:border-[#c9a96e] transition-colors duration-500">
+              <span className="text-[#c9a96e] font-bold text-xl" style={{ fontFamily: "'Playfair Display', serif" }}>G</span>
+            </div>
             <div className="hidden sm:block">
               <span
-                className={`text-xl font-bold font-serif tracking-tight transition-colors ${
-                  scrolled ? "text-gray-900" : "text-white"
-                }`}
+                className="text-lg font-bold tracking-wider text-white"
+                style={{ fontFamily: "'Playfair Display', serif" }}
               >
-                Grand Oliva
+                GRAND OLIVA
               </span>
-              <span
-                className={`block text-xs transition-colors ${
-                  scrolled ? "text-emerald-600" : "text-emerald-200"
-                }`}
-              >
-                {locale === "ar" ? "زيتون ومخللات فاخرة" : "Premium Olives & Pickles"}
+              <span className="block text-[10px] text-[#c9a96e]/60 tracking-[0.3em] uppercase">
+                {locale === "ar" ? "زيتون ومخللات" : "Olives & Pickles"}
               </span>
             </div>
           </Link>
 
-          {/* Desktop Navigation */}
+          {/* Desktop nav */}
           <div className="hidden lg:flex items-center gap-1">
             {(["home", "products", "about", "contact"] as const).map((item) => (
               <Link
                 key={item}
                 href={item === "home" ? "/" : `/${item}`}
-                className={`relative px-5 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 group ${
-                  scrolled
-                    ? "text-gray-700 hover:text-emerald-700"
-                    : "text-white/90 hover:text-white"
-                }`}
+                className="relative px-5 py-2.5 text-sm font-medium text-gray-400 hover:text-[#c9a96e] transition-colors duration-300 tracking-wider uppercase"
               >
                 {t(locale, `nav.${item}`)}
-                <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-emerald-500 rounded-full group-hover:w-6 transition-all duration-300" />
               </Link>
             ))}
           </div>
 
           {/* Actions */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
             <button
               onClick={() => setLocale(locale === "ar" ? "en" : "ar")}
-              className={`p-2.5 rounded-xl transition-all duration-300 ${
-                scrolled
-                  ? "text-gray-700 hover:bg-emerald-50 hover:text-emerald-700"
-                  : "text-white/90 hover:bg-white/10 hover:text-white"
-              }`}
+              className="p-3 text-gray-500 hover:text-[#c9a96e] transition-colors duration-300 border border-transparent hover:border-[#c9a96e]/20 rounded-xl"
             >
               <Globe className="w-5 h-5" />
             </button>
 
             <Link
               href="/cart"
-              className={`relative p-2.5 rounded-xl transition-all duration-300 ${
-                scrolled
-                  ? "text-gray-700 hover:bg-emerald-50 hover:text-emerald-700"
-                  : "text-white/90 hover:bg-white/10 hover:text-white"
-              }`}
+              className="relative p-3 text-gray-500 hover:text-[#c9a96e] transition-colors duration-300 border border-transparent hover:border-[#c9a96e]/20 rounded-xl"
             >
               <ShoppingBag className="w-5 h-5" />
               {itemCount > 0 && (
                 <motion.span
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
-                  className="absolute -top-1 -right-1 w-5 h-5 bg-rose-500 text-white text-xs rounded-full flex items-center justify-center font-bold shadow-lg shadow-rose-500/30"
+                  className="absolute -top-1 -right-1 w-5 h-5 bg-[#c9a96e] text-[#0a0a0a] text-[10px] rounded-full flex items-center justify-center font-bold"
                 >
                   {itemCount}
                 </motion.span>
@@ -111,11 +89,7 @@ export default function Navbar() {
 
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className={`lg:hidden p-2.5 rounded-xl transition-all duration-300 ${
-                scrolled
-                  ? "text-gray-700 hover:bg-emerald-50"
-                  : "text-white hover:bg-white/10"
-              }`}
+              className="lg:hidden p-3 text-gray-500 hover:text-[#c9a96e] transition-colors"
             >
               {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
@@ -123,22 +97,21 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile menu */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden bg-white/95 backdrop-blur-2xl border-t border-gray-100"
+            className="lg:hidden bg-[#0a0a0a] border-t border-[#2a2a2a]"
           >
-            <div className="px-4 py-6 space-y-2">
+            <div className="px-4 py-6 space-y-1">
               {(["home", "products", "about", "contact"] as const).map((item) => (
                 <Link
                   key={item}
                   href={item === "home" ? "/" : `/${item}`}
                   onClick={() => setIsOpen(false)}
-                  className="block px-4 py-3 rounded-xl text-gray-700 hover:bg-emerald-50 hover:text-emerald-700 font-medium transition-colors"
+                  className="block px-4 py-3 text-gray-400 hover:text-[#c9a96e] font-medium tracking-wider uppercase text-sm transition-colors"
                 >
                   {t(locale, `nav.${item}`)}
                 </Link>

@@ -4,7 +4,7 @@ import { useLocaleStore } from "@/lib/store";
 import { t } from "@/lib/i18n";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight, ChevronDown, Play } from "lucide-react";
+import { ArrowRight, ChevronDown, Star, Award, Leaf } from "lucide-react";
 import { useRef } from "react";
 
 export default function Hero() {
@@ -15,271 +15,234 @@ export default function Hero() {
     target: ref,
     offset: ["start start", "end start"],
   });
-
-  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
-  const textY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
-  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "40%"]);
 
   return (
-    <section ref={ref} className="relative min-h-screen flex items-center overflow-hidden" dir={dir}>
-      {/* Background Image with Parallax */}
-      <motion.div
-        style={{ y: backgroundY }}
-        className="absolute inset-0"
-      >
+    <section ref={ref} className="relative min-h-screen flex items-center overflow-hidden bg-[#0a0a0a]" dir={dir}>
+      {/* Background */}
+      <motion.div style={{ y: bgY }} className="absolute inset-0">
         <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: `url('https://images.unsplash.com/photo-1516594915697-87eb3b1c14ea?w=1920&h=1080&fit=crop')`,
-          }}
+          className="absolute inset-0 bg-cover bg-center opacity-40"
+          style={{ backgroundImage: `url('https://images.unsplash.com/photo-1516594915697-87eb3b1c14ea?w=1920&h=1080&fit=crop')` }}
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a] via-[#0a0a0a]/80 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-[#0a0a0a]/60" />
       </motion.div>
 
-      {/* Floating particles */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(20)].map((_, i) => (
+      {/* Gold decorative lines */}
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#c9a96e]/20 to-transparent" />
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 w-full">
+        <div className="grid lg:grid-cols-2 gap-20 items-center">
+          {/* Text */}
           <motion.div
-            key={i}
-            className="absolute w-2 h-2 bg-emerald-400/30 rounded-full"
-            initial={{
-              x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1920),
-              y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 1080),
-            }}
-            animate={{
-              y: [null, -100],
-              opacity: [0, 1, 0],
-            }}
-            transition={{
-              duration: 5 + Math.random() * 5,
-              repeat: Infinity,
-              delay: Math.random() * 5,
-            }}
-          />
-        ))}
-      </div>
-
-      {/* Content */}
-      <motion.div style={{ opacity }} className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 w-full">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left side - Text */}
-          <motion.div style={{ y: textY }}>
+            initial={{ opacity: 0, x: dir === "rtl" ? 60 : -60 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          >
+            {/* Badge */}
             <motion.div
-              initial={{ opacity: 0, x: dir === "rtl" ? 50 : -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              className="inline-flex items-center gap-3 border border-[#c9a96e]/30 rounded-full px-5 py-2 mb-10"
             >
-              {/* Badge */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
-                className="inline-flex items-center gap-2 bg-emerald-500/20 backdrop-blur-md border border-emerald-400/30 rounded-full px-5 py-2.5 mb-8"
-              >
-                <span className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
-                <span className="text-emerald-300 text-sm font-medium tracking-wide">
-                  {locale === "ar" ? "100% طبيعي وعضوي" : "100% Natural & Organic"}
-                </span>
-              </motion.div>
+              <div className="w-1.5 h-1.5 bg-[#c9a96e] rounded-full animate-pulse" />
+              <span className="text-[#c9a96e] text-xs font-semibold tracking-[0.25em] uppercase">
+                {locale === "ar" ? "منذ عام 1950" : "Since 1950"}
+              </span>
+            </motion.div>
 
-              {/* Main Heading */}
-              <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 leading-[0.9] tracking-tight">
-                <motion.span
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3, duration: 0.6 }}
-                  className="block"
-                >
-                  Grand
-                </motion.span>
-                <motion.span
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.4, duration: 0.6 }}
-                  className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-lime-300 to-emerald-400"
-                >
-                  Oliva
-                </motion.span>
-              </h1>
-
-              {/* Subtitle */}
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5, duration: 0.6 }}
-                className="text-2xl md:text-3xl text-emerald-200/90 font-serif mb-6"
-              >
-                {locale === "ar" ? "أجود أنواع الزيتون والمخللات الطبيعية" : "The Finest Olives & Pickles"}
-              </motion.p>
-
-              {/* Description */}
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6, duration: 0.6 }}
-                className="text-lg text-white/70 mb-10 max-w-lg leading-relaxed"
-              >
-                {locale === "ar"
-                  ? "نقدم لكم أجود منتجات الزيتون والمخللات المصنوعة يدوياً بأجود المكونات الطبيعية من أجمل مزارع البحر الأبيض المتوسط"
-                  : "We bring you the finest handcrafted olives and pickles made with the best natural ingredients from the beautiful Mediterranean groves"}
-              </motion.p>
-
-              {/* CTA Buttons */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.7, duration: 0.6 }}
-                className="flex flex-wrap gap-4"
-              >
-                <Link
-                  href="/products"
-                  className="group relative inline-flex items-center gap-3 bg-gradient-to-r from-emerald-500 to-green-500 text-white px-10 py-5 rounded-2xl font-bold text-lg overflow-hidden transition-all duration-500 hover:shadow-2xl hover:shadow-emerald-500/30 hover:-translate-y-1"
-                >
-                  <span className="absolute inset-0 bg-gradient-to-r from-emerald-600 to-green-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  <span className="relative">{t(locale, "hero.cta")}</span>
-                  <ArrowRight className={`relative w-5 h-5 transition-transform group-hover:translate-x-1 ${dir === "rtl" ? "rotate-180" : ""}`} />
-                </Link>
-                <Link
-                  href="/about"
-                  className="group inline-flex items-center gap-3 border-2 border-white/30 text-white px-8 py-5 rounded-2xl font-bold text-lg hover:bg-white/10 hover:border-white/50 transition-all duration-300"
-                >
-                  <Play className="w-5 h-5" />
-                  {locale === "ar" ? "شاهد القصة" : "Watch Story"}
-                </Link>
-              </motion.div>
-
-              {/* Stats */}
-              <motion.div
+            {/* Heading */}
+            <h1 className="mb-8">
+              <motion.span
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.9, duration: 0.6 }}
-                className="flex gap-12 mt-16"
+                transition={{ delay: 0.4, duration: 0.7 }}
+                className="block text-6xl md:text-8xl lg:text-9xl font-bold text-white leading-[0.85] tracking-tight"
+                style={{ fontFamily: "'Playfair Display', serif" }}
               >
-                {[
-                  { value: "50+", label: locale === "ar" ? "نوع زيتون" : "Olive Varieties" },
-                  { value: "25+", label: locale === "ar" ? "دولة حول العالم" : "Countries" },
-                  { value: "10K+", label: locale === "ar" ? "عميل سعيد" : "Happy Clients" },
-                ].map((stat, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 1 + i * 0.1 }}
-                  >
-                    <div className="text-4xl font-bold text-white">{stat.value}</div>
-                    <div className="text-sm text-emerald-300/70 mt-1">{stat.label}</div>
-                  </motion.div>
-                ))}
-              </motion.div>
+                Grand
+              </motion.span>
+              <motion.span
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5, duration: 0.7 }}
+                className="block text-6xl md:text-8xl lg:text-9xl font-bold leading-[0.85] tracking-tight text-gold"
+                style={{ fontFamily: "'Playfair Display', serif" }}
+              >
+                Oliva
+              </motion.span>
+            </h1>
+
+            {/* Subtitle */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6 }}
+              className="text-xl md:text-2xl text-[#c9a96e]/80 mb-6 font-light tracking-wide"
+            >
+              {locale === "ar" ? "أجود أنواع الزيتون والمخللات" : "Premium Olives & Pickles"}
+            </motion.p>
+
+            {/* Description */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.7 }}
+              className="text-gray-400 text-lg mb-12 max-w-lg leading-relaxed"
+            >
+              {locale === "ar"
+                ? "نكهة الأصالة وجودة لا مثيل لها. منتجاتنا مصنوعة يدوياً من أجود المكونات الطبيعية المختارة بعناية من أجمل مزارع البحر الأبيض المتوسط."
+                : "The taste of authenticity with unmatched quality. Our products are handcrafted from the finest natural ingredients carefully selected from the Mediterranean's most beautiful groves."}
+            </motion.p>
+
+            {/* CTA */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.8 }}
+              className="flex flex-wrap gap-5"
+            >
+              <Link
+                href="/products"
+                className="group btn-gold px-10 py-5 rounded-xl text-base inline-flex items-center gap-3"
+              >
+                {t(locale, "hero.cta")}
+                <ArrowRight className={`w-5 h-5 transition-transform group-hover:translate-x-1 ${dir === "rtl" ? "rotate-180" : ""}`} />
+              </Link>
+              <Link
+                href="/about"
+                className="border border-[#c9a96e]/30 text-[#c9a96e] px-10 py-5 rounded-xl text-base font-semibold hover:bg-[#c9a96e]/10 transition-all duration-300"
+              >
+                {locale === "ar" ? "من نحن" : "About Us"}
+              </Link>
+            </motion.div>
+
+            {/* Stats */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1 }}
+              className="flex gap-14 mt-16 pt-10 border-t border-[#2a2a2a]"
+            >
+              {[
+                { icon: Award, value: "50+", label: locale === "ar" ? "نوع منتج" : "Products" },
+                { icon: Leaf, value: "100%", label: locale === "ar" ? "طبيعي" : "Natural" },
+                { icon: Star, value: "4.9", label: locale === "ar" ? "تقييم" : "Rating" },
+              ].map((s, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1.1 + i * 0.1 }}
+                  className="flex items-center gap-3"
+                >
+                  <div className="w-10 h-10 rounded-lg bg-[#c9a96e]/10 flex items-center justify-center">
+                    <s.icon className="w-5 h-5 text-[#c9a96e]" />
+                  </div>
+                  <div>
+                    <div className="text-white font-bold text-xl">{s.value}</div>
+                    <div className="text-gray-500 text-xs">{s.label}</div>
+                  </div>
+                </motion.div>
+              ))}
             </motion.div>
           </motion.div>
 
-          {/* Right side - 3D Product Showcase */}
+          {/* Right - Product Showcase */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.8, rotateY: -20 }}
-            animate={{ opacity: 1, scale: 1, rotateY: 0 }}
-            transition={{ duration: 1.2, ease: "easeOut", delay: 0.4 }}
-            className="relative hidden lg:block"
+            initial={{ opacity: 0, scale: 0.85 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            className="relative hidden lg:flex items-center justify-center"
           >
-            <div className="relative w-full aspect-square max-w-lg mx-auto" style={{ perspective: "1200px" }}>
-              {/* Rotating rings */}
+            <div className="relative w-[480px] h-[480px]">
+              {/* Rotating gold ring */}
               <motion.div
                 animate={{ rotate: 360 }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                className="absolute inset-0 border-2 border-emerald-400/20 rounded-full"
+                transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+                className="absolute inset-0 rounded-full border border-[#c9a96e]/20"
               />
               <motion.div
                 animate={{ rotate: -360 }}
-                transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-                className="absolute inset-8 border border-emerald-400/10 rounded-full"
+                transition={{ duration: 45, repeat: Infinity, ease: "linear" }}
+                className="absolute inset-6 rounded-full border border-[#c9a96e]/10"
               />
 
-              {/* Main 3D Card */}
+              {/* Main image */}
+              <div className="absolute inset-12 rounded-full overflow-hidden border-2 border-[#c9a96e]/30 gold-glow-strong">
+                <img
+                  src="https://images.unsplash.com/photo-1598170845058-32b9d6a5da37?w=600&h=600&fit=crop"
+                  alt="Premium Olives"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/60 to-transparent" />
+              </div>
+
+              {/* Floating badge - award */}
               <motion.div
-                animate={{
-                  rotateY: [0, 5, 0, -5, 0],
-                  rotateX: [0, 3, 0, -3, 0],
-                }}
-                transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute inset-12 bg-gradient-to-br from-emerald-600/90 to-green-700/90 rounded-3xl backdrop-blur-xl border border-white/20 shadow-2xl overflow-hidden"
-                style={{ transformStyle: "preserve-3d" }}
-              >
-                {/* Inner content */}
-                <div className="absolute inset-0 flex flex-col items-center justify-center text-white p-8">
-                  <motion.div
-                    animate={{ y: [0, -10, 0] }}
-                    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                    className="text-[100px] mb-4"
-                  >
-                    🫒
-                  </motion.div>
-                  <div className="text-3xl font-bold font-serif mb-2 text-center">Grand Oliva</div>
-                  <div className="text-emerald-200/80 text-center text-sm">
-                    {locale === "ar" ? "جودة لا تُضاهى منذ 1950" : "Unmatched Quality Since 1950"}
-                  </div>
-
-                  {/* Decorative dots */}
-                  <div className="absolute top-6 left-6 flex gap-2">
-                    <div className="w-3 h-3 rounded-full bg-emerald-300/50" />
-                    <div className="w-3 h-3 rounded-full bg-lime-300/50" />
-                    <div className="w-3 h-3 rounded-full bg-teal-300/50" />
-                  </div>
-
-                  {/* Shine effect */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent" />
-                </div>
-              </motion.div>
-
-              {/* Floating badges */}
-              <motion.div
-                animate={{ y: [0, -15, 0] }}
+                animate={{ y: [0, -12, 0] }}
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -top-4 -right-4 bg-white rounded-2xl px-4 py-3 shadow-xl"
+                className="absolute -top-2 right-8 bg-[#1a1a1a] border border-[#c9a96e]/30 rounded-xl px-5 py-3 gold-glow"
               >
                 <div className="flex items-center gap-2">
-                  <span className="text-2xl">🏆</span>
+                  <span className="text-xl">🏆</span>
                   <div>
-                    <div className="text-xs text-gray-500">{locale === "ar" ? "الأكثر مبيعاً" : "Best Seller"}</div>
-                    <div className="font-bold text-gray-900">2024</div>
+                    <div className="text-[#c9a96e] text-[10px] font-semibold tracking-wider uppercase">
+                      {locale === "ar" ? "الأفضل" : "Award"}
+                    </div>
+                    <div className="text-white text-sm font-bold">2024</div>
                   </div>
                 </div>
               </motion.div>
 
+              {/* Floating badge - origin */}
               <motion.div
                 animate={{ y: [0, 10, 0] }}
                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                className="absolute -bottom-4 -left-4 bg-white rounded-2xl px-4 py-3 shadow-xl"
+                className="absolute -bottom-2 left-8 bg-[#1a1a1a] border border-[#c9a96e]/30 rounded-xl px-5 py-3 gold-glow"
               >
                 <div className="flex items-center gap-2">
-                  <span className="text-2xl">⭐</span>
+                  <span className="text-xl">🫒</span>
                   <div>
-                    <div className="text-xs text-gray-500">{locale === "ar" ? "تقييم العملاء" : "Customer Rating"}</div>
-                    <div className="font-bold text-gray-900">4.9/5.0</div>
+                    <div className="text-[#c9a96e] text-[10px] font-semibold tracking-wider uppercase">
+                      {locale === "ar" ? "المصدر" : "Origin"}
+                    </div>
+                    <div className="text-white text-sm font-bold">
+                      {locale === "ar" ? "البحر المتوسط" : "Mediterranean"}
+                    </div>
                   </div>
                 </div>
               </motion.div>
+
+              {/* Decorative dots */}
+              <div className="absolute top-1/2 -left-4 flex flex-col gap-2">
+                <div className="w-2 h-2 rounded-full bg-[#c9a96e]/40" />
+                <div className="w-2 h-2 rounded-full bg-[#c9a96e]/20" />
+                <div className="w-2 h-2 rounded-full bg-[#c9a96e]/10" />
+              </div>
             </div>
           </motion.div>
         </div>
-      </motion.div>
+      </div>
 
-      {/* Scroll indicator */}
+      {/* Scroll */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10"
+        className="absolute bottom-10 left-1/2 -translate-x-1/2"
       >
         <motion.div
-          animate={{ y: [0, 12, 0] }}
+          animate={{ y: [0, 10, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
           className="flex flex-col items-center gap-2"
         >
-          <span className="text-white/40 text-xs tracking-[0.3em] uppercase">
-            {locale === "ar" ? "اكتشف المزيد" : "Scroll to explore"}
+          <span className="text-gray-600 text-[10px] tracking-[0.3em] uppercase">
+            {locale === "ar" ? "اكتشف" : "Explore"}
           </span>
-          <ChevronDown className="w-6 h-6 text-white/40" />
+          <ChevronDown className="w-4 h-4 text-[#c9a96e]/50" />
         </motion.div>
       </motion.div>
     </section>

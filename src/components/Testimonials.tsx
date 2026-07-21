@@ -11,65 +11,63 @@ export default function Testimonials() {
   const dir = useLocaleStore((s) => s.dir());
 
   return (
-    <section className="py-28 bg-gradient-to-br from-emerald-900 via-green-900 to-teal-900 relative overflow-hidden" dir={dir}>
-      {/* Background decoration */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-0 left-0 w-full h-full" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.4' fill-rule='evenodd'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E")`,
-        }} />
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+    <section className="py-28 bg-[#0a0a0a] border-t border-[#2a2a2a]" dir={dir}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-20"
         >
-          <span className="text-emerald-300 font-bold text-sm uppercase tracking-wider">
+          <span className="text-[#c9a96e] text-xs font-semibold tracking-[0.3em] uppercase">
             {locale === "ar" ? "آراء عملائنا" : "Testimonials"}
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mt-4 mb-6 font-serif">
-            {locale === "ar" ? "ماذا يقول عملاؤنا؟" : "What Our Clients Say"}
+          <h2
+            className="text-4xl md:text-5xl font-bold text-white mt-6 mb-6"
+            style={{ fontFamily: "'Playfair Display', serif" }}
+          >
+            {locale === "ar" ? "ماذا يقول عملاؤنا" : "What Clients Say"}
           </h2>
+          <div className="divider-gold max-w-xs mx-auto">
+            <span className="text-[#c9a96e] text-lg">✦</span>
+          </div>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {testimonials.map((testimonial, i) => (
+          {testimonials.map((t, i) => (
             <motion.div
-              key={testimonial.id}
+              key={t.id}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              whileHover={{ y: -5 }}
-              className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 hover:bg-white/15 transition-all duration-300"
+              className="card-luxury rounded-2xl p-6"
             >
-              <Quote className="w-8 h-8 text-emerald-400/50 mb-4" />
+              <Quote className="w-8 h-8 text-[#c9a96e]/30 mb-4" />
               <div className="flex gap-1 mb-4">
-                {[...Array(testimonial.rating)].map((_, j) => (
-                  <Star key={j} className="w-4 h-4 fill-amber-400 text-amber-400" />
+                {[...Array(t.rating)].map((_, j) => (
+                  <Star key={j} className="w-3.5 h-3.5 fill-[#c9a96e] text-[#c9a96e]" />
                 ))}
               </div>
-              <p className="text-white/90 text-sm leading-relaxed mb-6">
-                {locale === "ar" ? testimonial.content_ar : testimonial.content}
+              <p className="text-gray-400 text-sm leading-relaxed mb-6">
+                {locale === "ar" ? t.content_ar : t.content}
               </p>
-              <div className="flex items-center gap-3 pt-4 border-t border-white/10">
-                <div className="w-12 h-12 rounded-full overflow-hidden relative">
+              <div className="flex items-center gap-3 pt-4 border-t border-[#2a2a2a]">
+                <div className="w-10 h-10 rounded-full overflow-hidden relative border border-[#c9a96e]/20">
                   <Image
-                    src={testimonial.avatar}
-                    alt={locale === "ar" ? testimonial.name_ar : testimonial.name}
+                    src={t.avatar}
+                    alt={locale === "ar" ? t.name_ar : t.name}
                     fill
                     className="object-cover"
-                    sizes="48px"
+                    sizes="40px"
                   />
                 </div>
                 <div>
-                  <div className="font-bold text-white text-sm">
-                    {locale === "ar" ? testimonial.name_ar : testimonial.name}
+                  <div className="font-semibold text-white text-sm">
+                    {locale === "ar" ? t.name_ar : t.name}
                   </div>
-                  <div className="text-emerald-300/70 text-xs">
-                    {locale === "ar" ? testimonial.role_ar : testimonial.role}
+                  <div className="text-[#c9a96e]/60 text-xs">
+                    {locale === "ar" ? t.role_ar : t.role}
                   </div>
                 </div>
               </div>

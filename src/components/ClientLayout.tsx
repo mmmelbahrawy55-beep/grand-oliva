@@ -26,14 +26,15 @@ export default function ClientLayout({
         toastOptions={{
           duration: 3000,
           style: {
-            background: "#065f46",
+            background: "#1a1a1a",
             color: "#fff",
-            borderRadius: "16px",
+            border: "1px solid #2a2a2a",
+            borderRadius: "12px",
           },
         }}
       />
       <Navbar />
-      <main className="flex-1">{children}</main>
+      <main className="flex-1 bg-[#0a0a0a]">{children}</main>
       <Footer />
     </>
   );

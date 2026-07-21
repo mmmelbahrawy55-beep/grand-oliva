@@ -18,7 +18,6 @@ export default function ProductCard({ product, index = 0 }: ProductCardProps) {
   const { locale } = useLocaleStore();
   const dir = useLocaleStore((s) => s.dir());
   const addItem = useCartStore((s) => s.addItem);
-  const [isHovered, setIsHovered] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
 
   const name = locale === "ar" ? product.name_ar : product.name;
@@ -30,7 +29,9 @@ export default function ProductCard({ product, index = 0 }: ProductCardProps) {
     e.preventDefault();
     e.stopPropagation();
     addItem(product);
-    toast.success(locale === "ar" ? "تمت الإضافة إلى السلة" : "Added to cart");
+    toast.success(locale === "ar" ? "تمت الإضافة إلى السلة" : "Added to cart", {
+      style: { background: "#1a1a1a", color: "#fff", border: "1px solid #2a2a2a" },
+    });
   };
 
   return (
@@ -38,15 +39,12 @@ export default function ProductCard({ product, index = 0 }: ProductCardProps) {
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ delay: index * 0.08, duration: 0.5 }}
-      whileHover={{ y: -10 }}
-      onHoverStart={() => setIsHovered(true)}
-      onHoverEnd={() => setIsHovered(false)}
-      className="group relative bg-white rounded-3xl overflow-hidden shadow-lg shadow-black/5 hover:shadow-2xl hover:shadow-black/10 transition-all duration-700"
+      transition={{ delay: index * 0.08, duration: 0.6 }}
+      className="group card-luxury rounded-2xl overflow-hidden"
       dir={dir}
     >
-      {/* Image section */}
-      <div className="relative aspect-[4/3] overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100">
+      {/* Image */}
+      <div className="relative aspect-[4/3] overflow-hidden bg-[#111]">
         <Image
           src={product.image}
           alt={name}
@@ -54,105 +52,78 @@ export default function ProductCard({ product, index = 0 }: ProductCardProps) {
           className="object-cover transition-transform duration-700 group-hover:scale-110"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
         />
-
-        {/* Overlay gradient */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent opacity-80" />
 
         {/* Badge */}
         {badge && (
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="absolute top-4 left-4 z-10"
-          >
-            <span className="bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-bold px-4 py-2 rounded-full shadow-lg shadow-amber-500/30">
+          <div className="absolute top-4 left-4 z-10">
+            <span className="bg-[#c9a96e] text-[#0a0a0a] text-[10px] font-bold px-4 py-1.5 rounded-lg tracking-wider uppercase">
               {badge}
             </span>
-          </motion.div>
+          </div>
         )}
 
-        {/* Like button */}
+        {/* Like */}
         <button
-          onClick={(e) => {
-            e.preventDefault();
-            setIsLiked(!isLiked);
-          }}
-          className="absolute top-4 right-4 z-10 w-10 h-10 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white transition-all duration-300 shadow-lg"
+          onClick={(e) => { e.preventDefault(); setIsLiked(!isLiked); }}
+          className="absolute top-4 right-4 z-10 w-9 h-9 bg-[#0a0a0a]/60 backdrop-blur-sm rounded-lg flex items-center justify-center border border-[#2a2a2a] hover:border-[#c9a96e]/50 transition-all"
         >
-          <Heart
-            className={`w-5 h-5 transition-colors ${
-              isLiked ? "fill-rose-500 text-rose-500" : "text-gray-400"
-            }`}
-          />
+          <Heart className={`w-4 h-4 ${isLiked ? "fill-[#c9a96e] text-[#c9a96e]" : "text-gray-500"}`} />
         </button>
 
         {/* Quick actions */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: isHovered ? 1 : 0, y: isHovered ? 0 : 20 }}
-          className="absolute bottom-4 left-4 right-4 z-10 flex gap-2"
-        >
+        <div className="absolute bottom-4 left-4 right-4 z-10 flex gap-2 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
           <Link
             href={`/products/${product.id}`}
-            className="flex-1 bg-white/90 backdrop-blur-sm text-gray-900 py-3 rounded-xl font-medium text-sm flex items-center justify-center gap-2 hover:bg-white transition-all shadow-lg"
+            className="flex-1 bg-[#0a0a0a]/80 backdrop-blur-sm text-white py-2.5 rounded-lg text-xs font-semibold flex items-center justify-center gap-2 border border-[#2a2a2a] hover:border-[#c9a96e]/50 transition-all"
           >
-            <Eye className="w-4 h-4" />
+            <Eye className="w-3.5 h-3.5" />
             {locale === "ar" ? "عرض" : "View"}
           </Link>
           <button
             onClick={handleAddToCart}
-            className="flex-1 bg-emerald-600 text-white py-3 rounded-xl font-medium text-sm flex items-center justify-center gap-2 hover:bg-emerald-700 transition-all shadow-lg shadow-emerald-500/30"
+            className="flex-1 btn-gold py-2.5 rounded-lg text-xs font-semibold flex items-center justify-center gap-2"
           >
-            <ShoppingCart className="w-4 h-4" />
+            <ShoppingCart className="w-3.5 h-3.5" />
             {locale === "ar" ? "أضف" : "Add"}
           </button>
-        </motion.div>
+        </div>
       </div>
 
-      {/* Content section */}
+      {/* Content */}
       <div className="p-5">
-        {/* Category & Rating */}
         <div className="flex items-center justify-between mb-3">
-          <span className="text-xs font-medium text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full">
+          <span className="text-[10px] font-semibold text-[#c9a96e] tracking-wider uppercase">
             {category}
           </span>
           <div className="flex items-center gap-1">
-            <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
-            <span className="text-sm font-medium text-gray-700">{product.rating}</span>
-            <span className="text-xs text-gray-400">({product.reviews})</span>
+            <Star className="w-3.5 h-3.5 fill-[#c9a96e] text-[#c9a96e]" />
+            <span className="text-xs text-gray-400">{product.rating}</span>
+            <span className="text-[10px] text-gray-600">({product.reviews})</span>
           </div>
         </div>
 
-        {/* Name */}
-        <h3 className="font-bold text-lg text-gray-900 mb-2 group-hover:text-emerald-700 transition-colors line-clamp-1">
+        <h3 className="font-bold text-white mb-2 group-hover:text-[#c9a96e] transition-colors line-clamp-1">
           {name}
         </h3>
 
-        {/* Description */}
-        <p className="text-gray-500 text-sm mb-4 line-clamp-2 leading-relaxed">
+        <p className="text-gray-500 text-xs mb-4 line-clamp-2 leading-relaxed">
           {description}
         </p>
 
-        {/* Origin & Weight */}
-        <div className="flex items-center gap-4 text-xs text-gray-400 mb-4">
-          <span className="flex items-center gap-1">
-            🌍 {locale === "ar" ? product.origin_ar : product.origin}
-          </span>
-          <span className="flex items-center gap-1">
-            ⚖️ {locale === "ar" ? product.weight_ar : product.weight}
-          </span>
+        <div className="flex items-center gap-3 text-[10px] text-gray-600 mb-4">
+          <span>🌍 {locale === "ar" ? product.origin_ar : product.origin}</span>
+          <span className="w-px h-3 bg-[#2a2a2a]" />
+          <span>⚖️ {locale === "ar" ? product.weight_ar : product.weight}</span>
         </div>
 
-        {/* Price & Add to cart */}
-        <div className="flex items-center justify-between pt-3 border-t border-gray-100">
-          <div>
-            <span className="text-2xl font-bold text-emerald-700">${product.price}</span>
-          </div>
+        <div className="flex items-center justify-between pt-4 border-t border-[#2a2a2a]">
+          <span className="text-2xl font-bold text-gold">${product.price}</span>
           <button
             onClick={handleAddToCart}
-            className="bg-emerald-600 text-white p-3 rounded-xl hover:bg-emerald-700 transition-all duration-300 hover:shadow-lg hover:shadow-emerald-500/30 active:scale-95"
+            className="w-10 h-10 rounded-xl bg-[#c9a96e]/10 flex items-center justify-center text-[#c9a96e] hover:bg-[#c9a96e] hover:text-[#0a0a0a] transition-all duration-300"
           >
-            <ShoppingCart className="w-5 h-5" />
+            <ShoppingCart className="w-4 h-4" />
           </button>
         </div>
       </div>
