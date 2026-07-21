@@ -5,7 +5,13 @@ import { t } from "@/lib/i18n";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight, ChevronDown, Star, Award, Leaf } from "lucide-react";
-import { useRef } from "react";
+import { useRef, Suspense } from "react";
+import dynamic from "next/dynamic";
+
+const Hero3D = dynamic(() => import("@/components/Hero3D"), {
+  ssr: false,
+  loading: () => <div className="w-full h-[500px] bg-[#1a1a1a] rounded-3xl animate-pulse" />,
+});
 
 export default function Hero() {
   const { locale } = useLocaleStore();
@@ -19,28 +25,28 @@ export default function Hero() {
 
   return (
     <section ref={ref} className="relative min-h-screen flex items-center overflow-hidden bg-[#0a0a0a]" dir={dir}>
-      {/* Background */}
       <motion.div style={{ y: bgY }} className="absolute inset-0">
-        <div
-          className="absolute inset-0 bg-cover bg-center opacity-30"
-          style={{ backgroundImage: `url('https://images.unsplash.com/photo-1520950236293-7b21e8406a8e?w=1920&h=1080&fit=crop&q=80')` }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a] via-[#0a0a0a]/80 to-transparent" />
+        <div className="absolute inset-0">
+          <img
+            src="https://images.unsplash.com/photo-1506806732259-39c2d0268443?w=1920&h=1080&fit=crop&q=80"
+            alt="Kalamata Olives"
+            className="w-full h-full object-cover opacity-25"
+            loading="eager"
+          />
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a] via-[#0a0a0a]/85 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-[#0a0a0a]/60" />
       </motion.div>
 
-      {/* Gold decorative lines */}
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#c9a96e]/20 to-transparent" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 w-full">
         <div className="grid lg:grid-cols-2 gap-20 items-center">
-          {/* Text */}
           <motion.div
             initial={{ opacity: 0, x: dir === "rtl" ? 60 : -60 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           >
-            {/* Badge */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
@@ -53,7 +59,6 @@ export default function Hero() {
               </span>
             </motion.div>
 
-            {/* Heading */}
             <h1 className="mb-8">
               <motion.span
                 initial={{ opacity: 0, y: 30 }}
@@ -75,7 +80,6 @@ export default function Hero() {
               </motion.span>
             </h1>
 
-            {/* Subtitle */}
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -85,7 +89,6 @@ export default function Hero() {
               {locale === "ar" ? "أجود أنواع الزيتون والمخللات" : "Premium Olives & Pickles"}
             </motion.p>
 
-            {/* Description */}
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -97,7 +100,6 @@ export default function Hero() {
                 : "The taste of authenticity with unmatched quality. Our products are handcrafted from the finest natural ingredients carefully selected from the Mediterranean's most beautiful groves."}
             </motion.p>
 
-            {/* CTA */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -119,7 +121,6 @@ export default function Hero() {
               </Link>
             </motion.div>
 
-            {/* Stats */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -150,84 +151,19 @@ export default function Hero() {
             </motion.div>
           </motion.div>
 
-          {/* Right - Product Showcase */}
           <motion.div
             initial={{ opacity: 0, scale: 0.85 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="relative hidden lg:flex items-center justify-center"
+            className="relative flex items-center justify-center"
           >
-            <div className="relative w-[480px] h-[480px]">
-              {/* Rotating gold ring */}
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-                className="absolute inset-0 rounded-full border border-[#c9a96e]/20"
-              />
-              <motion.div
-                animate={{ rotate: -360 }}
-                transition={{ duration: 45, repeat: Infinity, ease: "linear" }}
-                className="absolute inset-6 rounded-full border border-[#c9a96e]/10"
-              />
-
-              {/* Main image */}
-              <div className="absolute inset-12 rounded-full overflow-hidden border-2 border-[#c9a96e]/30 gold-glow-strong">
-                <img
-                  src="https://images.unsplash.com/photo-1506806732259-39c2d0268443?w=600&h=600&fit=crop&q=80"
-                  alt="Kalamata Olives"
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/60 to-transparent" />
-              </div>
-
-              {/* Floating badge - award */}
-              <motion.div
-                animate={{ y: [0, -12, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -top-2 right-8 bg-[#1a1a1a] border border-[#c9a96e]/30 rounded-xl px-5 py-3 gold-glow"
-              >
-                <div className="flex items-center gap-2">
-                  <span className="text-xl">🏆</span>
-                  <div>
-                    <div className="text-[#c9a96e] text-[10px] font-semibold tracking-wider uppercase">
-                      {locale === "ar" ? "الأفضل" : "Award"}
-                    </div>
-                    <div className="text-white text-sm font-bold">2024</div>
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Floating badge - origin */}
-              <motion.div
-                animate={{ y: [0, 10, 0] }}
-                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                className="absolute -bottom-2 left-8 bg-[#1a1a1a] border border-[#c9a96e]/30 rounded-xl px-5 py-3 gold-glow"
-              >
-                <div className="flex items-center gap-2">
-                  <span className="text-xl">🫒</span>
-                  <div>
-                    <div className="text-[#c9a96e] text-[10px] font-semibold tracking-wider uppercase">
-                      {locale === "ar" ? "المصدر" : "Origin"}
-                    </div>
-                    <div className="text-white text-sm font-bold">
-                      {locale === "ar" ? "البحر المتوسط" : "Mediterranean"}
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Decorative dots */}
-              <div className="absolute top-1/2 -left-4 flex flex-col gap-2">
-                <div className="w-2 h-2 rounded-full bg-[#c9a96e]/40" />
-                <div className="w-2 h-2 rounded-full bg-[#c9a96e]/20" />
-                <div className="w-2 h-2 rounded-full bg-[#c9a96e]/10" />
-              </div>
-            </div>
+            <Suspense fallback={null}>
+              <Hero3D />
+            </Suspense>
           </motion.div>
         </div>
       </div>
 
-      {/* Scroll */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
