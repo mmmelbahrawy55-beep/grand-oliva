@@ -14,9 +14,10 @@ interface CartDrawerProps {
 export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
   const { locale } = useLocaleStore();
   const dir = useLocaleStore((s) => s.dir());
-  const { items, removeItem, updateQuantity, clearCart } = useCartStore();
-  const getTotal = useCartStore((s) => s.getTotal());
-  const getItemCount = useCartStore((s) => s.getItemCount());
+  const store = useCartStore();
+  const { items, removeItem, updateQuantity, clearCart } = store;
+  const total = store.getTotal();
+  const itemCount = store.getItemCount();
 
   return (
     <AnimatePresence>
@@ -48,7 +49,7 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                   {locale === "ar" ? "سلة المشتريات" : "Cart"}
                 </h2>
                 <span className="text-xs text-[#c9a96e] bg-[#c9a96e]/10 px-2 py-1 rounded-lg">
-                  {getItemCount()}
+                  {itemCount}
                 </span>
               </div>
               <button
@@ -140,7 +141,7 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
               <div className="p-6 border-t border-[#2a2a2a] space-y-4">
                 <div className="flex justify-between text-sm">
                   <span className="text-gray-500">{locale === "ar" ? "المجموع" : "Subtotal"}</span>
-                  <span className="text-white font-bold">${getTotal.toFixed(2)}</span>
+                  <span className="text-white font-bold">${total.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between text-sm">
                   <span className="text-gray-500">{locale === "ar" ? "الشحن" : "Shipping"}</span>
@@ -149,7 +150,7 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                 <div className="gold-line" />
                 <div className="flex justify-between">
                   <span className="text-white font-bold">{locale === "ar" ? "الإجمالي" : "Total"}</span>
-                  <span className="text-[#c9a96e] font-bold text-xl">${getTotal.toFixed(2)}</span>
+                  <span className="text-[#c9a96e] font-bold text-xl">${total.toFixed(2)}</span>
                 </div>
                 <Link
                   href="/cart"
