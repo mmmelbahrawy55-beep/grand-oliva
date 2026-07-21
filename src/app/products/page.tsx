@@ -1,49 +1,67 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useLocaleStore } from "@/lib/store";
 import { t } from "@/lib/i18n";
 import ProductCard from "@/components/ProductCard";
-import type { Product } from "@/lib/types";
-
-const allProducts: Product[] = [
-  { id: "1", name: "Green Olives", name_ar: "زيتون أخضر", description: "Fresh green olives handpicked from the finest groves", description_ar: "زيتون أخضر طازج مقطوف من أشجار زيتون مميزة", price: 12.99, image: "/olive-green.jpg", category: "Olives", category_ar: "زيتون", stock: 100, featured: true, created_at: "2024-01-01" },
-  { id: "2", name: "Black Olives", name_ar: "زيتون أسود", description: "Premium black olives with rich, deep flavor", description_ar: "زيتون أسود فاخر بنكهة عميقة ومميزة", price: 14.99, image: "/olive-black.jpg", category: "Olives", category_ar: "زيتون", stock: 80, featured: true, created_at: "2024-01-01" },
-  { id: "3", name: "Mixed Pickles", name_ar: "مخلل مشكل", description: "A delicious mix of traditional Middle Eastern pickles", description_ar: "مزيج لذيذ من المخللات الشرقية التقليدية", price: 9.99, image: "/pickles-mixed.jpg", category: "Pickles", category_ar: "مخللات", stock: 120, featured: true, created_at: "2024-01-01" },
-  { id: "4", name: "Stuffed Olives", name_ar: "زيتون محشي", description: "Olives stuffed with garlic and red pepper", description_ar: "زيتون محشي بالثوم والفلفل الأحمر", price: 16.99, image: "/olive-stuffed.jpg", category: "Olives", category_ar: "زيتون", stock: 60, featured: true, created_at: "2024-01-01" },
-  { id: "5", name: "Spicy Pickles", name_ar: "مخلل حار", description: "Hot and spicy pickles for those who love heat", description_ar: "مخلل حار وحار جداً لعشاق النكهة الحارة", price: 8.99, image: "/pickles-spicy.jpg", category: "Pickles", category_ar: "مخللات", stock: 90, featured: false, created_at: "2024-01-01" },
-  { id: "6", name: "Garlic Olives", name_ar: "زيتون بالثوم", description: "Olives marinated with fresh garlic and herbs", description_ar: "زيتون متبل بالثوم الطازج والأعشاب", price: 13.99, image: "/olive-garlic.jpg", category: "Olives", category_ar: "زيتون", stock: 70, featured: false, created_at: "2024-01-01" },
-  { id: "7", name: "Tomato Sauce", name_ar: "صلصة طماطم", description: "Traditional tomato sauce with secret spices", description_ar: "صلصة طماطم تقليدية بهارات سرية", price: 7.99, image: "/sauce-tomato.jpg", category: "Sauces", category_ar: "صلصات", stock: 150, featured: false, created_at: "2024-01-01" },
-  { id: "8", name: "Pepper Paste", name_ar: "معجون فلفل", description: "Rich red pepper paste for cooking", description_ar: "معجون فلفل أحمر غني للطبخ", price: 6.99, image: "/paste-pepper.jpg", category: "Sauces", category_ar: "صلصات", stock: 110, featured: false, created_at: "2024-01-01" },
-];
+import { products } from "@/lib/data/products";
+import { Search, SlidersHorizontal, X } from "lucide-react";
 
 const categories = [
-  { key: "all", ar: "الكل", en: "All" },
-  { key: "Olives", ar: "زيتون", en: "Olives" },
-  { key: "Pickles", ar: "مخللات", en: "Pickles" },
-  { key: "Sauces", ar: "صلصات", en: "Sauces" },
+  { key: "all", ar: "الكل", en: "All", icon: "✨" },
+  { key: "Olives", ar: "زيتون", en: "Olives", icon: "🫒" },
+  { key: "Stuffed", ar: "محشي", en: "Stuffed", icon: "🧀" },
+  { key: "Pickles", ar: "مخللات", en: "Pickles", icon: "🥒" },
+  { key: "Middle Eastern", ar: "شرقي", en: "Middle Eastern", icon: "🌍" },
+  { key: "Sauces", ar: "صلصات", en: "Sauces", icon: "🫙" },
+  { key: "Premium", ar: "فاخر", en: "Premium", icon: "👑" },
 ];
 
 export default function ProductsPage() {
   const { locale } = useLocaleStore();
   const dir = useLocaleStore((s) => s.dir());
   const [activeCategory, setActiveCategory] = useState("all");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [sortBy, setSortBy] = useState("featured");
 
-  const filteredProducts =
-    activeCategory === "all"
-      ? allProducts
-      : allProducts.filter((p) => p.category === activeCategory);
+  const filteredProducts = products
+    .filter((p) => activeCategory === "all" || p.category === activeCategory)
+    .filter((p) => {
+      if (!searchQuery) return true;
+      const query = searchQuery.toLowerCase();
+      return (
+        p.name.toLowerCase().includes(query) ||
+        p.name_ar.includes(searchQuery) ||
+        p.description.toLowerCase().includes(query) ||
+        p.description_ar.includes(searchQuery)
+      );
+    })
+    .sort((a, b) => {
+      switch (sortBy) {
+        case "price-low":
+          return a.price - b.price;
+        case "price-high":
+          return b.price - a.price;
+        case "rating":
+          return b.rating - a.rating;
+        case "name":
+          return a.name.localeCompare(b.name);
+        default:
+          return b.featured ? 1 : -1;
+      }
+    });
 
   return (
     <section className="pt-28 pb-20 bg-gray-50 min-h-screen" dir={dir}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-16"
         >
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 font-serif">
+          <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-4 font-serif">
             {t(locale, "products.title")}
           </h1>
           <p className="text-gray-600 text-lg max-w-2xl mx-auto">
@@ -51,45 +69,96 @@ export default function ProductsPage() {
           </p>
         </motion.div>
 
-        <div className="flex flex-wrap justify-center gap-3 mb-12">
-          {categories.map((cat) => (
-            <button
-              key={cat.key}
-              onClick={() => setActiveCategory(cat.key)}
-              className={`px-6 py-3 rounded-2xl font-medium transition-all duration-300 ${
-                activeCategory === cat.key
-                  ? "bg-emerald-600 text-white shadow-lg shadow-emerald-500/30"
-                  : "bg-white text-gray-700 hover:bg-emerald-50 hover:text-emerald-700"
-              }`}
-            >
-              {locale === "ar" ? cat.ar : cat.en}
-            </button>
-          ))}
+        {/* Search & Filters */}
+        <div className="mb-12 space-y-6">
+          {/* Search bar */}
+          <div className="relative max-w-xl mx-auto">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder={locale === "ar" ? "ابحث عن منتج..." : "Search products..."}
+              className="w-full pl-12 pr-4 py-4 rounded-2xl border border-gray-200 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 outline-none transition-all bg-white shadow-sm text-lg"
+            />
+            {searchQuery && (
+              <button
+                onClick={() => setSearchQuery("")}
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            )}
+          </div>
+
+          {/* Categories */}
+          <div className="flex flex-wrap justify-center gap-3">
+            {categories.map((cat) => (
+              <motion.button
+                key={cat.key}
+                onClick={() => setActiveCategory(cat.key)}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className={`flex items-center gap-2 px-6 py-3 rounded-2xl font-medium transition-all duration-300 ${
+                  activeCategory === cat.key
+                    ? "bg-emerald-600 text-white shadow-lg shadow-emerald-500/30"
+                    : "bg-white text-gray-700 hover:bg-emerald-50 hover:text-emerald-700 border border-gray-200"
+                }`}
+              >
+                <span>{cat.icon}</span>
+                <span>{locale === "ar" ? cat.ar : cat.en}</span>
+              </motion.button>
+            ))}
+          </div>
+
+          {/* Sort & View */}
+          <div className="flex items-center justify-between max-w-xl mx-auto">
+            <div className="flex items-center gap-2">
+              <SlidersHorizontal className="w-5 h-5 text-gray-400" />
+              <select
+                value={sortBy}
+                onChange={(e) => setSortBy(e.target.value)}
+                className="px-4 py-2 rounded-xl border border-gray-200 focus:border-emerald-500 outline-none bg-white text-sm"
+              >
+                <option value="featured">{locale === "ar" ? "المميزة" : "Featured"}</option>
+                <option value="price-low">{locale === "ar" ? "السعر: من الأقل" : "Price: Low to High"}</option>
+                <option value="price-high">{locale === "ar" ? "السعر: من الأعلى" : "Price: High to Low"}</option>
+                <option value="rating">{locale === "ar" ? "الأعلى تقييماً" : "Top Rated"}</option>
+                <option value="name">{locale === "ar" ? "الاسم" : "Name"}</option>
+              </select>
+            </div>
+            <div className="text-gray-500 text-sm">
+              {filteredProducts.length} {locale === "ar" ? "منتج" : "products"}
+            </div>
+          </div>
         </div>
 
-        <motion.div
-          layout
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
-        >
-          {filteredProducts.map((product, i) => (
-            <motion.div
-              key={product.id}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: i * 0.05 }}
-              layout
-            >
-              <ProductCard product={product} />
-            </motion.div>
-          ))}
-        </motion.div>
+        {/* Products grid */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeCategory + searchQuery}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
+          >
+            {filteredProducts.map((product, i) => (
+              <ProductCard key={product.id} product={product} index={i} />
+            ))}
+          </motion.div>
+        </AnimatePresence>
 
         {filteredProducts.length === 0 && (
-          <div className="text-center py-20">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-center py-20"
+          >
+            <div className="text-6xl mb-4">🔍</div>
             <p className="text-gray-500 text-lg">
-              {locale === "ar" ? "لا توجد منتجات في هذا التصنيف" : "No products in this category"}
+              {locale === "ar" ? "لا توجد منتجات مطابقة" : "No matching products found"}
             </p>
-          </div>
+          </motion.div>
         )}
       </div>
     </section>
