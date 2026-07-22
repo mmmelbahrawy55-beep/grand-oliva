@@ -169,9 +169,7 @@ export default function Hero() {
             transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
             className="relative flex items-center justify-center"
           >
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+            <div
               className="relative w-[480px] h-[480px] rounded-3xl overflow-hidden border border-[#c9a96e]/20 gold-glow-strong"
             >
               <motion.div
@@ -228,7 +226,7 @@ export default function Hero() {
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
                 className="absolute inset-0 border-2 border-[#c9a96e]/10 rounded-3xl"
               />
-            </motion.div>
+            </div>
           </motion.div>
         </div>
       </div>
