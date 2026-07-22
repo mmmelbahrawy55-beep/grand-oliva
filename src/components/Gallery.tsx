@@ -5,12 +5,12 @@ import { useLocaleStore } from "@/lib/store";
 import Image from "next/image";
 
 const images = [
-  { src: "https://images.unsplash.com/photo-1520950236293-7b21e8406a8e?w=800&h=600&fit=crop&q=80", alt: "Olive grove" },
-  { src: "https://images.unsplash.com/photo-1506806732259-39c2d0268443?w=600&h=600&fit=crop&q=80", alt: "Kalamata olives" },
-  { src: "https://images.unsplash.com/photo-1589927986089-35812388d1f4?w=600&h=600&fit=crop&q=80", alt: "Pickles in jar" },
-  { src: "https://images.unsplash.com/photo-1498579397066-22750a3cb424?w=800&h=600&fit=crop&q=80", alt: "Olive platter" },
-  { src: "https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?w=600&h=600&fit=crop&q=80", alt: "Olives bowl" },
-  { src: "https://images.unsplash.com/photo-1590005354167-6da97870c757?w=600&h=600&fit=crop&q=80", alt: "Mixed pickles" },
+  { src: "https://images.pexels.com/photos/16732695/pexels-photo-16732695.jpeg?w=800&h=600&fit=crop&q=80", alt: "Stuffed green olives" },
+  { src: "https://images.pexels.com/photos/4109912/pexels-photo-4109912.jpeg?w=600&h=600&fit=crop&q=80", alt: "Olives in olive oil" },
+  { src: "https://images.pexels.com/photos/8599633/pexels-photo-8599633.jpeg?w=600&h=600&fit=crop&q=80", alt: "Pickles in jar" },
+  { src: "https://images.pexels.com/photos/4109911/pexels-photo-4109911.jpeg?w=800&h=600&fit=crop&q=80", alt: "Olive platter with bread" },
+  { src: "https://images.pexels.com/photos/4109910/pexels-photo-4109910.jpeg?w=600&h=600&fit=crop&q=80", alt: "Mixed olives close-up" },
+  { src: "https://images.pexels.com/photos/12181052/pexels-photo-12181052.jpeg?w=600&h=600&fit=crop&q=80", alt: "Pickled cucumbers in jar" },
 ];
 
 export default function Gallery() {
