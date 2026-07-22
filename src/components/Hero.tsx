@@ -5,13 +5,8 @@ import { t } from "@/lib/i18n";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight, ChevronDown, Star, Award, Leaf } from "lucide-react";
-import { useRef, Suspense } from "react";
-import dynamic from "next/dynamic";
-
-const Hero3D = dynamic(() => import("@/components/Hero3D"), {
-  ssr: false,
-  loading: () => <div className="w-full h-[500px] bg-[#1a1a1a] rounded-3xl animate-pulse" />,
-});
+import { useRef } from "react";
+import Image from "next/image";
 
 export default function Hero() {
   const { locale } = useLocaleStore();
@@ -27,18 +22,31 @@ export default function Hero() {
     <section ref={ref} className="relative min-h-screen flex items-center overflow-hidden bg-[#0a0a0a]" dir={dir}>
       <motion.div style={{ y: bgY }} className="absolute inset-0">
         <div className="absolute inset-0">
-          <img
+          <Image
             src="https://images.unsplash.com/photo-1506806732259-39c2d0268443?w=1920&h=1080&fit=crop&q=80"
-            alt="Kalamata Olives"
-            className="w-full h-full object-cover opacity-25"
-            loading="eager"
+            alt="Kalamata Olives Premium"
+            fill
+            className="object-cover opacity-30"
+            priority
           />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a] via-[#0a0a0a]/85 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-[#0a0a0a]/60" />
+        <motion.div
+          animate={{ opacity: [0.3, 0.5, 0.3] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a] via-[#0a0a0a]/85 to-transparent"
+        />
+        <motion.div
+          animate={{ opacity: [0.6, 0.8, 0.6] }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+          className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-[#0a0a0a]/60"
+        />
       </motion.div>
 
-      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#c9a96e]/20 to-transparent" />
+      <motion.div
+        animate={{ opacity: [0.2, 0.3, 0.2] }}
+        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#c9a96e]/30 to-transparent"
+      />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 w-full">
         <div className="grid lg:grid-cols-2 gap-20 items-center">
@@ -53,7 +61,11 @@ export default function Hero() {
               transition={{ delay: 0.3 }}
               className="inline-flex items-center gap-3 border border-[#c9a96e]/30 rounded-full px-5 py-2 mb-10"
             >
-              <div className="w-1.5 h-1.5 bg-[#c9a96e] rounded-full animate-pulse" />
+              <motion.div
+                animate={{ opacity: [1, 0.5, 1] }}
+                transition={{ duration: 2, repeat: Infinity }}
+                className="w-1.5 h-1.5 bg-[#c9a96e] rounded-full"
+              />
               <span className="text-[#c9a96e] text-xs font-semibold tracking-[0.25em] uppercase">
                 {locale === "ar" ? "منذ عام 1950" : "Since 1950"}
               </span>
@@ -157,9 +169,66 @@ export default function Hero() {
             transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
             className="relative flex items-center justify-center"
           >
-            <Suspense fallback={null}>
-              <Hero3D />
-            </Suspense>
+            <motion.div
+              animate={{ rotate: 360 }}
+              transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+              className="relative w-[480px] h-[480px] rounded-3xl overflow-hidden border border-[#c9a96e]/20 gold-glow-strong"
+            >
+              <motion.div
+                animate={{ scale: [1, 1.03, 1] }}
+                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute inset-0"
+              >
+                <Image
+                  src="https://images.unsplash.com/photo-1506806732259-39c2d0268443?w=600&h=600&fit=crop&q=80"
+                  alt="Premium Kalamata Olives"
+                  fill
+                  className="object-cover"
+                  sizes="480px"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/70 via-transparent to-transparent" />
+              </motion.div>
+
+              <motion.div
+                animate={{ y: [0, -15, 0] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute -top-4 right-4 bg-[#1a1a1a] border border-[#c9a96e]/30 rounded-xl px-4 py-3 gold-glow"
+              >
+                <div className="flex items-center gap-2">
+                  <span className="text-lg">🏆</span>
+                  <div>
+                    <div className="text-[#c9a96e] text-[10px] font-semibold tracking-wider uppercase">
+                      {locale === "ar" ? "الأفضل" : "Award"}
+                    </div>
+                    <div className="text-white text-sm font-bold">2024</div>
+                  </div>
+                </div>
+              </motion.div>
+
+              <motion.div
+                animate={{ y: [0, 12, 0] }}
+                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                className="absolute -bottom-4 left-4 bg-[#1a1a1a] border border-[#c9a96e]/30 rounded-xl px-4 py-3 gold-glow"
+              >
+                <div className="flex items-center gap-2">
+                  <span className="text-lg">🫒</span>
+                  <div>
+                    <div className="text-[#c9a96e] text-[10px] font-semibold tracking-wider uppercase">
+                      {locale === "ar" ? "المصدر" : "Origin"}
+                    </div>
+                    <div className="text-white text-sm font-bold">
+                      {locale === "ar" ? "البحر المتوسع" : "Mediterranean"}
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+
+              <motion.div
+                animate={{ opacity: [0.5, 1, 0.5] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute inset-0 border-2 border-[#c9a96e]/10 rounded-3xl"
+              />
+            </motion.div>
           </motion.div>
         </div>
       </div>
