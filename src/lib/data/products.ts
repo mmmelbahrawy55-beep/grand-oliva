@@ -4,7 +4,7 @@ export const products: Product[] = [
   {
     "id": "olive-001",
     "name": "Kalamata Olive",
-    "name_ar": "Kalamata Olive",
+    "name_ar": "زيتون كالاماتا",
     "description": "Premium hand-selected olives, carefully cured for optimal flavor.",
     "description_ar": "زيتون مختار بعناية يدوياً، معقود بعناية للحصول على أفضل النكهات.",
     "price": 12.99,
@@ -26,7 +26,7 @@ export const products: Product[] = [
   {
     "id": "olive-002",
     "name": "Green Gordal",
-    "name_ar": "Green Gordal",
+    "name_ar": "زيتون غورdal أخضر",
     "description": "Authentic Mediterranean olives with rich, complex taste profiles.",
     "description_ar": "زيتون أصيل من البحر المتوسط بنكهات غنية ومعقدة.",
     "price": 16.49,
@@ -48,7 +48,7 @@ export const products: Product[] = [
   {
     "id": "olive-003",
     "name": "Nocellara",
-    "name_ar": "Nocellara",
+    "name_ar": "زيتون نوتشيلارا",
     "description": "Artisan-cured olives from the finest groves, delivering exceptional quality.",
     "description_ar": "زيتون يدوي التصنيع من أفضل الحميات، يوفر جودة استثنائية.",
     "price": 19.99,
@@ -70,7 +70,7 @@ export const products: Product[] = [
   {
     "id": "olive-004",
     "name": "Manzanilla",
-    "name_ar": "Manzanilla",
+    "name_ar": "زيتون مانزانيليا",
     "description": "Traditional stone-cured olives, perfect for any Mediterranean dish.",
     "description_ar": "زيتون يتم تعميقه بالحجر التقليدي، مثالي لأي طبق متوسطي.",
     "price": 23.49,
@@ -92,7 +92,7 @@ export const products: Product[] = [
   {
     "id": "olive-005",
     "name": "Picholine",
-    "name_ar": "Picholine",
+    "name_ar": "زيتون بيتشولين",
     "description": "Extra virgin olive varieties, naturally fermented for superior taste.",
     "description_ar": "أنواع زيتون بكر، مخمرة طبيعياً للحصول على نكهة غنية.",
     "price": 26.99,
@@ -114,7 +114,7 @@ export const products: Product[] = [
   {
     "id": "olive-006",
     "name": "Cerignola",
-    "name_ar": "Cerignola",
+    "name_ar": "زيتون تشيرينغولا",
     "description": "Premium quality olives, hand-packed in small batches for freshness.",
     "description_ar": "زيتون عالي الجودة، مُعبأ بأيدٍ صغيرة في دفاتر صغيرة للطازجية.",
     "price": 30.49,
@@ -136,7 +136,7 @@ export const products: Product[] = [
   {
     "id": "olive-007",
     "name": "Gaeta",
-    "name_ar": "Gaeta",
+    "name_ar": "زيتون غايتا",
     "description": "Mediterranean heritage olives, slow-cured using time-honored methods.",
     "description_ar": "زيتون تراث البحر المتوسط، يتم تعميقه بطرق تقليدية عبر العقود.",
     "price": 33.99,
@@ -158,7 +158,7 @@ export const products: Product[] = [
   {
     "id": "olive-008",
     "name": "Niçoise",
-    "name_ar": "Niçoise",
+    "name_ar": "زيتون نيسواز",
     "description": "Organic certified olives, sustainably harvested from family farms.",
     "description_ar": "زيتون معتمد كعضوي، مُحمص من مزارع عائلية.",
     "price": 37.49,
@@ -180,7 +180,7 @@ export const products: Product[] = [
   {
     "id": "olive-009",
     "name": "Aegean Blend",
-    "name_ar": "Aegean Blend",
+    "name_ar": "خليط بحر إيجة",
     "description": "Award-winning olives, recognized for their exceptional flavor and quality.",
     "description_ar": "زيتون حائز على جوائز، معترف به لنكهته وجودته الاستثنائية.",
     "price": 40.99,
@@ -202,7 +202,7 @@ export const products: Product[] = [
   {
     "id": "olive-010",
     "name": "Stuffed Green",
-    "name_ar": "Stuffed Green",
+    "name_ar": "زيتون كاستيل فيترانو",
     "description": "Cold-pressed olives, preserving the natural essence and nutrients.",
     "description_ar": "زيتون يتم ضغطه ببرودة، يحافظ على الجوهر والعناصر الغذائية الطبيعية.",
     "price": 44.49,
@@ -224,7 +224,7 @@ export const products: Product[] = [
   {
     "id": "olive-011",
     "name": "Black Mission",
-    "name_ar": "Black Mission",
+    "name_ar": "زيتون أمفيسا",
     "description": "Premium hand-selected olives, carefully cured for optimal flavor.",
     "description_ar": "زيتون مختار بعناية يدوياً، معقود بعناية للحصول على أفضل النكهات.",
     "price": 12.99,
@@ -246,7 +246,7 @@ export const products: Product[] = [
   {
     "id": "olive-012",
     "name": "Queen Olive",
-    "name_ar": "Queen Olive",
+    "name_ar": "زيتون خالكيديكي",
     "description": "Authentic Mediterranean olives with rich, complex taste profiles.",
     "description_ar": "زيتون أصيل من البحر المتوسط بنكهات غنية ومعقدة.",
     "price": 16.49,
@@ -268,7 +268,7 @@ export const products: Product[] = [
   {
     "id": "olive-013",
     "name": "Arbequina",
-    "name_ar": "Arbequina",
+    "name_ar": "زيتون ثرومボليا",
     "description": "Artisan-cured olives from the finest groves, delivering exceptional quality.",
     "description_ar": "زيتون يدوي التصنيع من أفضل الحميات، يوفر جودة استثنائية.",
     "price": 19.99,
@@ -290,7 +290,7 @@ export const products: Product[] = [
   {
     "id": "olive-014",
     "name": "Frantoio",
-    "name_ar": "Frantoio",
+    "name_ar": "زيتون كورونايكي",
     "description": "Traditional stone-cured olives, perfect for any Mediterranean dish.",
     "description_ar": "زيتون يتم تعميقه بالحجر التقليدي، مثالي لأي طبق متوسطي.",
     "price": 23.49,
@@ -312,7 +312,7 @@ export const products: Product[] = [
   {
     "id": "olive-015",
     "name": "Leccino",
-    "name_ar": "Leccino",
+    "name_ar": "زيتون إيتانا",
     "description": "Extra virgin olive varieties, naturally fermented for superior taste.",
     "description_ar": "أنواع زيتون بكر، مخمرة طبيعياً للحصول على نكهة غنية.",
     "price": 26.99,
@@ -334,7 +334,7 @@ export const products: Product[] = [
   {
     "id": "olive-016",
     "name": "Coratina",
-    "name_ar": "Coratina",
+    "name_ar": "زيتون فرانتويو",
     "description": "Premium quality olives, hand-packed in small batches for freshness.",
     "description_ar": "زيتون عالي الجودة، مُعبأ بأيدٍ صغيرة في دفاتر صغيرة للطازجية.",
     "price": 30.49,
@@ -356,7 +356,7 @@ export const products: Product[] = [
   {
     "id": "olive-017",
     "name": "Koroneiki",
-    "name_ar": "Koroneiki",
+    "name_ar": "زيتون ليتشينو",
     "description": "Mediterranean heritage olives, slow-cured using time-honored methods.",
     "description_ar": "زيتون تراث البحر المتوسط، يتم تعميقه بطرق تقليدية عبر العقود.",
     "price": 33.99,
@@ -378,7 +378,7 @@ export const products: Product[] = [
   {
     "id": "olive-018",
     "name": "Arbosana",
-    "name_ar": "Arbosana",
+    "name_ar": "زيتون مورايولو",
     "description": "Organic certified olives, sustainably harvested from family farms.",
     "description_ar": "زيتون معتمد كعضوي، مُحمص من مزارع عائلية.",
     "price": 37.49,
@@ -400,7 +400,7 @@ export const products: Product[] = [
   {
     "id": "olive-019",
     "name": "Picual",
-    "name_ar": "Picual",
+    "name_ar": "زيتون تاغياسكا",
     "description": "Award-winning olives, recognized for their exceptional flavor and quality.",
     "description_ar": "زيتون حائز على جوائز، معترف به لنكهته وجودته الاستثنائية.",
     "price": 40.99,
@@ -422,7 +422,7 @@ export const products: Product[] = [
   {
     "id": "olive-020",
     "name": "Hojiblanca",
-    "name_ar": "Hojiblanca",
+    "name_ar": "زيتون أسكونانا",
     "description": "Cold-pressed olives, preserving the natural essence and nutrients.",
     "description_ar": "زيتون يتم ضغطه ببرودة، يحافظ على الجوهر والعناصر الغذائية الطبيعية.",
     "price": 44.49,
@@ -444,7 +444,7 @@ export const products: Product[] = [
   {
     "id": "olive-021",
     "name": "Arbequina Gold",
-    "name_ar": "Arbequina Gold",
+    "name_ar": "Arbequina Gold - زيتون",
     "description": "Premium hand-selected olives, carefully cured for optimal flavor.",
     "description_ar": "زيتون مختار بعناية يدوياً، معقود بعناية للحصول على أفضل النكهات.",
     "price": 12.99,
@@ -466,7 +466,7 @@ export const products: Product[] = [
   {
     "id": "olive-022",
     "name": "Frantoio Extra",
-    "name_ar": "Frantoio Extra",
+    "name_ar": "Frantoio Extra - زيتون",
     "description": "Authentic Mediterranean olives with rich, complex taste profiles.",
     "description_ar": "زيتون أصيل من البحر المتوسط بنكهات غنية ومعقدة.",
     "price": 16.49,
@@ -488,7 +488,7 @@ export const products: Product[] = [
   {
     "id": "olive-023",
     "name": "Leccino Select",
-    "name_ar": "Leccino Select",
+    "name_ar": "Leccino Select - زيتون",
     "description": "Artisan-cured olives from the finest groves, delivering exceptional quality.",
     "description_ar": "زيتون يدوي التصنيع من أفضل الحميات، يوفر جودة استثنائية.",
     "price": 19.99,
@@ -510,7 +510,7 @@ export const products: Product[] = [
   {
     "id": "olive-024",
     "name": "Coratina Premium",
-    "name_ar": "Coratina Premium",
+    "name_ar": "Coratina Premium - زيتون",
     "description": "Traditional stone-cured olives, perfect for any Mediterranean dish.",
     "description_ar": "زيتون يتم تعميقه بالحجر التقليدي، مثالي لأي طبق متوسطي.",
     "price": 23.49,
@@ -532,7 +532,7 @@ export const products: Product[] = [
   {
     "id": "olive-025",
     "name": "Koroneiki Elite",
-    "name_ar": "Koroneiki Elite",
+    "name_ar": "Koroneiki Elite - زيتون",
     "description": "Extra virgin olive varieties, naturally fermented for superior taste.",
     "description_ar": "أنواع زيتون بكر، مخمرة طبيعياً للحصول على نكهة غنية.",
     "price": 26.99,
@@ -554,7 +554,7 @@ export const products: Product[] = [
   {
     "id": "olive-026",
     "name": "Arbosana Reserve",
-    "name_ar": "Arbosana Reserve",
+    "name_ar": "Arbosana Reserve - زيتون",
     "description": "Premium quality olives, hand-packed in small batches for freshness.",
     "description_ar": "زيتون عالي الجودة، مُعبأ بأيدٍ صغيرة في دفاتر صغيرة للطازجية.",
     "price": 30.49,
@@ -576,7 +576,7 @@ export const products: Product[] = [
   {
     "id": "olive-027",
     "name": "Picual Supreme",
-    "name_ar": "Picual Supreme",
+    "name_ar": "Picual Supreme - زيتون",
     "description": "Mediterranean heritage olives, slow-cured using time-honored methods.",
     "description_ar": "زيتون تراث البحر المتوسط، يتم تعميقه بطرق تقليدية عبر العقود.",
     "price": 33.99,
@@ -598,7 +598,7 @@ export const products: Product[] = [
   {
     "id": "olive-028",
     "name": "Hojiblanca Royal",
-    "name_ar": "Hojiblanca Royal",
+    "name_ar": "Hojiblanca Royal - زيتون",
     "description": "Organic certified olives, sustainably harvested from family farms.",
     "description_ar": "زيتون معتمد كعضوي، مُحمص من مزارع عائلية.",
     "price": 37.49,
@@ -620,7 +620,7 @@ export const products: Product[] = [
   {
     "id": "olive-029",
     "name": "Manzanilla Supreme",
-    "name_ar": "Manzanilla Supreme",
+    "name_ar": "Manzanilla Supreme - زيتون",
     "description": "Award-winning olives, recognized for their exceptional flavor and quality.",
     "description_ar": "زيتون حائز على جوائز، معترف به لنكهته وجودته الاستثنائية.",
     "price": 40.99,
@@ -642,7 +642,7 @@ export const products: Product[] = [
   {
     "id": "olive-030",
     "name": "Picholine Elite",
-    "name_ar": "Picholine Elite",
+    "name_ar": "Picholine Elite - زيتون",
     "description": "Cold-pressed olives, preserving the natural essence and nutrients.",
     "description_ar": "زيتون يتم ضغطه ببرودة، يحافظ على الجوهر والعناصر الغذائية الطبيعية.",
     "price": 44.49,
@@ -664,7 +664,7 @@ export const products: Product[] = [
   {
     "id": "olive-031",
     "name": "Cerignola Gold",
-    "name_ar": "Cerignola Gold",
+    "name_ar": "Cerignola Gold - زيتون",
     "description": "Premium hand-selected olives, carefully cured for optimal flavor.",
     "description_ar": "زيتون مختار بعناية يدوياً، معقود بعناية للحصول على أفضل النكهات.",
     "price": 12.99,
@@ -684,7 +684,7 @@ export const products: Product[] = [
   {
     "id": "olive-032",
     "name": "Gaeta Select",
-    "name_ar": "Gaeta Select",
+    "name_ar": "Gaeta Select - زيتون",
     "description": "Authentic Mediterranean olives with rich, complex taste profiles.",
     "description_ar": "زيتون أصيل من البحر المتوسط بنكهات غنية ومعقدة.",
     "price": 16.49,
@@ -704,7 +704,7 @@ export const products: Product[] = [
   {
     "id": "olive-033",
     "name": "Niçoise Premium",
-    "name_ar": "Niçoise Premium",
+    "name_ar": "Niçoise Premium - زيتون",
     "description": "Artisan-cured olives from the finest groves, delivering exceptional quality.",
     "description_ar": "زيتون يدوي التصنيع من أفضل الحميات، يوفر جودة استثنائية.",
     "price": 19.99,
@@ -724,7 +724,7 @@ export const products: Product[] = [
   {
     "id": "olive-034",
     "name": "Aegean Royal",
-    "name_ar": "Aegean Royal",
+    "name_ar": "Aegean Royal - زيتون",
     "description": "Traditional stone-cured olives, perfect for any Mediterranean dish.",
     "description_ar": "زيتون يتم تعميقه بالحجر التقليدي، مثالي لأي طبق متوسطي.",
     "price": 23.49,
@@ -744,7 +744,7 @@ export const products: Product[] = [
   {
     "id": "olive-035",
     "name": "Stuffed Black",
-    "name_ar": "Stuffed Black",
+    "name_ar": "Stuffed Black - زيتون",
     "description": "Extra virgin olive varieties, naturally fermented for superior taste.",
     "description_ar": "أنواع زيتون بكر، مخمرة طبيعياً للحصول على نكهة غنية.",
     "price": 26.99,
@@ -764,7 +764,7 @@ export const products: Product[] = [
   {
     "id": "olive-036",
     "name": "Mission Supreme",
-    "name_ar": "Mission Supreme",
+    "name_ar": "Mission Supreme - زيتون",
     "description": "Premium quality olives, hand-packed in small batches for freshness.",
     "description_ar": "زيتون عالي الجودة، مُعبأ بأيدٍ صغيرة في دفاتر صغيرة للطازجية.",
     "price": 30.49,
@@ -784,7 +784,7 @@ export const products: Product[] = [
   {
     "id": "olive-037",
     "name": "Queen Select",
-    "name_ar": "Queen Select",
+    "name_ar": "Queen Select - زيتون",
     "description": "Mediterranean heritage olives, slow-cured using time-honored methods.",
     "description_ar": "زيتون تراث البحر المتوسط، يتم تعميقه بطرق تقليدية عبر العقود.",
     "price": 33.99,
@@ -804,7 +804,7 @@ export const products: Product[] = [
   {
     "id": "olive-038",
     "name": "Arbequina Royal",
-    "name_ar": "Arbequina Royal",
+    "name_ar": "Arbequina Royal - زيتون",
     "description": "Organic certified olives, sustainably harvested from family farms.",
     "description_ar": "زيتون معتمد كعضوي، مُحمص من مزارع عائلية.",
     "price": 37.49,
@@ -824,7 +824,7 @@ export const products: Product[] = [
   {
     "id": "olive-039",
     "name": "Frantoio Elite",
-    "name_ar": "Frantoio Elite",
+    "name_ar": "Frantoio Elite - زيتون",
     "description": "Award-winning olives, recognized for their exceptional flavor and quality.",
     "description_ar": "زيتون حائز على جوائز، معترف به لنكهته وجودته الاستثنائية.",
     "price": 40.99,
@@ -844,7 +844,7 @@ export const products: Product[] = [
   {
     "id": "olive-040",
     "name": "Leccino Supreme",
-    "name_ar": "Leccino Supreme",
+    "name_ar": "Leccino Supreme - زيتون",
     "description": "Cold-pressed olives, preserving the natural essence and nutrients.",
     "description_ar": "زيتون يتم ضغطه ببرودة، يحافظ على الجوهر والعناصر الغذائية الطبيعية.",
     "price": 44.49,
@@ -864,7 +864,7 @@ export const products: Product[] = [
   {
     "id": "olive-041",
     "name": "Coratina Gold",
-    "name_ar": "Coratina Gold",
+    "name_ar": "Coratina Gold - زيتون",
     "description": "Premium hand-selected olives, carefully cured for optimal flavor.",
     "description_ar": "زيتون مختار بعناية يدوياً، معقود بعناية للحصول على أفضل النكهات.",
     "price": 12.99,
@@ -884,7 +884,7 @@ export const products: Product[] = [
   {
     "id": "olive-042",
     "name": "Koroneiki Select",
-    "name_ar": "Koroneiki Select",
+    "name_ar": "Koroneiki Select - زيتون",
     "description": "Authentic Mediterranean olives with rich, complex taste profiles.",
     "description_ar": "زيتون أصيل من البحر المتوسط بنكهات غنية ومعقدة.",
     "price": 16.49,
@@ -904,7 +904,7 @@ export const products: Product[] = [
   {
     "id": "olive-043",
     "name": "Arbosana Premium",
-    "name_ar": "Arbosana Premium",
+    "name_ar": "Arbosana Premium - زيتون",
     "description": "Artisan-cured olives from the finest groves, delivering exceptional quality.",
     "description_ar": "زيتون يدوي التصنيع من أفضل الحميات، يوفر جودة استثنائية.",
     "price": 19.99,
@@ -924,7 +924,7 @@ export const products: Product[] = [
   {
     "id": "olive-044",
     "name": "Picual Elite",
-    "name_ar": "Picual Elite",
+    "name_ar": "Picual Elite - زيتون",
     "description": "Traditional stone-cured olives, perfect for any Mediterranean dish.",
     "description_ar": "زيتون يتم تعميقه بالحجر التقليدي، مثالي لأي طبق متوسطي.",
     "price": 23.49,
@@ -944,7 +944,7 @@ export const products: Product[] = [
   {
     "id": "olive-045",
     "name": "Hojiblanca Supreme",
-    "name_ar": "Hojiblanca Supreme",
+    "name_ar": "Hojiblanca Supreme - زيتون",
     "description": "Extra virgin olive varieties, naturally fermented for superior taste.",
     "description_ar": "أنواع زيتون بكر، مخمرة طبيعياً للحصول على نكهة غنية.",
     "price": 26.99,
@@ -964,7 +964,7 @@ export const products: Product[] = [
   {
     "id": "olive-046",
     "name": "Arbequina Supreme",
-    "name_ar": "Arbequina Supreme",
+    "name_ar": "Arbequina Supreme - زيتون",
     "description": "Premium quality olives, hand-packed in small batches for freshness.",
     "description_ar": "زيتون عالي الجودة، مُعبأ بأيدٍ صغيرة في دفاتر صغيرة للطازجية.",
     "price": 30.49,
@@ -984,7 +984,7 @@ export const products: Product[] = [
   {
     "id": "olive-047",
     "name": "Frantoio Select",
-    "name_ar": "Frantoio Select",
+    "name_ar": "Frantoio Select - زيتون",
     "description": "Mediterranean heritage olives, slow-cured using time-honored methods.",
     "description_ar": "زيتون تراث البحر المتوسط، يتم تعميقه بطرق تقليدية عبر العقود.",
     "price": 33.99,
@@ -1004,7 +1004,7 @@ export const products: Product[] = [
   {
     "id": "olive-048",
     "name": "Leccino Gold",
-    "name_ar": "Leccino Gold",
+    "name_ar": "Leccino Gold - زيتون",
     "description": "Organic certified olives, sustainably harvested from family farms.",
     "description_ar": "زيتون معتمد كعضوي، مُحمص من مزارع عائلية.",
     "price": 37.49,
@@ -1024,7 +1024,7 @@ export const products: Product[] = [
   {
     "id": "olive-049",
     "name": "Coratina Royal",
-    "name_ar": "Coratina Royal",
+    "name_ar": "Coratina Royal - زيتون",
     "description": "Award-winning olives, recognized for their exceptional flavor and quality.",
     "description_ar": "زيتون حائز على جوائز، معترف به لنكهته وجودته الاستثنائية.",
     "price": 40.99,
@@ -1044,7 +1044,7 @@ export const products: Product[] = [
   {
     "id": "olive-050",
     "name": "Koroneiki Supreme",
-    "name_ar": "Koroneiki Supreme",
+    "name_ar": "Koroneiki Supreme - زيتون",
     "description": "Cold-pressed olives, preserving the natural essence and nutrients.",
     "description_ar": "زيتون يتم ضغطه ببرودة، يحافظ على الجوهر والعناصر الغذائية الطبيعية.",
     "price": 44.49,
@@ -1064,7 +1064,7 @@ export const products: Product[] = [
   {
     "id": "olive-051",
     "name": "Arbosana Select",
-    "name_ar": "Arbosana Select",
+    "name_ar": "Arbosana Select - زيتون",
     "description": "Premium hand-selected olives, carefully cured for optimal flavor.",
     "description_ar": "زيتون مختار بعناية يدوياً، معقود بعناية للحصول على أفضل النكهات.",
     "price": 12.99,
@@ -1084,7 +1084,7 @@ export const products: Product[] = [
   {
     "id": "olive-052",
     "name": "Picual Gold",
-    "name_ar": "Picual Gold",
+    "name_ar": "Picual Gold - زيتون",
     "description": "Authentic Mediterranean olives with rich, complex taste profiles.",
     "description_ar": "زيتون أصيل من البحر المتوسط بنكهات غنية ومعقدة.",
     "price": 16.49,
@@ -1104,7 +1104,7 @@ export const products: Product[] = [
   {
     "id": "olive-053",
     "name": "Hojiblanca Elite",
-    "name_ar": "Hojiblanca Elite",
+    "name_ar": "Hojiblanca Elite - زيتون",
     "description": "Artisan-cured olives from the finest groves, delivering exceptional quality.",
     "description_ar": "زيتون يدوي التصنيع من أفضل الحميات، يوفر جودة استثنائية.",
     "price": 19.99,
@@ -1124,7 +1124,7 @@ export const products: Product[] = [
   {
     "id": "olive-054",
     "name": "Manzanilla Gold",
-    "name_ar": "Manzanilla Gold",
+    "name_ar": "Manzanilla Gold - زيتون",
     "description": "Traditional stone-cured olives, perfect for any Mediterranean dish.",
     "description_ar": "زيتون يتم تعميقه بالحجر التقليدي، مثالي لأي طبق متوسطي.",
     "price": 23.49,
@@ -1144,7 +1144,7 @@ export const products: Product[] = [
   {
     "id": "olive-055",
     "name": "Picholine Supreme",
-    "name_ar": "Picholine Supreme",
+    "name_ar": "Picholine Supreme - زيتون",
     "description": "Extra virgin olive varieties, naturally fermented for superior taste.",
     "description_ar": "أنواع زيتون بكر، مخمرة طبيعياً للحصول على نكهة غنية.",
     "price": 26.99,
@@ -1164,7 +1164,7 @@ export const products: Product[] = [
   {
     "id": "olive-056",
     "name": "Cerignola Supreme",
-    "name_ar": "Cerignola Supreme",
+    "name_ar": "Cerignola Supreme - زيتون",
     "description": "Premium quality olives, hand-packed in small batches for freshness.",
     "description_ar": "زيتون عالي الجودة، مُعبأ بأيدٍ صغيرة في دفاتر صغيرة للطازجية.",
     "price": 30.49,
@@ -1184,7 +1184,7 @@ export const products: Product[] = [
   {
     "id": "olive-057",
     "name": "Gaeta Royal",
-    "name_ar": "Gaeta Royal",
+    "name_ar": "Gaeta Royal - زيتون",
     "description": "Mediterranean heritage olives, slow-cured using time-honored methods.",
     "description_ar": "زيتون تراث البحر المتوسط، يتم تعميقه بطرق تقليدية عبر العقود.",
     "price": 33.99,
@@ -1204,7 +1204,7 @@ export const products: Product[] = [
   {
     "id": "olive-058",
     "name": "Niçoise Gold",
-    "name_ar": "Niçoise Gold",
+    "name_ar": "Niçoise Gold - زيتون",
     "description": "Organic certified olives, sustainably harvested from family farms.",
     "description_ar": "زيتون معتمد كعضوي، مُحمص من مزارع عائلية.",
     "price": 37.49,
@@ -1224,7 +1224,7 @@ export const products: Product[] = [
   {
     "id": "olive-059",
     "name": "Aegean Select",
-    "name_ar": "Aegean Select",
+    "name_ar": "Aegean Select - زيتون",
     "description": "Award-winning olives, recognized for their exceptional flavor and quality.",
     "description_ar": "زيتون حائز على جوائز، معترف به لنكهته وجودته الاستثنائية.",
     "price": 40.99,
@@ -1244,7 +1244,7 @@ export const products: Product[] = [
   {
     "id": "olive-060",
     "name": "Stuffed Mixed",
-    "name_ar": "Stuffed Mixed",
+    "name_ar": "Stuffed Mixed - زيتون",
     "description": "Cold-pressed olives, preserving the natural essence and nutrients.",
     "description_ar": "زيتون يتم ضغطه ببرودة، يحافظ على الجوهر والعناصر الغذائية الطبيعية.",
     "price": 44.49,
@@ -1264,7 +1264,7 @@ export const products: Product[] = [
   {
     "id": "olive-061",
     "name": "Mission Gold",
-    "name_ar": "Mission Gold",
+    "name_ar": "Mission Gold - زيتون",
     "description": "Premium hand-selected olives, carefully cured for optimal flavor.",
     "description_ar": "زيتون مختار بعناية يدوياً، معقود بعناية للحصول على أفضل النكهات.",
     "price": 12.99,
@@ -1284,7 +1284,7 @@ export const products: Product[] = [
   {
     "id": "olive-062",
     "name": "Queen Royal",
-    "name_ar": "Queen Royal",
+    "name_ar": "Queen Royal - زيتون",
     "description": "Authentic Mediterranean olives with rich, complex taste profiles.",
     "description_ar": "زيتون أصيل من البحر المتوسط بنكهات غنية ومعقدة.",
     "price": 16.49,
@@ -1304,7 +1304,7 @@ export const products: Product[] = [
   {
     "id": "olive-063",
     "name": "Arbequina Select",
-    "name_ar": "Arbequina Select",
+    "name_ar": "Arbequina Select - زيتون",
     "description": "Artisan-cured olives from the finest groves, delivering exceptional quality.",
     "description_ar": "زيتون يدوي التصنيع من أفضل الحميات، يوفر جودة استثنائية.",
     "price": 19.99,
@@ -1324,7 +1324,7 @@ export const products: Product[] = [
   {
     "id": "olive-064",
     "name": "Frantoio Gold",
-    "name_ar": "Frantoio Gold",
+    "name_ar": "Frantoio Gold - زيتون",
     "description": "Traditional stone-cured olives, perfect for any Mediterranean dish.",
     "description_ar": "زيتون يتم تعميقه بالحجر التقليدي، مثالي لأي طبق متوسطي.",
     "price": 23.49,
@@ -1344,7 +1344,7 @@ export const products: Product[] = [
   {
     "id": "olive-065",
     "name": "Leccino Elite",
-    "name_ar": "Leccino Elite",
+    "name_ar": "Leccino Elite - زيتون",
     "description": "Extra virgin olive varieties, naturally fermented for superior taste.",
     "description_ar": "أنواع زيتون بكر، مخمرة طبيعياً للحصول على نكهة غنية.",
     "price": 26.99,
@@ -1364,7 +1364,7 @@ export const products: Product[] = [
   {
     "id": "olive-066",
     "name": "Coratina Supreme",
-    "name_ar": "Coratina Supreme",
+    "name_ar": "Coratina Supreme - زيتون",
     "description": "Premium quality olives, hand-packed in small batches for freshness.",
     "description_ar": "زيتون عالي الجودة، مُعبأ بأيدٍ صغيرة في دفاتر صغيرة للطازجية.",
     "price": 30.49,
@@ -1384,7 +1384,7 @@ export const products: Product[] = [
   {
     "id": "olive-067",
     "name": "Koroneiki Royal",
-    "name_ar": "Koroneiki Royal",
+    "name_ar": "Koroneiki Royal - زيتون",
     "description": "Mediterranean heritage olives, slow-cured using time-honored methods.",
     "description_ar": "زيتون تراث البحر المتوسط، يتم تعميقه بطرق تقليدية عبر العقود.",
     "price": 33.99,
@@ -1404,7 +1404,7 @@ export const products: Product[] = [
   {
     "id": "olive-068",
     "name": "Arbosana Supreme",
-    "name_ar": "Arbosana Supreme",
+    "name_ar": "Arbosana Supreme - زيتون",
     "description": "Organic certified olives, sustainably harvested from family farms.",
     "description_ar": "زيتون معتمد كعضوي، مُحمص من مزارع عائلية.",
     "price": 37.49,
@@ -1424,7 +1424,7 @@ export const products: Product[] = [
   {
     "id": "olive-069",
     "name": "Picual Select",
-    "name_ar": "Picual Select",
+    "name_ar": "Picual Select - زيتون",
     "description": "Award-winning olives, recognized for their exceptional flavor and quality.",
     "description_ar": "زيتون حائز على جوائز، معترف به لنكهته وجودته الاستثنائية.",
     "price": 40.99,
@@ -1444,7 +1444,7 @@ export const products: Product[] = [
   {
     "id": "olive-070",
     "name": "Hojiblanca Gold",
-    "name_ar": "Hojiblanca Gold",
+    "name_ar": "Hojiblanca Gold - زيتون",
     "description": "Cold-pressed olives, preserving the natural essence and nutrients.",
     "description_ar": "زيتون يتم ضغطه ببرودة، يحافظ على الجوهر والعناصر الغذائية الطبيعية.",
     "price": 44.49,
@@ -1464,7 +1464,7 @@ export const products: Product[] = [
   {
     "id": "olive-071",
     "name": "Arbequina Elite",
-    "name_ar": "Arbequina Elite",
+    "name_ar": "Arbequina Elite - زيتون",
     "description": "Premium hand-selected olives, carefully cured for optimal flavor.",
     "description_ar": "زيتون مختار بعناية يدوياً، معقود بعناية للحصول على أفضل النكهات.",
     "price": 12.99,
@@ -1484,7 +1484,7 @@ export const products: Product[] = [
   {
     "id": "olive-072",
     "name": "Frantoio Supreme",
-    "name_ar": "Frantoio Supreme",
+    "name_ar": "Frantoio Supreme - زيتون",
     "description": "Authentic Mediterranean olives with rich, complex taste profiles.",
     "description_ar": "زيتون أصيل من البحر المتوسط بنكهات غنية ومعقدة.",
     "price": 16.49,
@@ -1504,7 +1504,7 @@ export const products: Product[] = [
   {
     "id": "olive-073",
     "name": "Leccino Royal",
-    "name_ar": "Leccino Royal",
+    "name_ar": "Leccino Royal - زيتون",
     "description": "Artisan-cured olives from the finest groves, delivering exceptional quality.",
     "description_ar": "زيتون يدوي التصنيع من أفضل الحميات، يوفر جودة استثنائية.",
     "price": 19.99,
@@ -1524,7 +1524,7 @@ export const products: Product[] = [
   {
     "id": "olive-074",
     "name": "Coratina Select",
-    "name_ar": "Coratina Select",
+    "name_ar": "Coratina Select - زيتون",
     "description": "Traditional stone-cured olives, perfect for any Mediterranean dish.",
     "description_ar": "زيتون يتم تعميقه بالحجر التقليدي، مثالي لأي طبق متوسطي.",
     "price": 23.49,
@@ -1544,7 +1544,7 @@ export const products: Product[] = [
   {
     "id": "olive-075",
     "name": "Koroneiki Gold",
-    "name_ar": "Koroneiki Gold",
+    "name_ar": "Koroneiki Gold - زيتون",
     "description": "Extra virgin olive varieties, naturally fermented for superior taste.",
     "description_ar": "أنواع زيتون بكر، مخمرة طبيعياً للحصول على نكهة غنية.",
     "price": 26.99,
@@ -1564,7 +1564,7 @@ export const products: Product[] = [
   {
     "id": "olive-076",
     "name": "Arbosana Royal",
-    "name_ar": "Arbosana Royal",
+    "name_ar": "Arbosana Royal - زيتون",
     "description": "Premium quality olives, hand-packed in small batches for freshness.",
     "description_ar": "زيتون عالي الجودة، مُعبأ بأيدٍ صغيرة في دفاتر صغيرة للطازجية.",
     "price": 30.49,
@@ -1584,7 +1584,7 @@ export const products: Product[] = [
   {
     "id": "olive-077",
     "name": "Picual Supreme",
-    "name_ar": "Picual Supreme",
+    "name_ar": "Picual Supreme - زيتون",
     "description": "Mediterranean heritage olives, slow-cured using time-honored methods.",
     "description_ar": "زيتون تراث البحر المتوسط، يتم تعميقه بطرق تقليدية عبر العقود.",
     "price": 33.99,
@@ -1604,7 +1604,7 @@ export const products: Product[] = [
   {
     "id": "olive-078",
     "name": "Hojiblanca Select",
-    "name_ar": "Hojiblanca Select",
+    "name_ar": "Hojiblanca Select - زيتون",
     "description": "Organic certified olives, sustainably harvested from family farms.",
     "description_ar": "زيتون معتمد كعضوي، مُحمص من مزارع عائلية.",
     "price": 37.49,
@@ -1624,7 +1624,7 @@ export const products: Product[] = [
   {
     "id": "olive-079",
     "name": "Manzanilla Royal",
-    "name_ar": "Manzanilla Royal",
+    "name_ar": "Manzanilla Royal - زيتون",
     "description": "Award-winning olives, recognized for their exceptional flavor and quality.",
     "description_ar": "زيتون حائز على جوائز، معترف به لنكهته وجودته الاستثنائية.",
     "price": 40.99,
@@ -1644,7 +1644,7 @@ export const products: Product[] = [
   {
     "id": "olive-080",
     "name": "Picholine Gold",
-    "name_ar": "Picholine Gold",
+    "name_ar": "Picholine Gold - زيتون",
     "description": "Cold-pressed olives, preserving the natural essence and nutrients.",
     "description_ar": "زيتون يتم ضغطه ببرودة، يحافظ على الجوهر والعناصر الغذائية الطبيعية.",
     "price": 44.49,
@@ -1664,7 +1664,7 @@ export const products: Product[] = [
   {
     "id": "olive-081",
     "name": "Cerignola Elite",
-    "name_ar": "Cerignola Elite",
+    "name_ar": "Cerignola Elite - زيتون",
     "description": "Premium hand-selected olives, carefully cured for optimal flavor.",
     "description_ar": "زيتون مختار بعناية يدوياً، معقود بعناية للحصول على أفضل النكهات.",
     "price": 12.99,
@@ -1684,7 +1684,7 @@ export const products: Product[] = [
   {
     "id": "olive-082",
     "name": "Gaeta Supreme",
-    "name_ar": "Gaeta Supreme",
+    "name_ar": "Gaeta Supreme - زيتون",
     "description": "Authentic Mediterranean olives with rich, complex taste profiles.",
     "description_ar": "زيتون أصيل من البحر المتوسط بنكهات غنية ومعقدة.",
     "price": 16.49,
@@ -1704,7 +1704,7 @@ export const products: Product[] = [
   {
     "id": "olive-083",
     "name": "Niçoise Royal",
-    "name_ar": "Niçoise Royal",
+    "name_ar": "Niçoise Royal - زيتون",
     "description": "Artisan-cured olives from the finest groves, delivering exceptional quality.",
     "description_ar": "زيتون يدوي التصنيع من أفضل الحميات، يوفر جودة استثنائية.",
     "price": 19.99,
@@ -1724,7 +1724,7 @@ export const products: Product[] = [
   {
     "id": "olive-084",
     "name": "Aegean Premium",
-    "name_ar": "Aegean Premium",
+    "name_ar": "Aegean Premium - زيتون",
     "description": "Traditional stone-cured olives, perfect for any Mediterranean dish.",
     "description_ar": "زيتون يتم تعميقه بالحجر التقليدي، مثالي لأي طبق متوسطي.",
     "price": 23.49,
@@ -1744,7 +1744,7 @@ export const products: Product[] = [
   {
     "id": "olive-085",
     "name": "Stuffed Pepper",
-    "name_ar": "Stuffed Pepper",
+    "name_ar": "Stuffed Pepper - زيتون",
     "description": "Extra virgin olive varieties, naturally fermented for superior taste.",
     "description_ar": "أنواع زيتون بكر، مخمرة طبيعياً للحصول على نكهة غنية.",
     "price": 26.99,
@@ -1764,7 +1764,7 @@ export const products: Product[] = [
   {
     "id": "olive-086",
     "name": "Mission Royal",
-    "name_ar": "Mission Royal",
+    "name_ar": "Mission Royal - زيتون",
     "description": "Premium quality olives, hand-packed in small batches for freshness.",
     "description_ar": "زيتون عالي الجودة، مُعبأ بأيدٍ صغيرة في دفاتر صغيرة للطازجية.",
     "price": 30.49,
@@ -1784,7 +1784,7 @@ export const products: Product[] = [
   {
     "id": "olive-087",
     "name": "Queen Supreme",
-    "name_ar": "Queen Supreme",
+    "name_ar": "Queen Supreme - زيتون",
     "description": "Mediterranean heritage olives, slow-cured using time-honored methods.",
     "description_ar": "زيتون تراث البحر المتوسط، يتم تعميقه بطرق تقليدية عبر العقود.",
     "price": 33.99,
@@ -1804,7 +1804,7 @@ export const products: Product[] = [
   {
     "id": "olive-088",
     "name": "Arbequina Premium",
-    "name_ar": "Arbequina Premium",
+    "name_ar": "Arbequina Premium - زيتون",
     "description": "Organic certified olives, sustainably harvested from family farms.",
     "description_ar": "زيتون معتمد كعضوي، مُحمص من مزارع عائلية.",
     "price": 37.49,
@@ -1824,7 +1824,7 @@ export const products: Product[] = [
   {
     "id": "olive-089",
     "name": "Frantoio Royal",
-    "name_ar": "Frantoio Royal",
+    "name_ar": "Frantoio Royal - زيتون",
     "description": "Award-winning olives, recognized for their exceptional flavor and quality.",
     "description_ar": "زيتون حائز على جوائز، معترف به لنكهته وجودته الاستثنائية.",
     "price": 40.99,
@@ -1844,7 +1844,7 @@ export const products: Product[] = [
   {
     "id": "olive-090",
     "name": "Leccino Supreme",
-    "name_ar": "Leccino Supreme",
+    "name_ar": "Leccino Supreme - زيتون",
     "description": "Cold-pressed olives, preserving the natural essence and nutrients.",
     "description_ar": "زيتون يتم ضغطه ببرودة، يحافظ على الجوهر والعناصر الغذائية الطبيعية.",
     "price": 44.49,
@@ -1864,7 +1864,7 @@ export const products: Product[] = [
   {
     "id": "olive-091",
     "name": "Coratina Elite",
-    "name_ar": "Coratina Elite",
+    "name_ar": "Coratina Elite - زيتون",
     "description": "Premium hand-selected olives, carefully cured for optimal flavor.",
     "description_ar": "زيتون مختار بعناية يدوياً، معقود بعناية للحصول على أفضل النكهات.",
     "price": 12.99,
@@ -1884,7 +1884,7 @@ export const products: Product[] = [
   {
     "id": "olive-092",
     "name": "Koroneiki Supreme",
-    "name_ar": "Koroneiki Supreme",
+    "name_ar": "Koroneiki Supreme - زيتون",
     "description": "Authentic Mediterranean olives with rich, complex taste profiles.",
     "description_ar": "زيتون أصيل من البحر المتوسط بنكهات غنية ومعقدة.",
     "price": 16.49,
@@ -1904,7 +1904,7 @@ export const products: Product[] = [
   {
     "id": "olive-093",
     "name": "Arbosana Gold",
-    "name_ar": "Arbosana Gold",
+    "name_ar": "Arbosana Gold - زيتون",
     "description": "Artisan-cured olives from the finest groves, delivering exceptional quality.",
     "description_ar": "زيتون يدوي التصنيع من أفضل الحميات، يوفر جودة استثنائية.",
     "price": 19.99,
@@ -1924,7 +1924,7 @@ export const products: Product[] = [
   {
     "id": "olive-094",
     "name": "Picual Royal",
-    "name_ar": "Picual Royal",
+    "name_ar": "Picual Royal - زيتون",
     "description": "Traditional stone-cured olives, perfect for any Mediterranean dish.",
     "description_ar": "زيتون يتم تعميقه بالحجر التقليدي، مثالي لأي طبق متوسطي.",
     "price": 23.49,
@@ -1944,7 +1944,7 @@ export const products: Product[] = [
   {
     "id": "olive-095",
     "name": "Hojiblanca Supreme",
-    "name_ar": "Hojiblanca Supreme",
+    "name_ar": "Hojiblanca Supreme - زيتون",
     "description": "Extra virgin olive varieties, naturally fermented for superior taste.",
     "description_ar": "أنواع زيتون بكر، مخمرة طبيعياً للحصول على نكهة غنية.",
     "price": 26.99,
@@ -1964,7 +1964,7 @@ export const products: Product[] = [
   {
     "id": "olive-096",
     "name": "Arbequina Royal",
-    "name_ar": "Arbequina Royal",
+    "name_ar": "Arbequina Royal - زيتون",
     "description": "Premium quality olives, hand-packed in small batches for freshness.",
     "description_ar": "زيتون عالي الجودة، مُعبأ بأيدٍ صغيرة في دفاتر صغيرة للطازجية.",
     "price": 30.49,
@@ -1984,7 +1984,7 @@ export const products: Product[] = [
   {
     "id": "olive-097",
     "name": "Frantoio Supreme",
-    "name_ar": "Frantoio Supreme",
+    "name_ar": "Frantoio Supreme - زيتون",
     "description": "Mediterranean heritage olives, slow-cured using time-honored methods.",
     "description_ar": "زيتون تراث البحر المتوسط، يتم تعميقه بطرق تقليدية عبر العقود.",
     "price": 33.99,
@@ -2004,7 +2004,7 @@ export const products: Product[] = [
   {
     "id": "olive-098",
     "name": "Leccino Select",
-    "name_ar": "Leccino Select",
+    "name_ar": "Leccino Select - زيتون",
     "description": "Organic certified olives, sustainably harvested from family farms.",
     "description_ar": "زيتون معتمد كعضوي، مُحمص من مزارع عائلية.",
     "price": 37.49,
@@ -2024,7 +2024,7 @@ export const products: Product[] = [
   {
     "id": "olive-099",
     "name": "Coratina Supreme",
-    "name_ar": "Coratina Supreme",
+    "name_ar": "Coratina Supreme - زيتون",
     "description": "Award-winning olives, recognized for their exceptional flavor and quality.",
     "description_ar": "زيتون حائز على جوائز، معترف به لنكهته وجودته الاستثنائية.",
     "price": 40.99,
@@ -2044,7 +2044,7 @@ export const products: Product[] = [
   {
     "id": "olive-100",
     "name": "Koroneiki Elite",
-    "name_ar": "Koroneiki Elite",
+    "name_ar": "Koroneiki Elite - زيتون",
     "description": "Cold-pressed olives, preserving the natural essence and nutrients.",
     "description_ar": "زيتون يتم ضغطه ببرودة، يحافظ على الجوهر والعناصر الغذائية الطبيعية.",
     "price": 44.49,
@@ -2064,7 +2064,7 @@ export const products: Product[] = [
   {
     "id": "pickle-001",
     "name": "Dill Pickle Spears",
-    "name_ar": "Dill Pickle Spears",
+    "name_ar": "مخلل خيار بالشبت",
     "description": "Artisan-crafted pickles with premium vegetables and traditional spices.",
     "description_ar": "مخللات يدوية المصنع باستخدام خضروات متميزة وبهارات تقليدية.",
     "price": 8.99,
@@ -2086,7 +2086,7 @@ export const products: Product[] = [
   {
     "id": "pickle-002",
     "name": "Bread and Butter Chips",
-    "name_ar": "Bread and Butter Chips",
+    "name_ar": "مخلل حلو كلاسيكي",
     "description": "Handcrafted pickles using time-honored fermentation techniques.",
     "description_ar": "مخللات يدوية باستخدام تقنيات تخمير تقليدية.",
     "price": 11.49,
@@ -2108,7 +2108,7 @@ export const products: Product[] = [
   {
     "id": "pickle-003",
     "name": "Sweet Gherkins",
-    "name_ar": "Sweet Gherkins",
+    "name_ar": "مخلل خيار حلو",
     "description": "Premium pickled vegetables, carefully selected and seasoned.",
     "description_ar": "خضار مخللة عالية الجودة، مختارة ومتبّضة بعناية.",
     "price": 13.99,
@@ -2130,7 +2130,7 @@ export const products: Product[] = [
   {
     "id": "pickle-004",
     "name": "Kosher Dill Chips",
-    "name_ar": "Kosher Dill Chips",
+    "name_ar": "مخلل كوشر بالشبت",
     "description": "Traditional recipe pickles, slow-fermented for rich, tangy flavor.",
     "description_ar": "مخللات بوصفة تقليدية، يتم تخميرها ببطء للحصول على نكهة غنية وحارة.",
     "price": 16.49,
@@ -2152,7 +2152,7 @@ export const products: Product[] = [
   {
     "id": "pickle-005",
     "name": "Pickled Jalapeños",
-    "name_ar": "Pickled Jalapeños",
+    "name_ar": "مخلل هيلابينو",
     "description": "Organic pickled vegetables, free from artificial additives.",
     "description_ar": "خضار مخللة عضوية، خالية من المضافات الاصطناعية.",
     "price": 18.99,
@@ -2174,7 +2174,7 @@ export const products: Product[] = [
   {
     "id": "pickle-006",
     "name": "Giardiniera Mix",
-    "name_ar": "Giardiniera Mix",
+    "name_ar": "كورنيشون فرنسي",
     "description": "Small-batch pickles, made with the finest ingredients and spices.",
     "description_ar": "مخللات في دفاتر صغيرة، مصنوعة بأفضل المكونات والبهارات.",
     "price": 21.49,
@@ -2196,7 +2196,7 @@ export const products: Product[] = [
   {
     "id": "pickle-007",
     "name": "Pickled Carrots",
-    "name_ar": "Pickled Carrots",
+    "name_ar": "مخلل خيار بالزبدة",
     "description": "Authentic fermentation process, delivering bold and complex flavors.",
     "description_ar": "عملية تخمير أصيلة، توفر نكهات غنية ومعقدة.",
     "price": 23.99,
@@ -2218,7 +2218,7 @@ export const products: Product[] = [
   {
     "id": "pickle-008",
     "name": "Sauerkraut Classic",
-    "name_ar": "Sauerkraut Classic",
+    "name_ar": "مخلل حار بالفلفل",
     "description": "Premium quality pickles, hand-packed in small batches for freshness.",
     "description_ar": "مخللات عالية الجودة، مُعبأ بأيدٍ صغيرة في دفاتر صغيرة للطازجية.",
     "price": 26.49,
@@ -2240,7 +2240,7 @@ export const products: Product[] = [
   {
     "id": "pickle-009",
     "name": "Kimchi Spicy",
-    "name_ar": "Kimchi Spicy",
+    "name_ar": "مخلل بالثوم والشبت",
     "description": "Award-winning pickles, recognized for their exceptional taste.",
     "description_ar": "مخللات حائزة على جوائز، معترف بها لنكهتها الاستثنائية.",
     "price": 8.99,
@@ -2262,7 +2262,7 @@ export const products: Product[] = [
   {
     "id": "pickle-010",
     "name": "Pickled Cauliflower",
-    "name_ar": "Pickled Cauliflower",
+    "name_ar": "خضروات مخللة حارة",
     "description": "Cold-fermented pickles, preserving natural crunch and nutrients.",
     "description_ar": "مخللات يتم تخميرها ببرودة، تحافظ على القشرة والعناصر الغذائية الطبيعية.",
     "price": 11.49,
@@ -2284,7 +2284,7 @@ export const products: Product[] = [
   {
     "id": "pickle-011",
     "name": "Bread and Butter Spears",
-    "name_ar": "Bread and Butter Spears",
+    "name_ar": "خضروات مخللة مشكلة",
     "description": "Artisan-crafted pickles with premium vegetables and traditional spices.",
     "description_ar": "مخللات يدوية المصنع باستخدام خضروات متميزة وبهارات تقليدية.",
     "price": 13.99,
@@ -2306,7 +2306,7 @@ export const products: Product[] = [
   {
     "id": "pickle-012",
     "name": "Dill Pickle Chips",
-    "name_ar": "Dill Pickle Chips",
+    "name_ar": "مخلل كرنب أحمر",
     "description": "Handcrafted pickles using time-honored fermentation techniques.",
     "description_ar": "مخللات يدوية باستخدام تقنيات تخمير تقليدية.",
     "price": 16.49,
@@ -2328,7 +2328,7 @@ export const products: Product[] = [
   {
     "id": "pickle-013",
     "name": "Sweet Pickle Relish",
-    "name_ar": "Sweet Pickle Relish",
+    "name_ar": "كيمتشي كوري",
     "description": "Premium pickled vegetables, carefully selected and seasoned.",
     "description_ar": "خضار مخللة عالية الجودة، مختارة ومتبّضة بعناية.",
     "price": 18.99,
@@ -2350,7 +2350,7 @@ export const products: Product[] = [
   {
     "id": "pickle-014",
     "name": "Hot Pickled Peppers",
-    "name_ar": "Hot Pickled Peppers",
+    "name_ar": "ساوركراوت ألماني",
     "description": "Traditional recipe pickles, slow-fermented for rich, tangy flavor.",
     "description_ar": "مخللات بوصفة تقليدية، يتم تخميرها ببطء للحصول على نكهة غنية وحارة.",
     "price": 21.49,
@@ -2372,7 +2372,7 @@ export const products: Product[] = [
   {
     "id": "pickle-015",
     "name": "Pickled Green Beans",
-    "name_ar": "Pickled Green Beans",
+    "name_ar": "بصل مخلل",
     "description": "Organic pickled vegetables, free from artificial additives.",
     "description_ar": "خضار مخللة عضوية، خالية من المضافات الاصطناعية.",
     "price": 23.99,
@@ -2394,7 +2394,7 @@ export const products: Product[] = [
   {
     "id": "pickle-016",
     "name": "Fermented Cabbage",
-    "name_ar": "Fermented Cabbage",
+    "name_ar": "فلفل مخلل",
     "description": "Small-batch pickles, made with the finest ingredients and spices.",
     "description_ar": "مخللات في دفاتر صغيرة، مصنوعة بأفضل المكونات والبهارات.",
     "price": 26.49,
@@ -2416,7 +2416,7 @@ export const products: Product[] = [
   {
     "id": "pickle-017",
     "name": "Pickled Beets",
-    "name_ar": "Pickled Beets",
+    "name_ar": "لفت مخلل",
     "description": "Authentic fermentation process, delivering bold and complex flavors.",
     "description_ar": "عملية تخمير أصيلة، توفر نكهات غنية ومعقدة.",
     "price": 8.99,
@@ -2438,7 +2438,7 @@ export const products: Product[] = [
   {
     "id": "pickle-018",
     "name": "Spicy Kimchi Mix",
-    "name_ar": "Spicy Kimchi Mix",
+    "name_ar": "شمندر مخلل",
     "description": "Premium quality pickles, hand-packed in small batches for freshness.",
     "description_ar": "مخللات عالية الجودة، مُعبأ بأيدٍ صغيرة في دفاتر صغيرة للطازجية.",
     "price": 11.49,
@@ -2460,7 +2460,7 @@ export const products: Product[] = [
   {
     "id": "pickle-019",
     "name": "Classic Sauerkraut",
-    "name_ar": "Classic Sauerkraut",
+    "name_ar": "باميا مخلل",
     "description": "Award-winning pickles, recognized for their exceptional taste.",
     "description_ar": "مخللات حائزة على جوائز، معترف بها لنكهتها الاستثنائية.",
     "price": 13.99,
@@ -2482,7 +2482,7 @@ export const products: Product[] = [
   {
     "id": "pickle-020",
     "name": "Pickled Okra",
-    "name_ar": "Pickled Okra",
+    "name_ar": "طماطم خضراء مخللة",
     "description": "Cold-fermented pickles, preserving natural crunch and nutrients.",
     "description_ar": "مخللات يتم تخميرها ببرودة، تحافظ على القشرة والعناصر الغذائية الطبيعية.",
     "price": 16.49,
@@ -2504,7 +2504,7 @@ export const products: Product[] = [
   {
     "id": "pickle-021",
     "name": "Dill Pickle Halves",
-    "name_ar": "Dill Pickle Halves",
+    "name_ar": "Dill Pickle Halves - مخلل",
     "description": "Artisan-crafted pickles with premium vegetables and traditional spices.",
     "description_ar": "مخللات يدوية المصنع باستخدام خضروات متميزة وبهارات تقليدية.",
     "price": 18.99,
@@ -2526,7 +2526,7 @@ export const products: Product[] = [
   {
     "id": "pickle-022",
     "name": "Honey Mustard Chips",
-    "name_ar": "Honey Mustard Chips",
+    "name_ar": "Honey Mustard Chips - مخلل",
     "description": "Handcrafted pickles using time-honored fermentation techniques.",
     "description_ar": "مخللات يدوية باستخدام تقنيات تخمير تقليدية.",
     "price": 21.49,
@@ -2548,7 +2548,7 @@ export const products: Product[] = [
   {
     "id": "pickle-023",
     "name": "Garlic Dill Spears",
-    "name_ar": "Garlic Dill Spears",
+    "name_ar": "Garlic Dill Spears - مخلل",
     "description": "Premium pickled vegetables, carefully selected and seasoned.",
     "description_ar": "خضار مخللة عالية الجودة، مختارة ومتبّضة بعناية.",
     "price": 23.99,
@@ -2570,7 +2570,7 @@ export const products: Product[] = [
   {
     "id": "pickle-024",
     "name": "Spicy Pickled Onions",
-    "name_ar": "Spicy Pickled Onions",
+    "name_ar": "Spicy Pickled Onions - مخلل",
     "description": "Traditional recipe pickles, slow-fermented for rich, tangy flavor.",
     "description_ar": "مخللات بوصفة تقليدية، يتم تخميرها ببطء للحصول على نكهة غنية وحارة.",
     "price": 26.49,
@@ -2592,7 +2592,7 @@ export const products: Product[] = [
   {
     "id": "pickle-025",
     "name": "Pickled Mixed Veg",
-    "name_ar": "Pickled Mixed Veg",
+    "name_ar": "Pickled Mixed Veg - مخلل",
     "description": "Organic pickled vegetables, free from artificial additives.",
     "description_ar": "خضار مخللة عضوية، خالية من المضافات الاصطناعية.",
     "price": 8.99,
@@ -2614,7 +2614,7 @@ export const products: Product[] = [
   {
     "id": "pickle-026",
     "name": "Pickled Asparagus",
-    "name_ar": "Pickled Asparagus",
+    "name_ar": "Pickled Asparagus - مخلل",
     "description": "Small-batch pickles, made with the finest ingredients and spices.",
     "description_ar": "مخللات في دفاتر صغيرة، مصنوعة بأفضل المكونات والبهارات.",
     "price": 11.49,
@@ -2636,7 +2636,7 @@ export const products: Product[] = [
   {
     "id": "pickle-027",
     "name": "Sweet Pickle Slices",
-    "name_ar": "Sweet Pickle Slices",
+    "name_ar": "Sweet Pickle Slices - مخلل",
     "description": "Authentic fermentation process, delivering bold and complex flavors.",
     "description_ar": "عملية تخمير أصيلة، توفر نكهات غنية ومعقدة.",
     "price": 13.99,
@@ -2658,7 +2658,7 @@ export const products: Product[] = [
   {
     "id": "pickle-028",
     "name": "Jalapeño Escabeche",
-    "name_ar": "Jalapeño Escabeche",
+    "name_ar": "Jalapeño Escabeche - مخلل",
     "description": "Premium quality pickles, hand-packed in small batches for freshness.",
     "description_ar": "مخللات عالية الجودة، مُعبأ بأيدٍ صغيرة في دفاتر صغيرة للطازجية.",
     "price": 16.49,
@@ -2680,7 +2680,7 @@ export const products: Product[] = [
   {
     "id": "pickle-029",
     "name": "Pickled Mushrooms",
-    "name_ar": "Pickled Mushrooms",
+    "name_ar": "Pickled Mushrooms - مخلل",
     "description": "Award-winning pickles, recognized for their exceptional taste.",
     "description_ar": "مخللات حائزة على جوائز، معترف بها لنكهتها الاستثنائية.",
     "price": 18.99,
@@ -2702,7 +2702,7 @@ export const products: Product[] = [
   {
     "id": "pickle-030",
     "name": "Traditional Sauerkraut",
-    "name_ar": "Traditional Sauerkraut",
+    "name_ar": "Traditional Sauerkraut - مخلل",
     "description": "Cold-fermented pickles, preserving natural crunch and nutrients.",
     "description_ar": "مخللات يتم تخميرها ببرودة، تحافظ على القشرة والعناصر الغذائية الطبيعية.",
     "price": 21.49,
@@ -2724,7 +2724,7 @@ export const products: Product[] = [
   {
     "id": "pickle-031",
     "name": "Kimchi Classic",
-    "name_ar": "Kimchi Classic",
+    "name_ar": "Kimchi Classic - مخلل",
     "description": "Artisan-crafted pickles with premium vegetables and traditional spices.",
     "description_ar": "مخللات يدوية المصنع باستخدام خضروات متميزة وبهارات تقليدية.",
     "price": 23.99,
@@ -2744,7 +2744,7 @@ export const products: Product[] = [
   {
     "id": "pickle-032",
     "name": "Pickled Corn",
-    "name_ar": "Pickled Corn",
+    "name_ar": "Pickled Corn - مخلل",
     "description": "Handcrafted pickles using time-honored fermentation techniques.",
     "description_ar": "مخللات يدوية باستخدام تقنيات تخمير تقليدية.",
     "price": 26.49,
@@ -2764,7 +2764,7 @@ export const products: Product[] = [
   {
     "id": "pickle-033",
     "name": "Dill Pickle Sticks",
-    "name_ar": "Dill Pickle Sticks",
+    "name_ar": "Dill Pickle Sticks - مخلل",
     "description": "Premium pickled vegetables, carefully selected and seasoned.",
     "description_ar": "خضار مخللة عالية الجودة، مختارة ومتبّضة بعناية.",
     "price": 8.99,
@@ -2784,7 +2784,7 @@ export const products: Product[] = [
   {
     "id": "pickle-034",
     "name": "Brown Sugar Chips",
-    "name_ar": "Brown Sugar Chips",
+    "name_ar": "Brown Sugar Chips - مخلل",
     "description": "Traditional recipe pickles, slow-fermented for rich, tangy flavor.",
     "description_ar": "مخللات بوصفة تقليدية، يتم تخميرها ببطء للحصول على نكهة غنية وحارة.",
     "price": 11.49,
@@ -2804,7 +2804,7 @@ export const products: Product[] = [
   {
     "id": "pickle-035",
     "name": "Pickled Radishes",
-    "name_ar": "Pickled Radishes",
+    "name_ar": "Pickled Radishes - مخلل",
     "description": "Organic pickled vegetables, free from artificial additives.",
     "description_ar": "خضار مخللة عضوية، خالية من المضافات الاصطناعية.",
     "price": 13.99,
@@ -2824,7 +2824,7 @@ export const products: Product[] = [
   {
     "id": "pickle-036",
     "name": "Spicy Pickled Cauliflower",
-    "name_ar": "Spicy Pickled Cauliflower",
+    "name_ar": "Spicy Pickled Cauliflower - مخلل",
     "description": "Small-batch pickles, made with the finest ingredients and spices.",
     "description_ar": "مخللات في دفاتر صغيرة، مصنوعة بأفضل المكونات والبهارات.",
     "price": 16.49,
@@ -2844,7 +2844,7 @@ export const products: Product[] = [
   {
     "id": "pickle-037",
     "name": "Pickled Broccoli Stems",
-    "name_ar": "Pickled Broccoli Stems",
+    "name_ar": "Pickled Broccoli Stems - مخلل",
     "description": "Authentic fermentation process, delivering bold and complex flavors.",
     "description_ar": "عملية تخمير أصيلة، توفر نكهات غنية ومعقدة.",
     "price": 18.99,
@@ -2864,7 +2864,7 @@ export const products: Product[] = [
   {
     "id": "pickle-038",
     "name": "Sweet Pickle Chips",
-    "name_ar": "Sweet Pickle Chips",
+    "name_ar": "Sweet Pickle Chips - مخلل",
     "description": "Premium quality pickles, hand-packed in small batches for freshness.",
     "description_ar": "مخللات عالية الجودة، مُعبأ بأيدٍ صغيرة في دفاتر صغيرة للطازجية.",
     "price": 21.49,
@@ -2884,7 +2884,7 @@ export const products: Product[] = [
   {
     "id": "pickle-039",
     "name": "Habanero Pickled Peppers",
-    "name_ar": "Habanero Pickled Peppers",
+    "name_ar": "Habanero Pickled Peppers - مخلل",
     "description": "Award-winning pickles, recognized for their exceptional taste.",
     "description_ar": "مخللات حائزة على جوائز، معترف بها لنكهتها الاستثنائية.",
     "price": 23.99,
@@ -2904,7 +2904,7 @@ export const products: Product[] = [
   {
     "id": "pickle-040",
     "name": "Pickled Artichoke Hearts",
-    "name_ar": "Pickled Artichoke Hearts",
+    "name_ar": "Pickled Artichoke Hearts - مخلل",
     "description": "Cold-fermented pickles, preserving natural crunch and nutrients.",
     "description_ar": "مخللات يتم تخميرها ببرودة، تحافظ على القشرة والعناصر الغذائية الطبيعية.",
     "price": 26.49,
@@ -2924,7 +2924,7 @@ export const products: Product[] = [
   {
     "id": "pickle-041",
     "name": "Dill Pickle Wedges",
-    "name_ar": "Dill Pickle Wedges",
+    "name_ar": "Dill Pickle Wedges - مخلل",
     "description": "Artisan-crafted pickles with premium vegetables and traditional spices.",
     "description_ar": "مخللات يدوية المصنع باستخدام خضروات متميزة وبهارات تقليدية.",
     "price": 8.99,
@@ -2944,7 +2944,7 @@ export const products: Product[] = [
   {
     "id": "pickle-042",
     "name": "Maple Glazed Chips",
-    "name_ar": "Maple Glazed Chips",
+    "name_ar": "Maple Glazed Chips - مخلل",
     "description": "Handcrafted pickles using time-honored fermentation techniques.",
     "description_ar": "مخللات يدوية باستخدام تقنيات تخمير تقليدية.",
     "price": 11.49,
@@ -2964,7 +2964,7 @@ export const products: Product[] = [
   {
     "id": "pickle-043",
     "name": "Pickled Turnips",
-    "name_ar": "Pickled Turnips",
+    "name_ar": "Pickled Turnips - مخلل",
     "description": "Premium pickled vegetables, carefully selected and seasoned.",
     "description_ar": "خضار مخللة عالية الجودة، مختارة ومتبّضة بعناية.",
     "price": 13.99,
@@ -2984,7 +2984,7 @@ export const products: Product[] = [
   {
     "id": "pickle-044",
     "name": "Spicy Pickled Carrots",
-    "name_ar": "Spicy Pickled Carrots",
+    "name_ar": "Spicy Pickled Carrots - مخلل",
     "description": "Traditional recipe pickles, slow-fermented for rich, tangy flavor.",
     "description_ar": "مخللات بوصفة تقليدية، يتم تخميرها ببطء للحصول على نكهة غنية وحارة.",
     "price": 16.49,
@@ -3004,7 +3004,7 @@ export const products: Product[] = [
   {
     "id": "pickle-045",
     "name": "Pickled Zucchini",
-    "name_ar": "Pickled Zucchini",
+    "name_ar": "Pickled Zucchini - مخلل",
     "description": "Organic pickled vegetables, free from artificial additives.",
     "description_ar": "خضار مخللة عضوية، خالية من المضافات الاصطناعية.",
     "price": 18.99,
@@ -3024,7 +3024,7 @@ export const products: Product[] = [
   {
     "id": "pickle-046",
     "name": "Classic Dill Chips",
-    "name_ar": "Classic Dill Chips",
+    "name_ar": "Classic Dill Chips - مخلل",
     "description": "Small-batch pickles, made with the finest ingredients and spices.",
     "description_ar": "مخللات في دفاتر صغيرة، مصنوعة بأفضل المكونات والبهارات.",
     "price": 21.49,
@@ -3044,7 +3044,7 @@ export const products: Product[] = [
   {
     "id": "pickle-047",
     "name": "Honey Sweet Chips",
-    "name_ar": "Honey Sweet Chips",
+    "name_ar": "Honey Sweet Chips - مخلل",
     "description": "Authentic fermentation process, delivering bold and complex flavors.",
     "description_ar": "عملية تخمير أصيلة، توفر نكهات غنية ومعقدة.",
     "price": 23.99,
@@ -3064,7 +3064,7 @@ export const products: Product[] = [
   {
     "id": "pickle-048",
     "name": "Pickled Bell Peppers",
-    "name_ar": "Pickled Bell Peppers",
+    "name_ar": "Pickled Bell Peppers - مخلل",
     "description": "Premium quality pickles, hand-packed in small batches for freshness.",
     "description_ar": "مخللات عالية الجودة، مُعبأ بأيدٍ صغيرة في دفاتر صغيرة للطازجية.",
     "price": 26.49,
@@ -3084,7 +3084,7 @@ export const products: Product[] = [
   {
     "id": "pickle-049",
     "name": "Pickled Green Tomatoes",
-    "name_ar": "Pickled Green Tomatoes",
+    "name_ar": "Pickled Green Tomatoes - مخلل",
     "description": "Award-winning pickles, recognized for their exceptional taste.",
     "description_ar": "مخللات حائزة على جوائز، معترف بها لنكهتها الاستثنائية.",
     "price": 8.99,
@@ -3104,7 +3104,7 @@ export const products: Product[] = [
   {
     "id": "pickle-050",
     "name": "Jalapeño Pickled Okra",
-    "name_ar": "Jalapeño Pickled Okra",
+    "name_ar": "Jalapeño Pickled Okra - مخلل",
     "description": "Cold-fermented pickles, preserving natural crunch and nutrients.",
     "description_ar": "مخللات يتم تخميرها ببرودة، تحافظ على القشرة والعناصر الغذائية الطبيعية.",
     "price": 11.49,
@@ -3124,7 +3124,7 @@ export const products: Product[] = [
   {
     "id": "pickle-051",
     "name": "Dill Pickle Chips",
-    "name_ar": "Dill Pickle Chips",
+    "name_ar": "Dill Pickle Chips - مخلل",
     "description": "Artisan-crafted pickles with premium vegetables and traditional spices.",
     "description_ar": "مخللات يدوية المصنع باستخدام خضروات متميزة وبهارات تقليدية.",
     "price": 13.99,
@@ -3144,7 +3144,7 @@ export const products: Product[] = [
   {
     "id": "pickle-052",
     "name": "Cinnamon Pickles",
-    "name_ar": "Cinnamon Pickles",
+    "name_ar": "Cinnamon Pickles - مخلل",
     "description": "Handcrafted pickles using time-honored fermentation techniques.",
     "description_ar": "مخللات يدوية باستخدام تقنيات تخمير تقليدية.",
     "price": 16.49,
@@ -3164,7 +3164,7 @@ export const products: Product[] = [
   {
     "id": "pickle-053",
     "name": "Pickled Sweet Potatoes",
-    "name_ar": "Pickled Sweet Potatoes",
+    "name_ar": "Pickled Sweet Potatoes - مخلل",
     "description": "Premium pickled vegetables, carefully selected and seasoned.",
     "description_ar": "خضار مخللة عالية الجودة، مختارة ومتبّضة بعناية.",
     "price": 18.99,
@@ -3184,7 +3184,7 @@ export const products: Product[] = [
   {
     "id": "pickle-054",
     "name": "Spicy Pickled Green Beans",
-    "name_ar": "Spicy Pickled Green Beans",
+    "name_ar": "Spicy Pickled Green Beans - مخلل",
     "description": "Traditional recipe pickles, slow-fermented for rich, tangy flavor.",
     "description_ar": "مخللات بوصفة تقليدية، يتم تخميرها ببطء للحصول على نكهة غنية وحارة.",
     "price": 21.49,
@@ -3204,7 +3204,7 @@ export const products: Product[] = [
   {
     "id": "pickle-055",
     "name": "Pickled Cauliflower Florets",
-    "name_ar": "Pickled Cauliflower Florets",
+    "name_ar": "Pickled Cauliflower Florets - مخلل",
     "description": "Organic pickled vegetables, free from artificial additives.",
     "description_ar": "خضار مخللة عضوية، خالية من المضافات الاصطناعية.",
     "price": 23.99,
@@ -3224,7 +3224,7 @@ export const products: Product[] = [
   {
     "id": "pickle-056",
     "name": "Sweet Pickle Strips",
-    "name_ar": "Sweet Pickle Strips",
+    "name_ar": "Sweet Pickle Strips - مخلل",
     "description": "Small-batch pickles, made with the finest ingredients and spices.",
     "description_ar": "مخللات في دفاتر صغيرة، مصنوعة بأفضل المكونات والبهارات.",
     "price": 26.49,
@@ -3244,7 +3244,7 @@ export const products: Product[] = [
   {
     "id": "pickle-057",
     "name": "Dill Pickle Spears",
-    "name_ar": "Dill Pickle Spears",
+    "name_ar": "Dill Pickle Spears - مخلل",
     "description": "Authentic fermentation process, delivering bold and complex flavors.",
     "description_ar": "عملية تخمير أصيلة، توفر نكهات غنية ومعقدة.",
     "price": 8.99,
@@ -3264,7 +3264,7 @@ export const products: Product[] = [
   {
     "id": "pickle-058",
     "name": "Honey Mustard Chips",
-    "name_ar": "Honey Mustard Chips",
+    "name_ar": "Honey Mustard Chips - مخلل",
     "description": "Premium quality pickles, hand-packed in small batches for freshness.",
     "description_ar": "مخللات عالية الجودة، مُعبأ بأيدٍ صغيرة في دفاتر صغيرة للطازجية.",
     "price": 11.49,
@@ -3284,7 +3284,7 @@ export const products: Product[] = [
   {
     "id": "pickle-059",
     "name": "Pickled Radish Slices",
-    "name_ar": "Pickled Radish Slices",
+    "name_ar": "Pickled Radish Slices - مخلل",
     "description": "Award-winning pickles, recognized for their exceptional taste.",
     "description_ar": "مخللات حائزة على جوائز، معترف بها لنكهتها الاستثنائية.",
     "price": 13.99,
@@ -3304,7 +3304,7 @@ export const products: Product[] = [
   {
     "id": "pickle-060",
     "name": "Spicy Pickled Onions",
-    "name_ar": "Spicy Pickled Onions",
+    "name_ar": "Spicy Pickled Onions - مخلل",
     "description": "Cold-fermented pickles, preserving natural crunch and nutrients.",
     "description_ar": "مخللات يتم تخميرها ببرودة، تحافظ على القشرة والعناصر الغذائية الطبيعية.",
     "price": 16.49,
@@ -3324,7 +3324,7 @@ export const products: Product[] = [
   {
     "id": "pickle-061",
     "name": "Pickled Mixed Vegetables",
-    "name_ar": "Pickled Mixed Vegetables",
+    "name_ar": "Pickled Mixed Vegetables - مخلل",
     "description": "Artisan-crafted pickles with premium vegetables and traditional spices.",
     "description_ar": "مخللات يدوية المصنع باستخدام خضروات متميزة وبهارات تقليدية.",
     "price": 18.99,
@@ -3344,7 +3344,7 @@ export const products: Product[] = [
   {
     "id": "pickle-062",
     "name": "Pickled Asparagus Spears",
-    "name_ar": "Pickled Asparagus Spears",
+    "name_ar": "Pickled Asparagus Spears - مخلل",
     "description": "Handcrafted pickles using time-honored fermentation techniques.",
     "description_ar": "مخللات يدوية باستخدام تقنيات تخمير تقليدية.",
     "price": 21.49,
@@ -3364,7 +3364,7 @@ export const products: Product[] = [
   {
     "id": "pickle-063",
     "name": "Sweet Pickle Relish",
-    "name_ar": "Sweet Pickle Relish",
+    "name_ar": "Sweet Pickle Relish - مخلل",
     "description": "Premium pickled vegetables, carefully selected and seasoned.",
     "description_ar": "خضار مخللة عالية الجودة، مختارة ومتبّضة بعناية.",
     "price": 23.99,
@@ -3384,7 +3384,7 @@ export const products: Product[] = [
   {
     "id": "pickle-064",
     "name": "Jalapeño Escabeche",
-    "name_ar": "Jalapeño Escabeche",
+    "name_ar": "Jalapeño Escabeche - مخلل",
     "description": "Traditional recipe pickles, slow-fermented for rich, tangy flavor.",
     "description_ar": "مخللات بوصفة تقليدية، يتم تخميرها ببطء للحصول على نكهة غنية وحارة.",
     "price": 26.49,
@@ -3404,7 +3404,7 @@ export const products: Product[] = [
   {
     "id": "pickle-065",
     "name": "Pickled Mushroom Caps",
-    "name_ar": "Pickled Mushroom Caps",
+    "name_ar": "Pickled Mushroom Caps - مخلل",
     "description": "Organic pickled vegetables, free from artificial additives.",
     "description_ar": "خضار مخللة عضوية، خالية من المضافات الاصطناعية.",
     "price": 8.99,
@@ -3424,7 +3424,7 @@ export const products: Product[] = [
   {
     "id": "pickle-066",
     "name": "Traditional Sauerkraut",
-    "name_ar": "Traditional Sauerkraut",
+    "name_ar": "Traditional Sauerkraut - مخلل",
     "description": "Small-batch pickles, made with the finest ingredients and spices.",
     "description_ar": "مخللات في دفاتر صغيرة، مصنوعة بأفضل المكونات والبهارات.",
     "price": 11.49,
@@ -3444,7 +3444,7 @@ export const products: Product[] = [
   {
     "id": "pickle-067",
     "name": "Kimchi Spicy Mix",
-    "name_ar": "Kimchi Spicy Mix",
+    "name_ar": "Kimchi Spicy Mix - مخلل",
     "description": "Authentic fermentation process, delivering bold and complex flavors.",
     "description_ar": "عملية تخمير أصيلة، توفر نكهات غنية ومعقدة.",
     "price": 13.99,
@@ -3464,7 +3464,7 @@ export const products: Product[] = [
   {
     "id": "pickle-068",
     "name": "Pickled Corn Kernels",
-    "name_ar": "Pickled Corn Kernels",
+    "name_ar": "Pickled Corn Kernels - مخلل",
     "description": "Premium quality pickles, hand-packed in small batches for freshness.",
     "description_ar": "مخللات عالية الجودة، مُعبأ بأيدٍ صغيرة في دفاتر صغيرة للطازجية.",
     "price": 16.49,
@@ -3484,7 +3484,7 @@ export const products: Product[] = [
   {
     "id": "pickle-069",
     "name": "Dill Pickle Sticks",
-    "name_ar": "Dill Pickle Sticks",
+    "name_ar": "Dill Pickle Sticks - مخلل",
     "description": "Award-winning pickles, recognized for their exceptional taste.",
     "description_ar": "مخللات حائزة على جوائز، معترف بها لنكهتها الاستثنائية.",
     "price": 18.99,
@@ -3504,7 +3504,7 @@ export const products: Product[] = [
   {
     "id": "pickle-070",
     "name": "Brown Sugar Chips",
-    "name_ar": "Brown Sugar Chips",
+    "name_ar": "Brown Sugar Chips - مخلل",
     "description": "Cold-fermented pickles, preserving natural crunch and nutrients.",
     "description_ar": "مخللات يتم تخميرها ببرودة، تحافظ على القشرة والعناصر الغذائية الطبيعية.",
     "price": 21.49,
@@ -3524,7 +3524,7 @@ export const products: Product[] = [
   {
     "id": "pickle-071",
     "name": "Pickled Turnip Slices",
-    "name_ar": "Pickled Turnip Slices",
+    "name_ar": "Pickled Turnip Slices - مخلل",
     "description": "Artisan-crafted pickles with premium vegetables and traditional spices.",
     "description_ar": "مخللات يدوية المصنع باستخدام خضروات متميزة وبهارات تقليدية.",
     "price": 23.99,
@@ -3544,7 +3544,7 @@ export const products: Product[] = [
   {
     "id": "pickle-072",
     "name": "Spicy Pickled Cauliflower",
-    "name_ar": "Spicy Pickled Cauliflower",
+    "name_ar": "Spicy Pickled Cauliflower - مخلل",
     "description": "Handcrafted pickles using time-honored fermentation techniques.",
     "description_ar": "مخللات يدوية باستخدام تقنيات تخمير تقليدية.",
     "price": 26.49,
@@ -3564,7 +3564,7 @@ export const products: Product[] = [
   {
     "id": "pickle-073",
     "name": "Pickled Broccoli Florets",
-    "name_ar": "Pickled Broccoli Florets",
+    "name_ar": "Pickled Broccoli Florets - مخلل",
     "description": "Premium pickled vegetables, carefully selected and seasoned.",
     "description_ar": "خضار مخللة عالية الجودة، مختارة ومتبّضة بعناية.",
     "price": 8.99,
@@ -3584,7 +3584,7 @@ export const products: Product[] = [
   {
     "id": "pickle-074",
     "name": "Sweet Pickle Chips",
-    "name_ar": "Sweet Pickle Chips",
+    "name_ar": "Sweet Pickle Chips - مخلل",
     "description": "Traditional recipe pickles, slow-fermented for rich, tangy flavor.",
     "description_ar": "مخللات بوصفة تقليدية، يتم تخميرها ببطء للحصول على نكهة غنية وحارة.",
     "price": 11.49,
@@ -3604,7 +3604,7 @@ export const products: Product[] = [
   {
     "id": "pickle-075",
     "name": "Habanero Pickled Peppers",
-    "name_ar": "Habanero Pickled Peppers",
+    "name_ar": "Habanero Pickled Peppers - مخلل",
     "description": "Organic pickled vegetables, free from artificial additives.",
     "description_ar": "خضار مخللة عضوية، خالية من المضافات الاصطناعية.",
     "price": 13.99,
@@ -3624,7 +3624,7 @@ export const products: Product[] = [
   {
     "id": "pickle-076",
     "name": "Pickled Artichoke Hearts",
-    "name_ar": "Pickled Artichoke Hearts",
+    "name_ar": "Pickled Artichoke Hearts - مخلل",
     "description": "Small-batch pickles, made with the finest ingredients and spices.",
     "description_ar": "مخللات في دفاتر صغيرة، مصنوعة بأفضل المكونات والبهارات.",
     "price": 16.49,
@@ -3644,7 +3644,7 @@ export const products: Product[] = [
   {
     "id": "pickle-077",
     "name": "Dill Pickle Wedges",
-    "name_ar": "Dill Pickle Wedges",
+    "name_ar": "Dill Pickle Wedges - مخلل",
     "description": "Authentic fermentation process, delivering bold and complex flavors.",
     "description_ar": "عملية تخمير أصيلة، توفر نكهات غنية ومعقدة.",
     "price": 18.99,
@@ -3664,7 +3664,7 @@ export const products: Product[] = [
   {
     "id": "pickle-078",
     "name": "Maple Glazed Chips",
-    "name_ar": "Maple Glazed Chips",
+    "name_ar": "Maple Glazed Chips - مخلل",
     "description": "Premium quality pickles, hand-packed in small batches for freshness.",
     "description_ar": "مخللات عالية الجودة، مُعبأ بأيدٍ صغيرة في دفاتر صغيرة للطازجية.",
     "price": 21.49,
@@ -3684,7 +3684,7 @@ export const products: Product[] = [
   {
     "id": "pickle-079",
     "name": "Pickled Turnips",
-    "name_ar": "Pickled Turnips",
+    "name_ar": "Pickled Turnips - مخلل",
     "description": "Award-winning pickles, recognized for their exceptional taste.",
     "description_ar": "مخللات حائزة على جوائز، معترف بها لنكهتها الاستثنائية.",
     "price": 23.99,
@@ -3704,7 +3704,7 @@ export const products: Product[] = [
   {
     "id": "pickle-080",
     "name": "Spicy Pickled Carrots",
-    "name_ar": "Spicy Pickled Carrots",
+    "name_ar": "Spicy Pickled Carrots - مخلل",
     "description": "Cold-fermented pickles, preserving natural crunch and nutrients.",
     "description_ar": "مخللات يتم تخميرها ببرودة، تحافظ على القشرة والعناصر الغذائية الطبيعية.",
     "price": 26.49,
@@ -3724,7 +3724,7 @@ export const products: Product[] = [
   {
     "id": "pickle-081",
     "name": "Pickled Zucchini Slices",
-    "name_ar": "Pickled Zucchini Slices",
+    "name_ar": "Pickled Zucchini Slices - مخلل",
     "description": "Artisan-crafted pickles with premium vegetables and traditional spices.",
     "description_ar": "مخللات يدوية المصنع باستخدام خضروات متميزة وبهارات تقليدية.",
     "price": 8.99,
@@ -3744,7 +3744,7 @@ export const products: Product[] = [
   {
     "id": "pickle-082",
     "name": "Classic Dill Chips",
-    "name_ar": "Classic Dill Chips",
+    "name_ar": "Classic Dill Chips - مخلل",
     "description": "Handcrafted pickles using time-honored fermentation techniques.",
     "description_ar": "مخللات يدوية باستخدام تقنيات تخمير تقليدية.",
     "price": 11.49,
@@ -3764,7 +3764,7 @@ export const products: Product[] = [
   {
     "id": "pickle-083",
     "name": "Honey Sweet Chips",
-    "name_ar": "Honey Sweet Chips",
+    "name_ar": "Honey Sweet Chips - مخلل",
     "description": "Premium pickled vegetables, carefully selected and seasoned.",
     "description_ar": "خضار مخللة عالية الجودة، مختارة ومتبّضة بعناية.",
     "price": 13.99,
@@ -3784,7 +3784,7 @@ export const products: Product[] = [
   {
     "id": "pickle-084",
     "name": "Pickled Bell Peppers",
-    "name_ar": "Pickled Bell Peppers",
+    "name_ar": "Pickled Bell Peppers - مخلل",
     "description": "Traditional recipe pickles, slow-fermented for rich, tangy flavor.",
     "description_ar": "مخللات بوصفة تقليدية، يتم تخميرها ببطء للحصول على نكهة غنية وحارة.",
     "price": 16.49,
@@ -3804,7 +3804,7 @@ export const products: Product[] = [
   {
     "id": "pickle-085",
     "name": "Pickled Green Tomatoes",
-    "name_ar": "Pickled Green Tomatoes",
+    "name_ar": "Pickled Green Tomatoes - مخلل",
     "description": "Organic pickled vegetables, free from artificial additives.",
     "description_ar": "خضار مخللة عضوية، خالية من المضافات الاصطناعية.",
     "price": 18.99,
@@ -3824,7 +3824,7 @@ export const products: Product[] = [
   {
     "id": "pickle-086",
     "name": "Jalapeño Pickled Okra",
-    "name_ar": "Jalapeño Pickled Okra",
+    "name_ar": "Jalapeño Pickled Okra - مخلل",
     "description": "Small-batch pickles, made with the finest ingredients and spices.",
     "description_ar": "مخللات في دفاتر صغيرة، مصنوعة بأفضل المكونات والبهارات.",
     "price": 21.49,
@@ -3844,7 +3844,7 @@ export const products: Product[] = [
   {
     "id": "pickle-087",
     "name": "Dill Pickle Chips",
-    "name_ar": "Dill Pickle Chips",
+    "name_ar": "Dill Pickle Chips - مخلل",
     "description": "Authentic fermentation process, delivering bold and complex flavors.",
     "description_ar": "عملية تخمير أصيلة، توفر نكهات غنية ومعقدة.",
     "price": 23.99,
@@ -3864,7 +3864,7 @@ export const products: Product[] = [
   {
     "id": "pickle-088",
     "name": "Cinnamon Pickles",
-    "name_ar": "Cinnamon Pickles",
+    "name_ar": "Cinnamon Pickles - مخلل",
     "description": "Premium quality pickles, hand-packed in small batches for freshness.",
     "description_ar": "مخللات عالية الجودة، مُعبأ بأيدٍ صغيرة في دفاتر صغيرة للطازجية.",
     "price": 26.49,
@@ -3884,7 +3884,7 @@ export const products: Product[] = [
   {
     "id": "pickle-089",
     "name": "Pickled Sweet Potatoes",
-    "name_ar": "Pickled Sweet Potatoes",
+    "name_ar": "Pickled Sweet Potatoes - مخلل",
     "description": "Award-winning pickles, recognized for their exceptional taste.",
     "description_ar": "مخللات حائزة على جوائز، معترف بها لنكهتها الاستثنائية.",
     "price": 8.99,
@@ -3904,7 +3904,7 @@ export const products: Product[] = [
   {
     "id": "pickle-090",
     "name": "Spicy Pickled Green Beans",
-    "name_ar": "Spicy Pickled Green Beans",
+    "name_ar": "Spicy Pickled Green Beans - مخلل",
     "description": "Cold-fermented pickles, preserving natural crunch and nutrients.",
     "description_ar": "مخللات يتم تخميرها ببرودة، تحافظ على القشرة والعناصر الغذائية الطبيعية.",
     "price": 11.49,
@@ -3924,7 +3924,7 @@ export const products: Product[] = [
   {
     "id": "pickle-091",
     "name": "Pickled Cauliflower Florets",
-    "name_ar": "Pickled Cauliflower Florets",
+    "name_ar": "Pickled Cauliflower Florets - مخلل",
     "description": "Artisan-crafted pickles with premium vegetables and traditional spices.",
     "description_ar": "مخللات يدوية المصنع باستخدام خضروات متميزة وبهارات تقليدية.",
     "price": 13.99,
@@ -3944,7 +3944,7 @@ export const products: Product[] = [
   {
     "id": "pickle-092",
     "name": "Sweet Pickle Strips",
-    "name_ar": "Sweet Pickle Strips",
+    "name_ar": "Sweet Pickle Strips - مخلل",
     "description": "Handcrafted pickles using time-honored fermentation techniques.",
     "description_ar": "مخللات يدوية باستخدام تقنيات تخمير تقليدية.",
     "price": 16.49,
@@ -3964,7 +3964,7 @@ export const products: Product[] = [
   {
     "id": "pickle-093",
     "name": "Dill Pickle Spears",
-    "name_ar": "Dill Pickle Spears",
+    "name_ar": "Dill Pickle Spears - مخلل",
     "description": "Premium pickled vegetables, carefully selected and seasoned.",
     "description_ar": "خضار مخللة عالية الجودة، مختارة ومتبّضة بعناية.",
     "price": 18.99,
@@ -3984,7 +3984,7 @@ export const products: Product[] = [
   {
     "id": "pickle-094",
     "name": "Honey Mustard Chips",
-    "name_ar": "Honey Mustard Chips",
+    "name_ar": "Honey Mustard Chips - مخلل",
     "description": "Traditional recipe pickles, slow-fermented for rich, tangy flavor.",
     "description_ar": "مخللات بوصفة تقليدية، يتم تخميرها ببطء للحصول على نكهة غنية وحارة.",
     "price": 21.49,
@@ -4004,7 +4004,7 @@ export const products: Product[] = [
   {
     "id": "pickle-095",
     "name": "Pickled Radish Slices",
-    "name_ar": "Pickled Radish Slices",
+    "name_ar": "Pickled Radish Slices - مخلل",
     "description": "Organic pickled vegetables, free from artificial additives.",
     "description_ar": "خضار مخللة عضوية، خالية من المضافات الاصطناعية.",
     "price": 23.99,
@@ -4024,7 +4024,7 @@ export const products: Product[] = [
   {
     "id": "pickle-096",
     "name": "Spicy Pickled Onions",
-    "name_ar": "Spicy Pickled Onions",
+    "name_ar": "Spicy Pickled Onions - مخلل",
     "description": "Small-batch pickles, made with the finest ingredients and spices.",
     "description_ar": "مخللات في دفاتر صغيرة، مصنوعة بأفضل المكونات والبهارات.",
     "price": 26.49,
@@ -4044,7 +4044,7 @@ export const products: Product[] = [
   {
     "id": "pickle-097",
     "name": "Pickled Mixed Vegetables",
-    "name_ar": "Pickled Mixed Vegetables",
+    "name_ar": "Pickled Mixed Vegetables - مخلل",
     "description": "Authentic fermentation process, delivering bold and complex flavors.",
     "description_ar": "عملية تخمير أصيلة، توفر نكهات غنية ومعقدة.",
     "price": 8.99,
@@ -4064,7 +4064,7 @@ export const products: Product[] = [
   {
     "id": "pickle-098",
     "name": "Pickled Asparagus Spears",
-    "name_ar": "Pickled Asparagus Spears",
+    "name_ar": "Pickled Asparagus Spears - مخلل",
     "description": "Premium quality pickles, hand-packed in small batches for freshness.",
     "description_ar": "مخللات عالية الجودة، مُعبأ بأيدٍ صغيرة في دفاتر صغيرة للطازجية.",
     "price": 11.49,
@@ -4084,7 +4084,7 @@ export const products: Product[] = [
   {
     "id": "pickle-099",
     "name": "Sweet Pickle Relish",
-    "name_ar": "Sweet Pickle Relish",
+    "name_ar": "Sweet Pickle Relish - مخلل",
     "description": "Award-winning pickles, recognized for their exceptional taste.",
     "description_ar": "مخللات حائزة على جوائز، معترف بها لنكهتها الاستثنائية.",
     "price": 13.99,
@@ -4104,7 +4104,7 @@ export const products: Product[] = [
   {
     "id": "pickle-100",
     "name": "Jalapeño Escabeche",
-    "name_ar": "Jalapeño Escabeche",
+    "name_ar": "Jalapeño Escabeche - مخلل",
     "description": "Cold-fermented pickles, preserving natural crunch and nutrients.",
     "description_ar": "مخللات يتم تخميرها ببرودة، تحافظ على القشرة والعناصر الغذائية الطبيعية.",
     "price": 16.49,

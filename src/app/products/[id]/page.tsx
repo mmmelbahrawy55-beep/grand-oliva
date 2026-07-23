@@ -47,12 +47,19 @@ export default function ProductPage() {
     setTimeout(() => setAdded(false), 2000);
   };
 
-  const images = [
-    product.image,
-    product.image,
-    product.image,
-    product.image,
+  const oliveImages = [
+    "https://images.pexels.com/photos/4109912/pexels-photo-4109912.jpeg?w=600&h=600&fit=crop&q=80",
+    "https://images.pexels.com/photos/4109911/pexels-photo-4109911.jpeg?w=600&h=600&fit=crop&q=80",
+    "https://images.pexels.com/photos/16732695/pexels-photo-16732695.jpeg?w=600&h=600&fit=crop&q=80",
+    "https://images.pexels.com/photos/4109910/pexels-photo-4109910.jpeg?w=600&h=600&fit=crop&q=80",
   ];
+  const pickleImages = [
+    "https://images.pexels.com/photos/8599633/pexels-photo-8599633.jpeg?w=600&h=600&fit=crop&q=80",
+    "https://images.pexels.com/photos/8599634/pexels-photo-8599634.jpeg?w=600&h=600&fit=crop&q=80",
+    "https://images.pexels.com/photos/12181052/pexels-photo-12181052.jpeg?w=600&h=600&fit=crop&q=80",
+    "https://images.pexels.com/photos/8599635/pexels-photo-8599635.jpeg?w=600&h=600&fit=crop&q=80",
+  ];
+  const images = product.category === "Pickles" ? pickleImages : oliveImages;
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] pt-24 pb-16" dir={dir}>
@@ -143,7 +150,7 @@ export default function ProductPage() {
               </div>
             </div>
 
-            <div className="border-t border-[#2a2a2a pt-8">
+            <div className="border-t border-[#2a2a2a] pt-8">
               <p className="text-gray-400 text-lg leading-relaxed mb-8">{description}</p>
             </div>
 
@@ -189,7 +196,7 @@ export default function ProductPage() {
               </div>
             </div>
 
-            <div className="border-t border-[#2a2a2a pt-8 space-y-4">
+            <div className="border-t border-[#2a2a2a] pt-8 space-y-4">
               <div className="flex items-center gap-3 text-gray-400">
                 <Check className="w-5 h-5 text-[#c9a96e]" />
                 <span>{locale === "ar" ? "توصيل مجاني فوق 50$" : "Free shipping over $50"}</span>

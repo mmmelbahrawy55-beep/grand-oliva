@@ -93,11 +93,10 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} Grand Oliva. {t(locale, "footer.rights")}
           </p>
           <div className="flex gap-6">
-            {["Facebook", "Instagram", "Twitter"].map((s) => (
-              <a key={s} href="#" className="text-gray-600 hover:text-[#c9a96e] text-xs transition-colors">
-                {s}
-              </a>
-            ))}
+            <a href="https://facebook.com/grandoliva" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#c9a96e] text-xs transition-colors">Facebook</a>
+            <a href="https://instagram.com/grandoliva" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#c9a96e] text-xs transition-colors">Instagram</a>
+            <a href="https://twitter.com/grandoliva" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#c9a96e] text-xs transition-colors">Twitter</a>
+            <a href="https://youtube.com/grandoliva" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#c9a96e] text-xs transition-colors">YouTube</a>
           </div>
         </div>
       </div>

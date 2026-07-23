@@ -1,11 +1,13 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLocaleStore } from "@/lib/store";
 import ProductCard from "@/components/ProductCard";
 import { products } from "@/lib/data/products";
 import { Search, SlidersHorizontal, X, Grid, List } from "lucide-react";
+
+const ITEMS_PER_PAGE = 12;
 
 const categories = [
   { key: "all", ar: "الكل", en: "All", icon: "✨", count: 200 },
@@ -20,6 +22,7 @@ export default function ProductsPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [sortBy, setSortBy] = useState("featured");
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
+  const [currentPage, setCurrentPage] = useState(1);
 
   const filteredProducts = useMemo(() => {
     return products
@@ -49,6 +52,16 @@ export default function ProductsPage() {
         }
       });
   }, [activeCategory, searchQuery, sortBy]);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [activeCategory, searchQuery, sortBy]);
+
+  const totalPages = Math.ceil(filteredProducts.length / ITEMS_PER_PAGE);
+  const paginatedProducts = filteredProducts.slice(
+    (currentPage - 1) * ITEMS_PER_PAGE,
+    currentPage * ITEMS_PER_PAGE
+  );
 
   const oliveProducts = useMemo(() => products.filter((p) => p.category === "Olives"), []);
 
@@ -156,7 +169,7 @@ export default function ProductsPage() {
               </div>
             </div>
             <div className="text-gray-500 text-sm">
-              {filteredProducts.length} {locale === "ar" ? "منتج" : "products"}
+              {(currentPage - 1) * ITEMS_PER_PAGE + 1}–{Math.min(currentPage * ITEMS_PER_PAGE, filteredProducts.length)} {locale === "ar" ? "من" : "of"} {filteredProducts.length} {locale === "ar" ? "منتج" : "products"}
             </div>
           </div>
         </div>
@@ -186,7 +199,7 @@ export default function ProductsPage() {
 
         <AnimatePresence mode="wait">
           <motion.div
-            key={activeCategory + searchQuery + sortBy}
+            key={activeCategory + searchQuery + sortBy + currentPage}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
@@ -196,11 +209,48 @@ export default function ProductsPage() {
                 : "grid-cols-1"
             }`}
           >
-            {filteredProducts.map((product, i) => (
+            {paginatedProducts.map((product, i) => (
               <ProductCard key={product.id} product={product} index={i} />
             ))}
           </motion.div>
         </AnimatePresence>
+
+        {totalPages > 1 && (
+          <div className="mt-16 flex flex-col items-center gap-6">
+            <span className="text-gray-500 text-sm">
+              {locale === "ar" ? "صفحة" : "Page"} {currentPage} {locale === "ar" ? "من" : "of"} {totalPages}
+            </span>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+                disabled={currentPage === 1}
+                className="px-5 py-2.5 rounded-xl border border-[#2a2a2a] bg-[#111] text-gray-400 text-sm font-medium transition-all hover:border-[#c9a96e]/40 hover:text-[#c9a96e] disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:border-[#2a2a2a] disabled:hover:text-gray-400"
+              >
+                {locale === "ar" ? "السابق" : "Previous"}
+              </button>
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                <button
+                  key={page}
+                  onClick={() => setCurrentPage(page)}
+                  className={`w-10 h-10 rounded-xl text-sm font-medium transition-all border ${
+                    currentPage === page
+                      ? "bg-[#c9a96e] text-[#0a0a0a] border-[#c9a96e] shadow-lg shadow-[#c9a96e]/20"
+                      : "bg-[#111] text-gray-400 border-[#2a2a2a] hover:border-[#c9a96e]/30 hover:text-[#c9a96e]"
+                  }`}
+                >
+                  {page}
+                </button>
+              ))}
+              <button
+                onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
+                disabled={currentPage === totalPages}
+                className="px-5 py-2.5 rounded-xl border border-[#2a2a2a] bg-[#111] text-gray-400 text-sm font-medium transition-all hover:border-[#c9a96e]/40 hover:text-[#c9a96e] disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:border-[#2a2a2a] disabled:hover:text-gray-400"
+              >
+                {locale === "ar" ? "التالي" : "Next"}
+              </button>
+            </div>
+          </div>
+        )}
 
         {filteredProducts.length === 0 && (
           <motion.div

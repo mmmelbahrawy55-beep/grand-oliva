@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useLocaleStore } from "@/lib/store";
 import {
@@ -14,6 +14,7 @@ import {
   TrendingUp,
   DollarSign,
   UserCheck,
+  Lock,
 } from "lucide-react";
 
 const stats = [
@@ -41,6 +42,77 @@ const statusColors: Record<string, string> = {
 export default function AdminPage() {
   const dir = useLocaleStore((s) => s.dir());
   const [activeTab, setActiveTab] = useState("dashboard");
+  const [password, setPassword] = useState("");
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const auth = sessionStorage.getItem("admin-auth");
+    if (auth === "true") {
+      setIsAuthenticated(true);
+    }
+    setLoading(false);
+  }, []);
+
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (password === "grandoliva2024") {
+      sessionStorage.setItem("admin-auth", "true");
+      setIsAuthenticated(true);
+    } else {
+      alert("Wrong password");
+    }
+  };
+
+  if (loading) {
+    return (
+      <section className="min-h-screen bg-[#0a0a0a] flex items-center justify-center" dir={dir}>
+        <div className="text-white">Loading...</div>
+      </section>
+    );
+  }
+
+  if (!isAuthenticated) {
+    return (
+      <section className="min-h-screen bg-[#0a0a0a] flex items-center justify-center" dir={dir}>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="w-full max-w-md px-4"
+        >
+          <div className="bg-[#111111] rounded-2xl border border-[#2a2a2a] p-8 shadow-2xl">
+            <div className="text-center mb-8">
+              <div className="w-16 h-16 bg-[#c9a96e]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Lock className="w-8 h-8 text-[#c9a96e]" />
+              </div>
+              <h1 className="text-2xl font-bold text-white" style={{ fontFamily: "'Playfair Display', serif" }}>
+                Admin Access
+              </h1>
+              <p className="text-gray-500 mt-2">Enter password to continue</p>
+            </div>
+            <form onSubmit={handleLogin} className="space-y-6">
+              <div>
+                <input
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Password"
+                  className="w-full px-4 py-3 bg-[#1a1a1a] border border-[#2a2a2a] rounded-xl text-white placeholder-gray-600 focus:outline-none focus:border-[#c9a96e] transition-colors"
+                />
+              </div>
+              <button
+                type="submit"
+                className="w-full btn-gold px-6 py-3 rounded-xl font-bold text-white transition-all"
+              >
+                دخول
+              </button>
+            </form>
+          </div>
+        </motion.div>
+      </section>
+    );
+  }
 
   return (
     <section className="pt-24 pb-20 bg-gray-50 min-h-screen" dir={dir}>

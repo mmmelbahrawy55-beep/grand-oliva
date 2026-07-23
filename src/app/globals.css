@@ -15,8 +15,8 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
   --font-serif: var(--font-playfair);
+  --font-arabic: var(--font-noto-kufi);
 }
 
 * {
@@ -44,7 +44,12 @@ html {
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: 'Inter', Arial, sans-serif;
+  font-family: 'Inter', var(--font-noto-kufi), Arial, sans-serif;
+}
+
+[dir="rtl"] body,
+[dir="rtl"] {
+  font-family: var(--font-noto-kufi), 'Inter', Arial, sans-serif;
 }
 
 .line-clamp-1 {
