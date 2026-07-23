@@ -54,6 +54,7 @@ export default function Hero() {
             initial={{ opacity: 0, x: dir === "rtl" ? 60 : -60 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            className="order-1"
           >
             <motion.div
               initial={{ opacity: 0, y: 15 }}
@@ -167,7 +168,7 @@ export default function Hero() {
             initial={{ opacity: 0, scale: 0.85 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="relative flex items-center justify-center"
+            className="relative flex items-center justify-center order-2"
           >
             <div
               className="relative w-[480px] h-[480px] rounded-3xl overflow-hidden border border-[#c9a96e]/20 gold-glow-strong"
