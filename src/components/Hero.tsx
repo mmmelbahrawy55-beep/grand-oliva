@@ -19,7 +19,7 @@ export default function Hero() {
   const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "40%"]);
 
   return (
-    <section ref={ref} className="relative min-h-screen flex items-center overflow-hidden bg-[#0a0a0a]" dir={dir}>
+    <section ref={ref} className="relative min-h-screen flex items-center overflow-hidden bg-[#0a0a0a]">
       <motion.div style={{ y: bgY }} className="absolute inset-0">
         <div className="absolute inset-0">
           <Image
