@@ -51,72 +51,6 @@ export default function Hero() {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 w-full">
         <div className="grid lg:grid-cols-2 gap-20 items-center">
           <motion.div
-            initial={{ opacity: 0, scale: 0.85 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="relative flex items-center justify-center"
-          >
-            <div
-              className="relative w-[480px] h-[480px] rounded-3xl overflow-hidden border border-[#c9a96e]/20 gold-glow-strong"
-            >
-              <motion.div
-                animate={{ scale: [1, 1.03, 1] }}
-                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute inset-0"
-              >
-                <Image
-                  src="https://images.pexels.com/photos/16732695/pexels-photo-16732695.jpeg?w=600&h=600&fit=crop&q=80"
-                  alt="Premium Olives in Bowl"
-                  fill
-                  className="object-cover"
-                  sizes="480px"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/70 via-transparent to-transparent" />
-              </motion.div>
-
-              <motion.div
-                animate={{ y: [0, -15, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -top-4 right-4 bg-[#1a1a1a] border border-[#c9a96e]/30 rounded-xl px-4 py-3 gold-glow"
-              >
-                <div className="flex items-center gap-2">
-                  <span className="text-lg">🏆</span>
-                  <div>
-                    <div className="text-[#c9a96e] text-[10px] font-semibold tracking-wider uppercase">
-                      {locale === "ar" ? "الأفضل" : "Award"}
-                    </div>
-                    <div className="text-white text-sm font-bold">2024</div>
-                  </div>
-                </div>
-              </motion.div>
-
-              <motion.div
-                animate={{ y: [0, 12, 0] }}
-                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                className="absolute -bottom-4 left-4 bg-[#1a1a1a] border border-[#c9a96e]/30 rounded-xl px-4 py-3 gold-glow"
-              >
-                <div className="flex items-center gap-2">
-                  <span className="text-lg">🫒</span>
-                  <div>
-                    <div className="text-[#c9a96e] text-[10px] font-semibold tracking-wider uppercase">
-                      {locale === "ar" ? "المصدر" : "Origin"}
-                    </div>
-                    <div className="text-white text-sm font-bold">
-                      {locale === "ar" ? "البحر المتوسع" : "Mediterranean"}
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-
-              <motion.div
-                animate={{ opacity: [0.5, 1, 0.5] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute inset-0 border-2 border-[#c9a96e]/10 rounded-3xl"
-              />
-            </div>
-          </motion.div>
-
-          <motion.div
             initial={{ opacity: 0, x: dir === "rtl" ? 60 : -60 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
@@ -227,6 +161,72 @@ export default function Hero() {
                 </motion.div>
               ))}
             </motion.div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.85 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            className="relative flex items-center justify-center"
+          >
+            <div
+              className="relative w-[480px] h-[480px] rounded-3xl overflow-hidden border border-[#c9a96e]/20 gold-glow-strong"
+            >
+              <motion.div
+                animate={{ scale: [1, 1.03, 1] }}
+                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute inset-0"
+              >
+                <Image
+                  src="https://images.pexels.com/photos/16732695/pexels-photo-16732695.jpeg?w=600&h=600&fit=crop&q=80"
+                  alt="Premium Olives in Bowl"
+                  fill
+                  className="object-cover"
+                  sizes="480px"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/70 via-transparent to-transparent" />
+              </motion.div>
+
+              <motion.div
+                animate={{ y: [0, -15, 0] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute -top-4 right-4 bg-[#1a1a1a] border border-[#c9a96e]/30 rounded-xl px-4 py-3 gold-glow"
+              >
+                <div className="flex items-center gap-2">
+                  <span className="text-lg">🏆</span>
+                  <div>
+                    <div className="text-[#c9a96e] text-[10px] font-semibold tracking-wider uppercase">
+                      {locale === "ar" ? "الأفضل" : "Award"}
+                    </div>
+                    <div className="text-white text-sm font-bold">2024</div>
+                  </div>
+                </div>
+              </motion.div>
+
+              <motion.div
+                animate={{ y: [0, 12, 0] }}
+                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                className="absolute -bottom-4 left-4 bg-[#1a1a1a] border border-[#c9a96e]/30 rounded-xl px-4 py-3 gold-glow"
+              >
+                <div className="flex items-center gap-2">
+                  <span className="text-lg">🫒</span>
+                  <div>
+                    <div className="text-[#c9a96e] text-[10px] font-semibold tracking-wider uppercase">
+                      {locale === "ar" ? "المصدر" : "Origin"}
+                    </div>
+                    <div className="text-white text-sm font-bold">
+                      {locale === "ar" ? "البحر المتوسع" : "Mediterranean"}
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+
+              <motion.div
+                animate={{ opacity: [0.5, 1, 0.5] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute inset-0 border-2 border-[#c9a96e]/10 rounded-3xl"
+              />
+            </div>
           </motion.div>
         </div>
       </div>
