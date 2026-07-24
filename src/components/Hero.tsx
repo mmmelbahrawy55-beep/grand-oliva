@@ -23,7 +23,7 @@ export default function Hero() {
       <motion.div style={{ y: bgY }} className="absolute inset-0">
         <div className="absolute inset-0">
           <Image
-            src="https://images.pexels.com/photos/4109912/pexels-photo-4109912.jpeg?w=1920&h=1080&fit=crop&q=80"
+            src="https://images.pexels.com/photos/209339/pexels-photo-209339.jpeg?w=1920&h=1080&fit=crop&q=80"
             alt="Premium Olives Background"
             fill
             className="object-cover opacity-25"
@@ -178,7 +178,7 @@ export default function Hero() {
                 className="absolute inset-0"
               >
                 <Image
-                  src="https://images.pexels.com/photos/16732695/pexels-photo-16732695.jpeg?w=600&h=600&fit=crop&q=80"
+                  src="https://images.pexels.com/photos/164923/pexels-photo-164923.jpeg?w=600&h=600&fit=crop&q=80"
                   alt="Premium Olives in Bowl"
                   fill
                   className="object-cover"
