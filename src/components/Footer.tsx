@@ -106,7 +106,7 @@ export default function Footer() {
             <p className="text-gray-400 text-[11px] tracking-[0.15em] uppercase">
               Designed by
             </p>
-            <span className="text-[#c9a96e] text-[11px] font-bold tracking-wider" style={{ fontFamily: "'Playfair Display', serif" }}>
+            <span className="text-[#c9a96e] text-sm font-bold tracking-wider" style={{ fontFamily: "'Playfair Display', serif" }}>
               elba7rawy
             </span>
             <p className="text-gray-400 text-[11px] tracking-[0.15em] uppercase">
