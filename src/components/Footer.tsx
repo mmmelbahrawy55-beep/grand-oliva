@@ -102,7 +102,7 @@ export default function Footer() {
 
         <div className="text-center mt-8 pt-6 border-t border-[#1a1a1a]">
           <p className="text-gray-600 text-[11px] tracking-wider">
-            {locale === "ar" ? "تصميم : مروان محمد" : "Designed by : Marwan Mohamed"}
+            {locale === "ar" ? "تصميم : مروان الحراوي" : "Designed by : Marwan El Bahrawy"}
           </p>
         </div>
       </div>
