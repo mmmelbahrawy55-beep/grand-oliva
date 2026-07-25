@@ -71,18 +71,18 @@ export default function ProductsPage() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-16"
+            className="text-center mb-8 sm:mb-16"
         >
           <span className="text-[#c9a96e] text-xs font-semibold tracking-[0.3em] uppercase">
             {locale === "ar" ? "مجموعة منتجاتنا" : "Our Product Collection"}
           </span>
           <h1
-            className="text-4xl md:text-6xl font-bold text-white mt-6 mb-4"
+            className="text-2xl sm:text-4xl md:text-6xl font-bold text-white mt-6 mb-4"
             style={{ fontFamily: "'Playfair Display', serif" }}
           >
             {locale === "ar" ? "زيتون ومخللات" : "Olives & Pickles"}
           </h1>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+          <p className="text-gray-400 text-sm sm:text-lg max-w-2xl mx-auto">
             {locale === "ar"
               ? "نكحة الأصالة وجودة لا مثيل لها. نقدم أفضل الأنواع المختارة بعناية."
               : "The taste of authenticity with unmatched quality. We offer the finest carefully selected varieties."}
@@ -97,7 +97,7 @@ export default function ProductsPage() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder={locale === "ar" ? "ابحث عن منتج..." : "Search products..."}
-              className="w-full bg-[#111] border border-[#2a2a2a] text-white placeholder-gray-500 rounded-2xl focus:border-[#c9a96e] focus:ring-2 focus:ring-[#c9a96e]/20 outline-none transition-all py-4 px-12 text-lg"
+              className="w-full bg-[#111] border border-[#2a2a2a] text-white placeholder-gray-500 rounded-2xl focus:border-[#c9a96e] focus:ring-2 focus:ring-[#c9a96e]/20 outline-none transition-all py-3 px-10 sm:py-4 sm:px-12 text-base sm:text-lg"
             />
             {searchQuery && (
               <button
@@ -109,14 +109,14 @@ export default function ProductsPage() {
             )}
           </div>
 
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="flex overflow-x-auto sm:flex-wrap justify-start sm:justify-center gap-2 sm:gap-4 pb-2" style={{ WebkitOverflowScrolling: "touch" }}>
             {categories.map((cat) => (
               <motion.button
                 key={cat.key}
                 onClick={() => setActiveCategory(cat.key)}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className={`flex items-center gap-3 px-8 py-4 rounded-2xl font-medium transition-all duration-300 border ${
+                className={`flex items-center gap-3 px-4 py-2.5 sm:px-8 sm:py-4 rounded-2xl font-medium transition-all duration-300 border whitespace-nowrap flex-shrink-0 ${
                   activeCategory === cat.key
                     ? "bg-[#c9a96e] text-[#0a0a0a] border-[#c9a96e] shadow-lg shadow-[#c9a96e]/20"
                     : "bg-[#111] text-gray-400 border-[#2a2a2a] hover:border-[#c9a96e]/30 hover:text-[#c9a96e]"
@@ -138,13 +138,13 @@ export default function ProductsPage() {
           </div>
 
           <div className="flex items-center justify-between max-w-4xl mx-auto">
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-4 flex-wrap">
               <div className="flex items-center gap-2 text-gray-500">
                 <SlidersHorizontal className="w-5 h-5" />
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value)}
-                  className="px-4 py-2 rounded-xl border border-[#2a2a2a] bg-[#111] text-white focus:border-[#c9a96e] outline-none text-sm"
+                  className="px-4 py-2 rounded-xl border border-[#2a2a2a] bg-[#111] text-white focus:border-[#c9a96e] outline-none text-sm w-full sm:w-auto"
                 >
                   <option value="featured">{locale === "ar" ? "المميزة" : "Featured"}</option>
                   <option value="price-low">{locale === "ar" ? "السعر: من الأقل" : "Price: Low to High"}</option>
@@ -153,7 +153,7 @@ export default function ProductsPage() {
                   <option value="name">{locale === "ar" ? "الاسم" : "Name"}</option>
                 </select>
               </div>
-              <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2">
                 <button
                   onClick={() => setViewMode("grid")}
                   className={`p-2 rounded-lg transition-all ${viewMode === "grid" ? "bg-[#c9a96e] text-[#0a0a0a]" : "bg-[#111] text-gray-500 hover:text-[#c9a96e]"}`}
@@ -168,14 +168,14 @@ export default function ProductsPage() {
                 </button>
               </div>
             </div>
-            <div className="text-gray-500 text-sm">
+            <div className="w-full sm:w-auto mt-2 sm:mt-0 text-center sm:text-left text-gray-500 text-sm">
               {(currentPage - 1) * ITEMS_PER_PAGE + 1}–{Math.min(currentPage * ITEMS_PER_PAGE, filteredProducts.length)} {locale === "ar" ? "من" : "of"} {filteredProducts.length} {locale === "ar" ? "منتج" : "products"}
             </div>
           </div>
         </div>
 
         {activeCategory === "all" && !searchQuery && (
-          <div className="mb-20">
+          <div className="mb-10 sm:mb-20">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -183,13 +183,13 @@ export default function ProductsPage() {
               className="text-center mb-12"
             >
               <h2
-                className="text-3xl md:text-4xl font-bold text-white"
+                className="text-xl sm:text-3xl md:text-4xl font-bold text-white"
                 style={{ fontFamily: "'Playfair Display', serif" }}
               >
                 {locale === "ar" ? "زيتون متميز" : "Premium Olives"}
               </h2>
             </motion.div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-8">
               {oliveProducts.slice(0, 8).map((product, i) => (
                 <ProductCard key={product.id} product={product} index={i} />
               ))}
@@ -220,11 +220,11 @@ export default function ProductsPage() {
             <span className="text-gray-500 text-sm">
               {locale === "ar" ? "صفحة" : "Page"} {currentPage} {locale === "ar" ? "من" : "of"} {totalPages}
             </span>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 overflow-x-auto">
               <button
                 onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
                 disabled={currentPage === 1}
-                className="px-5 py-2.5 rounded-xl border border-[#2a2a2a] bg-[#111] text-gray-400 text-sm font-medium transition-all hover:border-[#c9a96e]/40 hover:text-[#c9a96e] disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:border-[#2a2a2a] disabled:hover:text-gray-400"
+                className="px-3 sm:px-5 py-2.5 rounded-xl border border-[#2a2a2a] bg-[#111] text-gray-400 text-sm font-medium transition-all hover:border-[#c9a96e]/40 hover:text-[#c9a96e] disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:border-[#2a2a2a] disabled:hover:text-gray-400"
               >
                 {locale === "ar" ? "السابق" : "Previous"}
               </button>
@@ -232,7 +232,7 @@ export default function ProductsPage() {
                 <button
                   key={page}
                   onClick={() => setCurrentPage(page)}
-                  className={`w-10 h-10 rounded-xl text-sm font-medium transition-all border ${
+                  className={`w-10 h-10 rounded-xl text-sm font-medium transition-all border flex-shrink-0 ${
                     currentPage === page
                       ? "bg-[#c9a96e] text-[#0a0a0a] border-[#c9a96e] shadow-lg shadow-[#c9a96e]/20"
                       : "bg-[#111] text-gray-400 border-[#2a2a2a] hover:border-[#c9a96e]/30 hover:text-[#c9a96e]"
@@ -244,7 +244,7 @@ export default function ProductsPage() {
               <button
                 onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
                 disabled={currentPage === totalPages}
-                className="px-5 py-2.5 rounded-xl border border-[#2a2a2a] bg-[#111] text-gray-400 text-sm font-medium transition-all hover:border-[#c9a96e]/40 hover:text-[#c9a96e] disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:border-[#2a2a2a] disabled:hover:text-gray-400"
+                className="px-3 sm:px-5 py-2.5 rounded-xl border border-[#2a2a2a] bg-[#111] text-gray-400 text-sm font-medium transition-all hover:border-[#c9a96e]/40 hover:text-[#c9a96e] disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:border-[#2a2a2a] disabled:hover:text-gray-400"
               >
                 {locale === "ar" ? "التالي" : "Next"}
               </button>

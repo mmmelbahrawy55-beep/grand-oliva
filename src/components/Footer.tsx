@@ -11,7 +11,7 @@ export default function Footer() {
   return (
     <footer className="bg-[#0a0a0a] border-t border-[#2a2a2a]" dir={dir}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-16">
           {/* Brand */}
           <div>
             <div className="flex items-center gap-3 mb-6">
@@ -41,7 +41,7 @@ export default function Footer() {
             </h3>
             <ul className="space-y-4">
               {(["home", "products", "about", "contact"] as const).map((item) => (
-                <li key={item}>
+                <li key={item} className="py-2">
                   <Link
                     href={item === "home" ? "/" : `/${item}`}
                     className="text-gray-500 hover:text-[#c9a96e] transition-colors text-sm"
@@ -60,8 +60,8 @@ export default function Footer() {
             </h3>
             <ul className="space-y-4 text-sm text-gray-500">
               <li>{locale === "ar" ? "القاهرة، مصر" : "Cairo, Egypt"}</li>
-              <li>+20 123 456 7890</li>
-              <li>info@grandoliva.com</li>
+              <li><a href="tel:+201234567890" className="hover:text-[#c9a96e] transition-colors">+20 123 456 7890</a></li>
+              <li><a href="mailto:info@grandoliva.com" className="hover:text-[#c9a96e] transition-colors">info@grandoliva.com</a></li>
             </ul>
           </div>
 
@@ -93,10 +93,10 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} Grand Oliva. {t(locale, "footer.rights")}
           </p>
           <div className="flex gap-6">
-            <a href="https://facebook.com/grandoliva" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#c9a96e] text-xs transition-colors">Facebook</a>
-            <a href="https://instagram.com/grandoliva" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#c9a96e] text-xs transition-colors">Instagram</a>
-            <a href="https://twitter.com/grandoliva" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#c9a96e] text-xs transition-colors">Twitter</a>
-            <a href="https://youtube.com/grandoliva" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#c9a96e] text-xs transition-colors">YouTube</a>
+            <a href="https://facebook.com/grandoliva" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#c9a96e] text-xs transition-colors py-2 px-1">Facebook</a>
+            <a href="https://instagram.com/grandoliva" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#c9a96e] text-xs transition-colors py-2 px-1">Instagram</a>
+            <a href="https://twitter.com/grandoliva" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#c9a96e] text-xs transition-colors py-2 px-1">Twitter</a>
+            <a href="https://youtube.com/grandoliva" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#c9a96e] text-xs transition-colors py-2 px-1">YouTube</a>
           </div>
         </div>
       </div>

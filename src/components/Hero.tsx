@@ -48,8 +48,8 @@ export default function Hero() {
         className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#c9a96e]/30 to-transparent"
       />
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 w-full">
-        <div className="grid lg:grid-cols-2 gap-20 items-center">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-32 w-full">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-20 items-center">
           <motion.div
             initial={{ opacity: 0, x: dir === "rtl" ? 60 : -60 }}
             animate={{ opacity: 1, x: 0 }}
@@ -76,7 +76,7 @@ export default function Hero() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4, duration: 0.7 }}
-                className="block text-6xl md:text-8xl lg:text-9xl font-bold text-white leading-[0.85] tracking-tight"
+                className="block text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-bold text-white leading-[0.85] tracking-tight"
                 style={{ fontFamily: "'Playfair Display', serif" }}
               >
                 Grand
@@ -85,7 +85,7 @@ export default function Hero() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5, duration: 0.7 }}
-                className="block text-6xl md:text-8xl lg:text-9xl font-bold leading-[0.85] tracking-tight text-gold"
+                className="block text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-bold leading-[0.85] tracking-tight text-gold"
                 style={{ fontFamily: "'Playfair Display', serif" }}
               >
                 Oliva
@@ -96,7 +96,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6 }}
-              className="text-xl md:text-2xl text-[#c9a96e]/80 mb-6 font-light tracking-wide"
+              className="text-lg sm:text-xl md:text-2xl text-[#c9a96e]/80 mb-6 font-light tracking-wide"
             >
               {locale === "ar" ? "أجود أنواع الزيتون والمخللات" : "Premium Olives & Pickles"}
             </motion.p>
@@ -105,7 +105,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.7 }}
-              className="text-gray-400 text-lg mb-12 max-w-lg leading-relaxed"
+              className="text-gray-400 text-lg mb-6 sm:mb-12 max-w-lg leading-relaxed"
             >
               {locale === "ar"
                 ? "نكهة الأصالة وجودة لا مثيل لها. منتجاتنا مصنوعة يدوياً من أجود المكونات الطبيعية المختارة بعناية من أجمل مزارع البحر الأبيض المتوسط."
@@ -116,18 +116,18 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8 }}
-              className="flex flex-wrap gap-5"
+              className="flex flex-col sm:flex-row gap-4 sm:gap-5"
             >
               <Link
                 href="/products"
-                className="group btn-gold px-10 py-5 rounded-xl text-base inline-flex items-center gap-3"
+                className="group btn-gold px-10 py-5 rounded-xl text-base inline-flex items-center gap-3 w-full sm:w-auto text-center justify-center"
               >
                 {t(locale, "hero.cta")}
                 <ArrowRight className={`w-5 h-5 transition-transform group-hover:translate-x-1 ${dir === "rtl" ? "rotate-180" : ""}`} />
               </Link>
               <Link
                 href="/about"
-                className="border border-[#c9a96e]/30 text-[#c9a96e] px-10 py-5 rounded-xl text-base font-semibold hover:bg-[#c9a96e]/10 transition-all duration-300"
+                className="border border-[#c9a96e]/30 text-[#c9a96e] px-10 py-5 rounded-xl text-base font-semibold hover:bg-[#c9a96e]/10 transition-all duration-300 w-full sm:w-auto text-center"
               >
                 {locale === "ar" ? "من نحن" : "About Us"}
               </Link>
@@ -137,7 +137,7 @@ export default function Hero() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1 }}
-              className="flex gap-14 mt-16 pt-10 border-t border-[#2a2a2a]"
+              className="flex flex-wrap justify-center gap-6 sm:gap-14 mt-8 sm:mt-16 pt-6 sm:pt-10 border-t border-[#2a2a2a]"
             >
               {[
                 { icon: Award, value: "50+", label: locale === "ar" ? "نوع منتج" : "Products" },
@@ -170,7 +170,7 @@ export default function Hero() {
             className="relative flex items-center justify-center"
           >
             <div
-              className="relative w-[480px] h-[480px] rounded-3xl overflow-hidden border border-[#c9a96e]/20 gold-glow-strong"
+              className="relative w-[280px] h-[280px] sm:w-[350px] sm:h-[350px] md:w-[400px] md:h-[400px] lg:w-[480px] lg:h-[480px] rounded-3xl overflow-hidden border border-[#c9a96e]/20 gold-glow-strong"
             >
               <motion.div
                 animate={{ scale: [1, 1.03, 1] }}
@@ -234,7 +234,7 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2"
+        className="absolute bottom-6 sm:bottom-10 left-1/2 -translate-x-1/2"
       >
         <motion.div
           animate={{ y: [0, 10, 0] }}

@@ -78,13 +78,13 @@ export default function ProductCard({ product, index = 0, onQuickView }: Product
         {/* Like */}
         <button
           onClick={(e) => { e.preventDefault(); setIsLiked(!isLiked); }}
-          className="absolute top-4 right-4 z-10 w-9 h-9 bg-[#0a0a0a]/60 backdrop-blur-sm rounded-lg flex items-center justify-center border border-[#2a2a2a] hover:border-[#c9a96e]/50 transition-all opacity-0 group-hover:opacity-100"
+          className="absolute top-4 right-4 z-10 w-9 h-9 bg-[#0a0a0a]/60 backdrop-blur-sm rounded-lg flex items-center justify-center border border-[#2a2a2a] hover:border-[#c9a96e]/50 transition-all opacity-100 sm:opacity-0 sm:group-hover:opacity-100"
         >
           <Heart className={`w-4 h-4 ${isLiked ? "fill-[#c9a96e] text-[#c9a96e]" : "text-gray-500"}`} />
         </button>
 
         {/* Quick actions */}
-        <div className="absolute bottom-4 left-4 right-4 z-10 flex gap-2 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
+        <div className="absolute bottom-4 left-4 right-4 z-10 flex gap-2 opacity-100 sm:opacity-0 translate-y-0 sm:translate-y-4 sm:group-hover:opacity-100 sm:group-hover:translate-y-0 transition-all duration-500">
           <button
             onClick={handleQuickView}
             className="flex-1 bg-[#0a0a0a]/80 backdrop-blur-sm text-white py-2.5 rounded-lg text-xs font-semibold flex items-center justify-center gap-2 border border-[#2a2a2a] hover:border-[#c9a96e]/50 transition-all"
@@ -103,7 +103,7 @@ export default function ProductCard({ product, index = 0, onQuickView }: Product
       </div>
 
       {/* Content */}
-      <div className="p-5">
+      <div className="p-3 sm:p-5">
         <div className="flex items-center justify-between mb-3">
           <span className="text-[10px] font-semibold text-[#c9a96e] tracking-wider uppercase">
             {category}
@@ -123,14 +123,14 @@ export default function ProductCard({ product, index = 0, onQuickView }: Product
           {description}
         </p>
 
-        <div className="flex items-center gap-3 text-[10px] text-gray-600 mb-4">
+        <div className="flex items-center gap-3 text-[10px] text-gray-600 mb-4 flex-wrap">
           <span>🌍 {locale === "ar" ? product.origin_ar : product.origin}</span>
           <span className="w-px h-3 bg-[#2a2a2a]" />
           <span>⚖️ {locale === "ar" ? product.weight_ar : product.weight}</span>
         </div>
 
         <div className="flex items-center justify-between pt-4 border-t border-[#2a2a2a]">
-          <span className="text-2xl font-bold text-gold">${product.price}</span>
+          <span className="text-xl sm:text-2xl font-bold text-gold">${product.price}</span>
           <button
             onClick={handleAddToCart}
             className="w-10 h-10 rounded-xl bg-[#c9a96e]/10 flex items-center justify-center text-[#c9a96e] hover:bg-[#c9a96e] hover:text-[#0a0a0a] transition-all duration-300"

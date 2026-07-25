@@ -22,6 +22,15 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => { document.body.style.overflow = ""; };
+  }, [isOpen]);
+
   return (
     <>
       <nav
@@ -32,10 +41,10 @@ export default function Navbar() {
         }`}
         dir={dir}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-[env(safe-area-inset-top)]">
+          <div className="flex items-center justify-between h-16 sm:h-20 lg:h-24">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-4 group">
+            <Link href="/" className="flex items-center gap-2 sm:gap-4 group">
               <div className="w-12 h-12 border border-[#c9a96e]/40 rounded-xl flex items-center justify-center group-hover:border-[#c9a96e] transition-colors duration-500">
                 <span className="text-[#c9a96e] font-bold text-xl" style={{ fontFamily: "'Playfair Display', serif" }}>G</span>
               </div>
@@ -103,6 +112,15 @@ export default function Navbar() {
         <AnimatePresence>
           {isOpen && (
             <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="lg:hidden fixed inset-0 bg-black/60 z-40"
+              onClick={() => setIsOpen(false)}
+            />
+          )}
+          {isOpen && (
+            <motion.div
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
@@ -114,7 +132,7 @@ export default function Navbar() {
                     key={item}
                     href={item === "home" ? "/" : `/${item}`}
                     onClick={() => setIsOpen(false)}
-                    className="block px-4 py-3 text-gray-400 hover:text-[#c9a96e] font-medium tracking-wider uppercase text-sm transition-colors"
+                    className="block px-4 py-3 text-gray-400 hover:text-[#c9a96e] font-medium tracking-wider uppercase text-base transition-colors"
                   >
                     {t(locale, `nav.${item}`)}
                   </Link>

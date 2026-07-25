@@ -63,7 +63,7 @@ function Stats() {
   ];
 
   return (
-    <section className="py-20 bg-[#111] border-y border-[#2a2a2a]" dir={dir}>
+    <section className="py-12 sm:py-20 bg-[#111] border-y border-[#2a2a2a]" dir={dir}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {stats.map((s, i) => (
@@ -100,13 +100,13 @@ function Categories() {
   ];
 
   return (
-    <section className="py-28 bg-[#0a0a0a]" dir={dir}>
+    <section className="py-16 md:py-28 bg-[#0a0a0a]" dir={dir}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-8 md:mb-16"
         >
           <span className="text-[#c9a96e] text-xs font-semibold tracking-[0.3em] uppercase">
             {locale === "ar" ? "تصفح حسب التصنيف" : "Browse by Category"}
@@ -129,7 +129,7 @@ function Categories() {
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
               whileHover={{ y: -8, scale: 1.02 }}
-              className="card-luxury rounded-2xl p-8 text-center group cursor-pointer"
+              className="card-luxury rounded-2xl p-4 sm:p-8 text-center group cursor-pointer"
             >
               <motion.div
                 whileHover={{ scale: 1.2, rotate: 10 }}
@@ -168,7 +168,7 @@ function CTA() {
           <motion.div
             animate={{ y: [0, -10, 0] }}
             transition={{ duration: 3, repeat: Infinity }}
-            className="text-7xl mb-8"
+            className="text-5xl sm:text-7xl mb-8"
           >
             🫒
           </motion.div>
