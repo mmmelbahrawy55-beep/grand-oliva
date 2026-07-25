@@ -67,7 +67,7 @@ interface LocaleStore {
 export const useLocaleStore = create<LocaleStore>()(
   persist(
     (set, get) => ({
-      locale: "ar",
+      locale: "en",
       setLocale: (locale) => set({ locale }),
       dir: () => (get().locale === "ar" ? "rtl" : "ltr"),
     }),
