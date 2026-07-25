@@ -198,7 +198,6 @@ export default function Hero() {
                     <div className="text-[#c9a96e] text-[10px] font-semibold tracking-wider uppercase">
                       {locale === "ar" ? "الأفضل" : "Award"}
                     </div>
-                    <div className="text-white text-sm font-bold">2024</div>
                   </div>
                 </div>
               </motion.div>
