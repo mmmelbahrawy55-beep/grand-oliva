@@ -101,9 +101,18 @@ export default function Footer() {
         </div>
 
         <div className="text-center mt-8 pt-6 border-t border-[#1a1a1a]">
-          <p className="text-gray-600 text-[11px] tracking-wider">
-            {locale === "ar" ? "تصميم : مروان الحراوي" : "Designed by : Marwan El Bahrawy"}
-          </p>
+          <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-[#111] border border-[#2a2a2a]">
+            <div className="w-2 h-2 rounded-full bg-[#c9a96e] animate-pulse" />
+            <p className="text-gray-400 text-[11px] tracking-[0.15em] uppercase">
+              {locale === "ar" ? "تصميم وإعلانات" : "Designed by"}
+            </p>
+            <span className="text-[#c9a96e] text-[11px] font-bold tracking-wider" style={{ fontFamily: "'Playfair Display', serif" }}>
+              elba7rawy
+            </span>
+            <p className="text-gray-400 text-[11px] tracking-[0.15em] uppercase">
+              {locale === "ar" ? "" : "advertising"}
+            </p>
+          </div>
         </div>
       </div>
     </footer>
