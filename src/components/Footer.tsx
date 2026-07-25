@@ -99,6 +99,12 @@ export default function Footer() {
             <a href="https://youtube.com/grandoliva" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#c9a96e] text-xs transition-colors py-2 px-1">YouTube</a>
           </div>
         </div>
+
+        <div className="text-center mt-8 pt-6 border-t border-[#1a1a1a]">
+          <p className="text-gray-600 text-[11px] tracking-wider">
+            {locale === "ar" ? "تصميم : مروان محمد" : "Designed by : Marwan Mohamed"}
+          </p>
+        </div>
       </div>
     </footer>
   );
