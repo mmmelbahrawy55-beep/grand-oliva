@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     template: "%s | Grand Oliva",
   },
   description:
-    "جدة أولاً - أجود أنواع الزيتون والمخللات الطبيعية المصنوعة يدوياً بأجود المكونات من البحر الأبيض المتوسط",
+    "جراند أوليفا - أجود أنواع الزيتون والمخللات الطبيعية المصنوعة يدوياً بأجود المكونات من البحر الأبيض المتوسط",
   keywords: ["زيتون", "مخللات", "Grand Oliva", "olives", "pickles", "natural", "طبيعي", "زيتون زيت", "مخللات خضروات"],
   authors: [{ name: "Grand Oliva" }],
   creator: "Grand Oliva",
