@@ -10,6 +10,7 @@ import { motion } from "framer-motion";
 import { useLocaleStore } from "@/lib/store";
 import { Truck, ShieldCheck, Clock, Headphones, Award, Leaf, Heart, Globe } from "lucide-react";
 import Link from "next/link";
+import SectionReveal, { RevealItem } from "@/components/SectionReveal";
 
 function Features() {
   const { locale } = useLocaleStore();
@@ -25,27 +26,30 @@ function Features() {
   return (
     <section className="py-20 bg-[#0a0a0a] border-t border-[#2a2a2a]" dir={dir}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {features.map((f, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="card-luxury rounded-2xl p-8 text-center group"
-            >
-              <motion.div
-                whileHover={{ scale: 1.1, rotate: 5 }}
-                className="w-14 h-14 rounded-xl bg-[#c9a96e]/10 border border-[#c9a96e]/20 flex items-center justify-center mx-auto mb-5 group-hover:border-[#c9a96e]/50 transition-all"
-              >
-                <f.icon className="w-6 h-6 text-[#c9a96e]" />
-              </motion.div>
-              <h3 className="font-bold text-white mb-2">{f.title}</h3>
-              <p className="text-gray-500 text-sm">{f.desc}</p>
-            </motion.div>
-          ))}
-        </div>
+        <SectionReveal stagger>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {features.map((f, i) => (
+              <RevealItem key={i}>
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                  className="card-luxury rounded-2xl p-8 text-center group"
+                >
+                  <motion.div
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    className="w-14 h-14 rounded-xl bg-[#c9a96e]/10 border border-[#c9a96e]/20 flex items-center justify-center mx-auto mb-5 group-hover:border-[#c9a96e]/50 transition-all"
+                  >
+                    <f.icon className="w-6 h-6 text-[#c9a96e]" />
+                  </motion.div>
+                  <h3 className="font-bold text-white mb-2">{f.title}</h3>
+                  <p className="text-gray-500 text-sm">{f.desc}</p>
+                </motion.div>
+              </RevealItem>
+            ))}
+          </div>
+        </SectionReveal>
       </div>
     </section>
   );
@@ -65,24 +69,27 @@ function Stats() {
   return (
     <section className="py-12 sm:py-20 bg-[#111] border-y border-[#2a2a2a]" dir={dir}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-          {stats.map((s, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="text-center"
-            >
-              <s.icon className="w-8 h-8 text-[#c9a96e]/50 mx-auto mb-4" />
-              <div className="text-4xl md:text-5xl font-bold text-gold mb-2" style={{ fontFamily: "'Playfair Display', serif" }}>
-                <AnimatedCounter target={s.value} suffix={s.suffix} />
-              </div>
-              <div className="text-gray-500 text-sm tracking-wider">{s.label}</div>
-            </motion.div>
-          ))}
-        </div>
+        <SectionReveal stagger>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {stats.map((s, i) => (
+              <RevealItem key={i}>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                  className="text-center"
+                >
+                  <s.icon className="w-8 h-8 text-[#c9a96e]/50 mx-auto mb-4" />
+                  <div className="text-4xl md:text-5xl font-bold text-gold mb-2" style={{ fontFamily: "'Playfair Display', serif" }}>
+                    <AnimatedCounter target={s.value} suffix={s.suffix} />
+                  </div>
+                  <div className="text-gray-500 text-sm tracking-wider">{s.label}</div>
+                </motion.div>
+              </RevealItem>
+            ))}
+          </div>
+        </SectionReveal>
       </div>
     </section>
   );
@@ -102,48 +109,51 @@ function Categories() {
   return (
     <section className="py-16 md:py-28 bg-[#0a0a0a]" dir={dir}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-8 md:mb-16"
-        >
-          <span className="text-[#c9a96e] text-xs font-semibold tracking-[0.3em] uppercase">
-            {locale === "ar" ? "تصفح حسب التصنيف" : "Browse by Category"}
-          </span>
-          <h2
-            className="text-4xl md:text-5xl font-bold text-white mt-6"
-            style={{ fontFamily: "'Playfair Display', serif" }}
+        <SectionReveal stagger>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-8 md:mb-16"
           >
-            {locale === "ar" ? "تشكيلتنا" : "Our Collection"}
-          </h2>
-        </motion.div>
-
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-          {categories.map((cat, i) => (
-            <motion.a
-              key={i}
-              href="/products"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              whileHover={{ y: -8, scale: 1.02 }}
-              className="card-luxury rounded-2xl p-4 sm:p-8 text-center group cursor-pointer"
+            <span className="text-[#c9a96e] text-xs font-semibold tracking-[0.3em] uppercase">
+              {locale === "ar" ? "تصفح حسب التصنيف" : "Browse by Category"}
+            </span>
+            <h2
+              className="text-4xl md:text-5xl font-bold text-white mt-6"
+              style={{ fontFamily: "'Playfair Display', serif" }}
             >
-              <motion.div
-                whileHover={{ scale: 1.2, rotate: 10 }}
-                className="text-5xl mb-4 transition-transform duration-300"
-              >
-                {cat.icon}
-              </motion.div>
-              <div className="text-white font-bold text-lg mb-1">{cat.title}</div>
-              <div className="text-[#c9a96e]/60 text-sm">
-                {cat.count} {locale === "ar" ? "منتج" : "products"}
-              </div>
-            </motion.a>
-          ))}
-        </div>
+              {locale === "ar" ? "تشكيلتنا" : "Our Collection"}
+            </h2>
+          </motion.div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            {categories.map((cat, i) => (
+              <RevealItem key={i}>
+                <motion.a
+                  href="/products"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                  whileHover={{ y: -8, scale: 1.02 }}
+                  className="card-luxury card-glow rounded-2xl p-4 sm:p-8 text-center group cursor-pointer"
+                >
+                  <motion.div
+                    whileHover={{ scale: 1.2, rotate: 10 }}
+                    className="text-5xl mb-4 transition-transform duration-300"
+                  >
+                    {cat.icon}
+                  </motion.div>
+                  <div className="text-white font-bold text-lg mb-1">{cat.title}</div>
+                  <div className="text-[#c9a96e]/60 text-sm">
+                    {cat.count} {locale === "ar" ? "منتج" : "products"}
+                  </div>
+                </motion.a>
+              </RevealItem>
+            ))}
+          </div>
+        </SectionReveal>
       </div>
     </section>
   );
@@ -194,7 +204,7 @@ function CTA() {
 
 export default function Home() {
   return (
-    <>
+    <div className="noise-overlay">
       <Hero />
       <Stats />
       <FeaturedProducts />
@@ -204,6 +214,6 @@ export default function Home() {
       <Testimonials />
       <Newsletter />
       <CTA />
-    </>
+    </div>
   );
 }

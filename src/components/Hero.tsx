@@ -19,7 +19,7 @@ export default function Hero() {
   const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "40%"]);
 
   return (
-    <section ref={ref} className="relative min-h-screen flex items-center overflow-hidden bg-[#0a0a0a]">
+    <section ref={ref} className="relative min-h-screen flex items-center overflow-hidden bg-[#0a0a0a] animated-gradient">
       <motion.div style={{ y: bgY }} className="absolute inset-0">
         <div className="absolute inset-0">
           <Image
@@ -41,6 +41,15 @@ export default function Hero() {
           className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-[#0a0a0a]/60"
         />
       </motion.div>
+
+      {/* Floating decorative elements - hidden on very small screens */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <span className="absolute top-[20%] right-[10%] text-4xl opacity-10 float-slow hidden sm:block">🫒</span>
+        <span className="absolute bottom-[30%] left-[5%] text-3xl opacity-5 float-medium hidden sm:block">🫒</span>
+        <span className="absolute top-[60%] right-[20%] text-2xl opacity-5 float-fast hidden md:block">🫒</span>
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-[#c9a96e]/5 rounded-full blur-3xl glow-breathe" />
+        <div className="absolute bottom-1/4 right-1/4 w-48 h-48 bg-[#c9a96e]/3 rounded-full blur-3xl glow-breathe" style={{ animationDelay: "2s" }} />
+      </div>
 
       <motion.div
         animate={{ opacity: [0.2, 0.3, 0.2] }}
@@ -85,7 +94,7 @@ export default function Hero() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5, duration: 0.7 }}
-                className="block text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-bold leading-[0.85] tracking-tight text-gold"
+                className="block text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-bold leading-[0.85] tracking-tight text-shimmer"
                 style={{ fontFamily: "'Playfair Display', serif" }}
               >
                 Oliva

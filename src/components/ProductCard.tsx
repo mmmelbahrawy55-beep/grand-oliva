@@ -49,7 +49,7 @@ export default function ProductCard({ product, index = 0, onQuickView }: Product
       viewport={{ once: true, margin: "-50px" }}
       transition={{ delay: index * 0.06, duration: 0.5 }}
       whileTap={{ scale: 0.97 }}
-      className="group card-luxury card-tap rounded-2xl overflow-hidden cursor-pointer"
+      className="group card-luxury card-tap card-glow shadow-premium touch-feedback rounded-2xl overflow-hidden cursor-pointer"
       dir={dir}
     >
       {/* Image */}
@@ -136,10 +136,10 @@ export default function ProductCard({ product, index = 0, onQuickView }: Product
         </div>
 
         <div className="flex items-center justify-between pt-4 border-t border-[#2a2a2a]">
-          <span className="text-xl sm:text-2xl font-bold text-gold">${product.price}</span>
+          <span className={`text-xl sm:text-2xl font-bold text-gold ${product.featured ? "text-shimmer" : ""}`}>${product.price}</span>
           <button
             onClick={handleAddToCart}
-            className="w-10 h-10 rounded-xl bg-[#c9a96e]/10 flex items-center justify-center text-[#c9a96e] hover:bg-[#c9a96e] hover:text-[#0a0a0a] transition-all duration-300"
+            className="w-10 h-10 rounded-xl bg-[#c9a96e]/10 magnetic-btn flex items-center justify-center text-[#c9a96e] hover:bg-[#c9a96e] hover:text-[#0a0a0a] transition-all duration-300"
           >
             <ShoppingCart className="w-4 h-4" />
           </button>
