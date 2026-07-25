@@ -4,8 +4,9 @@ import { useState, useMemo, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLocaleStore } from "@/lib/store";
 import ProductCard from "@/components/ProductCard";
+import MobileFilterSheet from "@/components/MobileFilterSheet";
 import { products } from "@/lib/data/products";
-import { Search, SlidersHorizontal, X, Grid, List } from "lucide-react";
+import { Search, SlidersHorizontal, X, Grid, List, Filter } from "lucide-react";
 
 const ITEMS_PER_PAGE = 12;
 
@@ -23,6 +24,7 @@ export default function ProductsPage() {
   const [sortBy, setSortBy] = useState("featured");
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
   const [currentPage, setCurrentPage] = useState(1);
+  const [filterOpen, setFilterOpen] = useState(false);
 
   const filteredProducts = useMemo(() => {
     return products
@@ -138,8 +140,16 @@ export default function ProductsPage() {
           </div>
 
           <div className="flex items-center justify-between max-w-4xl mx-auto">
-            <div className="flex items-center gap-4 flex-wrap">
-              <div className="flex items-center gap-2 text-gray-500">
+            <div className="flex items-center gap-2 sm:gap-4 flex-wrap">
+              {/* Mobile Filter Button */}
+              <button
+                onClick={() => setFilterOpen(true)}
+                className="lg:hidden flex items-center gap-2 px-4 py-2 rounded-xl border border-[#c9a96e]/30 text-[#c9a96e] text-sm font-medium hover:bg-[#c9a96e]/10 transition-all"
+              >
+                <Filter className="w-4 h-4" />
+                {locale === "ar" ? "فلتر" : "Filter"}
+              </button>
+              <div className="hidden sm:flex items-center gap-2 text-gray-500">
                 <SlidersHorizontal className="w-5 h-5" />
                 <select
                   value={sortBy}
@@ -265,6 +275,17 @@ export default function ProductsPage() {
           </motion.div>
         )}
       </div>
+
+      <MobileFilterSheet
+        isOpen={filterOpen}
+        onClose={() => setFilterOpen(false)}
+        currentCategory={activeCategory}
+        onCategoryChange={(cat) => { setActiveCategory(cat); setCurrentPage(1); }}
+        currentSort={sortBy}
+        onSortChange={(sort) => { setSortBy(sort); setCurrentPage(1); }}
+        locale={locale}
+        categories={categories.map((c) => ({ label: locale === "ar" ? c.ar : c.en, value: c.key, icon: c.icon }))}
+      />
     </section>
   );
 }

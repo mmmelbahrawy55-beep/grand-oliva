@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import LoadingScreen from "@/components/LoadingScreen";
 import CustomCursor from "@/components/CustomCursor";
 import ParticleBackground from "@/components/ParticleBackground";
+import FloatingCartButton from "@/components/FloatingCartButton";
 import { Toaster } from "react-hot-toast";
 import { useLocaleStore } from "@/lib/store";
 import { useEffect } from "react";
@@ -41,6 +42,7 @@ export default function ClientLayout({
       />
       <Navbar />
       <main className="flex-1 bg-[#0a0a0a] relative z-10">{children}</main>
+      <FloatingCartButton />
       <Footer />
     </>
   );

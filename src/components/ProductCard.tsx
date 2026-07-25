@@ -20,6 +20,7 @@ export default function ProductCard({ product, index = 0, onQuickView }: Product
   const addItem = useCartStore((s) => s.addItem);
   const [isLiked, setIsLiked] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
+  const [isTapped, setIsTapped] = useState(false);
 
   const name = locale === "ar" ? product.name_ar : product.name;
   const description = locale === "ar" ? product.description_ar : product.description;
@@ -43,15 +44,20 @@ export default function ProductCard({ product, index = 0, onQuickView }: Product
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 40 }}
+      initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ delay: index * 0.06, duration: 0.5 }}
-      className="group card-luxury rounded-2xl overflow-hidden cursor-pointer"
+      whileTap={{ scale: 0.97 }}
+      className="group card-luxury card-tap rounded-2xl overflow-hidden cursor-pointer"
       dir={dir}
     >
       {/* Image */}
-      <div className="relative aspect-[4/3] overflow-hidden bg-[#111]">
+      <div
+        className="relative aspect-[4/3] overflow-hidden bg-[#111]"
+        onTouchStart={() => setIsTapped(true)}
+        onTouchEnd={() => setTimeout(() => setIsTapped(false), 200)}
+      >
         {/* Loading skeleton */}
         {!imageLoaded && (
           <div className="absolute inset-0 bg-[#1a1a1a] animate-pulse" />
@@ -60,7 +66,7 @@ export default function ProductCard({ product, index = 0, onQuickView }: Product
           src={product.image}
           alt={name}
           fill
-          className={`object-cover transition-all duration-700 group-hover:scale-110 ${imageLoaded ? "opacity-100" : "opacity-0"}`}
+          className={`object-cover transition-transform duration-200 ${isTapped ? "scale-110" : "scale-100"} group-hover:scale-110 ${imageLoaded ? "opacity-100" : "opacity-0"}`}
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
           onLoad={() => setImageLoaded(true)}
         />

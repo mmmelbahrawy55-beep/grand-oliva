@@ -62,7 +62,7 @@ export default function ProductPage() {
   const images = product.category === "Pickles" ? pickleImages : oliveImages;
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] pt-24 pb-16" dir={dir}>
+    <div className="min-h-screen bg-[#0a0a0a] pt-24 pb-24 lg:pb-16" dir={dir}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -211,6 +211,27 @@ export default function ProductPage() {
               </div>
             </div>
           </motion.div>
+        </div>
+      </div>
+
+      {/* Sticky Mobile Add to Cart Bar - Only on small screens */}
+      <div className="lg:hidden fixed bottom-0 left-0 right-0 z-50 bg-[#111]/95 backdrop-blur-lg border-t border-[#2a2a2a] safe-area-bottom">
+        <div className="flex items-center gap-3 px-4 py-3">
+          <div className="flex-1">
+            <div className="text-[#c9a96e] font-bold text-lg" style={{ fontFamily: "'Playfair Display', serif" }}>
+              ${product?.price}
+            </div>
+            <div className="text-gray-500 text-xs">
+              {locale === "ar" ? "شامل الضريبة" : "Tax included"}
+            </div>
+          </div>
+          <button
+            onClick={handleAddToCart}
+            className="btn-gold px-8 py-3.5 rounded-xl font-bold text-sm flex items-center gap-2 flex-shrink-0"
+          >
+            <ShoppingCart className="w-4 h-4" />
+            {locale === "ar" ? "أضف للسلة" : "Add to Cart"}
+          </button>
         </div>
       </div>
     </div>
