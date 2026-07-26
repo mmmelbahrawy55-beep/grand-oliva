@@ -164,24 +164,14 @@ function CTA() {
   const dir = useLocaleStore((s) => s.dir());
 
   return (
-    <section className="py-28 bg-[#0a0a0a] relative overflow-hidden" dir={dir}>
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#c9a96e] rounded-full blur-[150px]" />
-        <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-[#c9a96e] rounded-full blur-[120px]" />
-      </div>
-      <div className="max-w-4xl mx-auto px-4 text-center relative">
+    <section className="py-28 bg-[#0a0a0a] relative" dir={dir}>
+      <div className="max-w-4xl mx-auto px-4 text-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <motion.div
-            animate={{ y: [0, -10, 0] }}
-            transition={{ duration: 3, repeat: Infinity }}
-            className="text-5xl sm:text-7xl mb-8"
-          >
-            🫒
-          </motion.div>
+          <div className="text-5xl sm:text-7xl mb-8">🫒</div>
           <h2
             className="text-4xl md:text-6xl font-bold text-white mb-6"
             style={{ fontFamily: "'Playfair Display', serif" }}
@@ -204,7 +194,7 @@ function CTA() {
 
 export default function Home() {
   return (
-    <div className="noise-overlay">
+    <div>
       <Hero />
       <Stats />
       <FeaturedProducts />

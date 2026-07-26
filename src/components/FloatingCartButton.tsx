@@ -19,7 +19,7 @@ export default function FloatingCartButton() {
           exit={{ scale: 0, opacity: 0 }}
           transition={{ type: "spring", stiffness: 400, damping: 25 }}
           onClick={() => router.push("/cart")}
-          className="lg:hidden fixed z-50 flex items-center justify-center w-[60px] h-[60px] rounded-full bg-gradient-to-br from-[#c9a96e] to-[#b8985d] shadow-[0_0_24px_rgba(201,169,110,0.6),0_0_48px_rgba(201,169,110,0.3)] backdrop-blur-md active:scale-95 transition-transform gold-pulse"
+          className="lg:hidden fixed z-50 flex items-center justify-center w-[60px] h-[60px] rounded-full bg-gradient-to-br from-[#c9a96e] to-[#b8985d] shadow-[0_0_20px_rgba(201,169,110,0.4)] active:scale-95 transition-transform"
           style={{
             bottom: "calc(1.5rem + env(safe-area-inset-bottom, 0px))",
             right: "1.5rem",

@@ -144,7 +144,7 @@ export default function ProductsPage() {
               {/* Mobile Filter Button */}
               <button
                 onClick={() => setFilterOpen(true)}
-                className="lg:hidden flex items-center gap-2 px-4 py-2 rounded-xl border border-[#c9a96e]/30 text-[#c9a96e] text-sm font-medium hover:bg-[#c9a96e]/10 transition-all"
+                className="sm:hidden flex items-center gap-2 px-4 py-2 rounded-xl border border-[#c9a96e]/30 text-[#c9a96e] text-sm font-medium hover:bg-[#c9a96e]/10 transition-all"
               >
                 <Filter className="w-4 h-4" />
                 {locale === "ar" ? "فلتر" : "Filter"}

@@ -84,7 +84,7 @@ export default function ProductCard({ product, index = 0, onQuickView }: Product
         {/* Like */}
         <button
           onClick={(e) => { e.preventDefault(); setIsLiked(!isLiked); }}
-          className="absolute top-4 right-4 z-10 w-9 h-9 bg-[#0a0a0a]/60 backdrop-blur-sm rounded-lg flex items-center justify-center border border-[#2a2a2a] hover:border-[#c9a96e]/50 transition-all opacity-100 sm:opacity-0 sm:group-hover:opacity-100"
+          className="absolute top-4 right-4 z-10 w-9 h-9 bg-[#0a0a0a]/80 rounded-lg flex items-center justify-center border border-[#2a2a2a] hover:border-[#c9a96e]/50 transition-all opacity-100 sm:opacity-0 sm:group-hover:opacity-100"
         >
           <Heart className={`w-4 h-4 ${isLiked ? "fill-[#c9a96e] text-[#c9a96e]" : "text-gray-500"}`} />
         </button>
@@ -93,7 +93,7 @@ export default function ProductCard({ product, index = 0, onQuickView }: Product
         <div className="absolute bottom-4 left-4 right-4 z-10 flex gap-2 opacity-100 sm:opacity-0 translate-y-0 sm:translate-y-4 sm:group-hover:opacity-100 sm:group-hover:translate-y-0 transition-all duration-500">
           <button
             onClick={handleQuickView}
-            className="flex-1 bg-[#0a0a0a]/80 backdrop-blur-sm text-white py-2.5 rounded-lg text-xs font-semibold flex items-center justify-center gap-2 border border-[#2a2a2a] hover:border-[#c9a96e]/50 transition-all"
+            className="flex-1 bg-[#0a0a0a]/90 text-white py-2.5 rounded-lg text-xs font-semibold flex items-center justify-center gap-2 border border-[#2a2a2a] hover:border-[#c9a96e]/50 transition-all"
           >
             <Eye className="w-3.5 h-3.5" />
             {locale === "ar" ? "عرض سريع" : "Quick View"}

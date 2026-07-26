@@ -63,7 +63,7 @@ export default function MobileFilterSheet({
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
             onClick={handleBackdropTap}
-            className="fixed inset-0 bg-black/70 backdrop-blur-sm z-[80]"
+            className="fixed inset-0 bg-black/70 z-[80]"
           />
 
           <motion.div

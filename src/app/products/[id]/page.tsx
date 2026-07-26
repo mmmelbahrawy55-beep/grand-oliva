@@ -215,7 +215,7 @@ export default function ProductPage() {
       </div>
 
       {/* Sticky Mobile Add to Cart Bar - Only on small screens */}
-      <div className="lg:hidden fixed bottom-0 left-0 right-0 z-50 bg-[#111]/95 backdrop-blur-lg border-t border-[#2a2a2a] safe-area-bottom">
+      <div className="lg:hidden fixed bottom-0 left-0 right-0 z-50 bg-[#111] border-t border-[#2a2a2a] safe-area-bottom">
         <div className="flex items-center gap-3 px-4 py-3">
           <div className="flex-1">
             <div className="text-[#c9a96e] font-bold text-lg" style={{ fontFamily: "'Playfair Display', serif" }}>

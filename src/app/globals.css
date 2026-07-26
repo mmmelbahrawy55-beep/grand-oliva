@@ -346,97 +346,52 @@ body {
   }
 }
 
-/* ===== PREMIUM MOBILE ANIMATIONS ===== */
-
-/* Animated gradient background */
-@keyframes gradientShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-.animated-gradient {
-  background: linear-gradient(135deg, #0a0a0a, #1a1a1a, #0a0a0a, #111111);
-  background-size: 400% 400%;
-  animation: gradientShift 8s ease infinite;
-}
+/* ===== LIGHTWEIGHT ANIMATIONS ===== */
 
 /* Floating animation for decorative elements */
 @keyframes float {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  33% { transform: translateY(-12px) rotate(2deg); }
-  66% { transform: translateY(6px) rotate(-1deg); }
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
 }
 
 .float-slow { animation: float 6s ease-in-out infinite; }
 .float-medium { animation: float 4s ease-in-out infinite; }
 .float-fast { animation: float 3s ease-in-out infinite; }
 
-/* Glow breathing effect */
-@keyframes glowBreathe {
-  0%, 100% { opacity: 0.3; filter: blur(20px); }
-  50% { opacity: 0.6; filter: blur(30px); }
+/* Text shimmer effect — only on desktop for performance */
+@media (min-width: 1024px) {
+  .text-shimmer {
+    background: linear-gradient(90deg, #c9a96e, #dfc08a, #c9a96e, #a8864a, #c9a96e);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: textShimmer 4s linear infinite;
+  }
 }
-
-.glow-breathe { animation: glowBreathe 4s ease-in-out infinite; }
-
-/* Text shimmer effect */
 @keyframes textShimmer {
   0% { background-position: -200% center; }
   100% { background-position: 200% center; }
 }
 
-.text-shimmer {
-  background: linear-gradient(90deg, #c9a96e, #dfc08a, #c9a96e, #a8864a, #c9a96e);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: textShimmer 4s linear infinite;
-}
-
-/* Premium card hover glow */
-.card-glow {
-  position: relative;
-}
-.card-glow::before {
-  content: "";
-  position: absolute;
-  inset: -1px;
-  border-radius: inherit;
-  background: linear-gradient(135deg, rgba(201,169,110,0.3), transparent, rgba(201,169,110,0.2));
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  z-index: -1;
-}
-.card-glow:hover::before,
-.card-glow:active::before {
-  opacity: 1;
-}
-
-/* Scroll progress indicator */
-@keyframes scrollProgress {
-  0% { transform: scaleX(0); transform-origin: left; }
-  100% { transform: scaleX(1); transform-origin: left; }
-}
-
-/* Magnetic button effect */
-.magnetic-btn {
-  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-.magnetic-btn:active {
-  transform: scale(0.93);
-}
-
-/* Premium noise texture overlay */
-.noise-overlay::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  opacity: 0.03;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-  pointer-events: none;
-  z-index: 1;
+/* Premium card hover glow — only on devices that support hover */
+@media (hover: hover) {
+  .card-glow {
+    position: relative;
+  }
+  .card-glow::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, rgba(201,169,110,0.3), transparent, rgba(201,169,110,0.2));
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: -1;
+  }
+  .card-glow:hover::before {
+    opacity: 1;
+  }
 }
 
 /* Smooth reveal from bottom */
@@ -467,25 +422,17 @@ body {
   width: 100%;
 }
 
-/* Parallax depth layers */
-.parallax-layer-back { transform: translateZ(-2px) scale(1.5); }
-.parallax-layer-mid { transform: translateZ(-1px) scale(1.25); }
-.parallax-layer-front { transform: translateZ(0); }
-
 /* Premium shadow layers */
 .shadow-premium {
   box-shadow:
-    0 1px 2px rgba(0,0,0,0.3),
-    0 4px 8px rgba(0,0,0,0.2),
-    0 8px 16px rgba(0,0,0,0.15),
-    0 16px 32px rgba(0,0,0,0.1);
+    0 2px 8px rgba(0,0,0,0.3),
+    0 8px 24px rgba(0,0,0,0.2);
 }
 
 .shadow-gold-glow {
   box-shadow:
     0 0 20px rgba(201,169,110,0.15),
-    0 0 40px rgba(201,169,110,0.1),
-    0 0 80px rgba(201,169,110,0.05);
+    0 0 40px rgba(201,169,110,0.08);
 }
 
 /* Stagger reveal for lists */

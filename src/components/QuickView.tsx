@@ -49,7 +49,7 @@ export default function QuickView({ product, isOpen, onClose }: QuickViewProps) 
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 bg-black/70 backdrop-blur-sm z-[80]"
+            className="fixed inset-0 bg-black/70 z-[80]"
           />
 
           {/* Modal */}
@@ -64,7 +64,7 @@ export default function QuickView({ product, isOpen, onClose }: QuickViewProps) 
             {/* Close button */}
             <button
               onClick={onClose}
-              className="absolute top-4 right-4 z-10 w-10 h-10 rounded-xl bg-[#0a0a0a]/80 backdrop-blur-sm border border-[#2a2a2a] flex items-center justify-center text-gray-500 hover:text-white hover:border-[#c9a96e]/30 transition-all"
+              className="absolute top-4 right-4 z-10 w-10 h-10 rounded-xl bg-[#0a0a0a]/90 border border-[#2a2a2a] flex items-center justify-center text-gray-500 hover:text-white hover:border-[#c9a96e]/30 transition-all"
             >
               <X className="w-5 h-5" />
             </button>
@@ -92,7 +92,7 @@ export default function QuickView({ product, isOpen, onClose }: QuickViewProps) 
               {/* Like */}
               <button
                 onClick={() => setIsLiked(!isLiked)}
-                className="absolute bottom-4 left-4 w-10 h-10 bg-[#0a0a0a]/60 backdrop-blur-sm rounded-xl flex items-center justify-center border border-[#2a2a2a] hover:border-[#c9a96e]/50 transition-all"
+                className="absolute bottom-4 left-4 w-10 h-10 bg-[#0a0a0a]/80 rounded-xl flex items-center justify-center border border-[#2a2a2a] hover:border-[#c9a96e]/50 transition-all"
               >
                 <Heart className={`w-5 h-5 ${isLiked ? "fill-[#c9a96e] text-[#c9a96e]" : "text-gray-500"}`} />
               </button>
