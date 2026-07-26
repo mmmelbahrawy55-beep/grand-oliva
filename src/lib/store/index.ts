@@ -64,13 +64,8 @@ interface LocaleStore {
   dir: () => "ltr" | "rtl";
 }
 
-export const useLocaleStore = create<LocaleStore>()(
-  persist(
-    (set, get) => ({
-      locale: "en",
-      setLocale: (locale) => set({ locale }),
-      dir: () => (get().locale === "ar" ? "rtl" : "ltr"),
-    }),
-    { name: "grand-oliva-locale" }
-  )
-);
+export const useLocaleStore = create<LocaleStore>()((set, get) => ({
+  locale: "en",
+  setLocale: (locale) => set({ locale }),
+  dir: () => (get().locale === "ar" ? "rtl" : "ltr"),
+}));
