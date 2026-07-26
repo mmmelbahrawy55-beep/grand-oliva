@@ -33,7 +33,7 @@ export default function CheckoutPage() {
 
   if (items.length === 0) {
     return (
-      <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center">
+      <div className="min-h-screen bg-[#0a0a0a] pt-28 pb-12 flex items-center justify-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -111,7 +111,7 @@ export default function CheckoutPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] py-12 px-4">
+    <div className="min-h-screen bg-[#0a0a0a] pt-28 pb-12 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.div

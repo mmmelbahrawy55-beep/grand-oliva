@@ -67,6 +67,7 @@ export default function RootLayout({
   return (
     <html className={`${geistSans.variable} ${playfair.variable} ${notoKufi.variable}`}>
       <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover" />
         <meta name="theme-color" content="#0a0a0a" />
         <link rel="preconnect" href="https://images.pexels.com" />
         <link rel="dns-prefetch" href="https://images.pexels.com" />
