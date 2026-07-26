@@ -68,6 +68,8 @@ export default function RootLayout({
     <html className={`${geistSans.variable} ${playfair.variable} ${notoKufi.variable}`}>
       <head>
         <meta name="theme-color" content="#0a0a0a" />
+        <link rel="preconnect" href="https://images.pexels.com" />
+        <link rel="dns-prefetch" href="https://images.pexels.com" />
       </head>
       <body className="min-h-full flex flex-col antialiased">
         <ClientLayout>{children}</ClientLayout>

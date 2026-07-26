@@ -2,9 +2,6 @@
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import LoadingScreen from "@/components/LoadingScreen";
-import CustomCursor from "@/components/CustomCursor";
-import ParticleBackground from "@/components/ParticleBackground";
 import FloatingCartButton from "@/components/FloatingCartButton";
 import { Toaster } from "react-hot-toast";
 import { useLocaleStore } from "@/lib/store";
@@ -25,9 +22,6 @@ export default function ClientLayout({
 
   return (
     <>
-      <LoadingScreen />
-      <CustomCursor />
-      <ParticleBackground />
       <Toaster
         position={dir === "rtl" ? "top-left" : "top-right"}
         toastOptions={{
