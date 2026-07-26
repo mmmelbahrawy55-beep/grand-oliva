@@ -14,19 +14,20 @@ export default function Hero() {
   const dir = useLocaleStore((s) => s.dir());
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-[#0a0a0a]">
-      {/* Static background image */}
+    <section className="relative min-h-screen min-h-[100dvh] flex items-center overflow-hidden bg-[#0a0a0a]">
+      {/* Background image */}
       <div className="absolute inset-0">
         <Image
           src="https://images.pexels.com/photos/4109911/pexels-photo-4109911.jpeg?w=1920&h=1080&fit=crop&q=75"
           alt=""
           fill
-          className="object-cover opacity-15"
+          className="object-cover opacity-25"
           priority
+          sizes="100vw"
         />
       </div>
-      <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a] via-[#0a0a0a]/90 to-[#0a0a0a]/40" />
-      <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-[#0a0a0a]/50" />
+      <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a] via-[#0a0a0a]/80 to-[#0a0a0a]/30" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-[#0a0a0a]/40" />
 
       {/* Desktop layout */}
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-32 w-full hidden lg:block">
@@ -96,7 +97,6 @@ export default function Hero() {
 
           <div className="relative flex items-center justify-center">
             <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6, delay: 0.2 }} className="relative">
-              <div className="absolute -inset-6 bg-[#c9a96e]/[0.03] rounded-[2rem]" />
               <div className="relative w-[460px] h-[460px] rounded-[2rem] overflow-hidden border border-[#c9a96e]/15 shadow-gold-glow">
                 <Image src="https://images.pexels.com/photos/4109913/pexels-photo-4109913.jpeg?w=800&h=800&fit=crop&q=80" alt="Premium Olives" fill className="object-cover" sizes="460px" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/70 via-transparent to-transparent" />
@@ -122,7 +122,7 @@ export default function Hero() {
       </div>
 
       {/* Mobile/Tablet layout */}
-      <div className="relative w-full lg:hidden px-5 pt-20 pb-10 flex flex-col items-center text-center">
+      <div className="relative w-full lg:hidden px-5 pt-24 pb-10 flex flex-col items-center text-center min-h-[100dvh] justify-center">
         <div className="inline-flex items-center gap-2 border border-[#c9a96e]/20 rounded-full px-4 py-2 mb-6">
           <span className="w-1.5 h-1.5 bg-[#c9a96e] rounded-full" />
           <Sparkles className="w-3 h-3 text-[#c9a96e]/60" />
@@ -156,7 +156,6 @@ export default function Hero() {
 
         <div className="relative mb-8">
           <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: 0.2 }} className="relative">
-            <div className="absolute -inset-4 bg-[#c9a96e]/[0.03] rounded-[2rem]" />
             <div className="relative w-[260px] h-[260px] sm:w-[320px] sm:h-[320px] rounded-[2rem] overflow-hidden border border-[#c9a96e]/15 shadow-gold-glow">
               <Image src="https://images.pexels.com/photos/4109913/pexels-photo-4109913.jpeg?w=600&h=600&fit=crop&q=80" alt="Premium Olives" fill className="object-cover" sizes="320px" />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/60 via-transparent to-transparent" />

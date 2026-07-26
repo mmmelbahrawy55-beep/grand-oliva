@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://grand-oliva.vercel.app"),
   openGraph: {
     type: "website",
-    locale: "ar_SA",
+    locale: "en_US",
     url: "https://grand-oliva.vercel.app",
     siteName: "Grand Oliva",
     title: "Grand Oliva | أجود أنواع الزيتون والمخللات",
@@ -49,8 +49,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Grand Oliva | أجود أنواع الزيتون والمخللات",
-    description: "أجود أنواع الزيتون والمخللات الطبيعية المصنوعة يدوياً بأجود المكونات",
+    title: "Grand Oliva | Premium Olives & Pickles",
+    description: "Premium natural olives and pickles handcrafted from the finest Mediterranean ingredients",
     images: ["https://images.pexels.com/photos/16732695/pexels-photo-16732695.jpeg?w=1200&h=630&fit=crop&q=80"],
   },
   robots: {
@@ -65,7 +65,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html className={`${geistSans.variable} ${playfair.variable} ${notoKufi.variable}`}>
+    <html lang="en" dir="ltr" className={`${geistSans.variable} ${playfair.variable} ${notoKufi.variable}`}>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover" />
         <meta name="theme-color" content="#0a0a0a" />
