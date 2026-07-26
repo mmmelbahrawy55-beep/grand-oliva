@@ -199,6 +199,11 @@ html {
   padding-top: env(safe-area-inset-top, 0px);
 }
 
+/* Prevent Android zoom on input focus — all inputs must be >= 16px */
+input, select, textarea {
+  font-size: 16px !important;
+}
+
 /* Prevent horizontal overflow on mobile — use overflow clip instead of overflow hidden to avoid scroll issues on Android */
 html {
   overflow-x: clip;
@@ -211,6 +216,25 @@ body {
 @supports (overscroll-behavior: contain) {
   body {
     overscroll-behavior-y: contain;
+  }
+}
+
+/* Android pull-to-refresh prevention on specific containers */
+.no-pull-to-refresh {
+  overscroll-behavior-y: contain;
+}
+
+/* Android fixed element rendering fix */
+.will-change-transform {
+  will-change: transform;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+/* Android keyboard open — keep inputs visible */
+@supports (height: 100dvh) {
+  .keyboard-open {
+    min-height: 100dvh;
   }
 }
 
@@ -484,4 +508,35 @@ body {
     opacity: 0.8;
     transition: transform 0.1s, opacity 0.1s;
   }
+}
+
+/* Reduce heavy animations on Android / low-powered devices */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Android Chrome — fix address bar jump by using dvh */
+@supports (height: 100dvh) {
+  .min-h-screen-fix {
+    min-height: 100dvh;
+  }
+}
+
+/* Android smooth elastic scroll containers */
+.scroll-container {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+}
+
+/* Fix Android text rendering in dark backgrounds */
+body {
+  text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
 }

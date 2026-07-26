@@ -56,7 +56,7 @@ export default function ProductCard({ product, index = 0, onQuickView }: Product
       <div
         className="relative aspect-[4/3] overflow-hidden bg-[#111]"
         onTouchStart={() => setIsTapped(true)}
-        onTouchEnd={() => setTimeout(() => setIsTapped(false), 200)}
+        onTouchEnd={() => { requestAnimationFrame(() => setIsTapped(false)); }}
       >
         {/* Loading skeleton */}
         {!imageLoaded && (

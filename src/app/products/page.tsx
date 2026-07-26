@@ -111,7 +111,7 @@ export default function ProductsPage() {
             )}
           </div>
 
-          <div className="flex overflow-x-auto sm:flex-wrap justify-start sm:justify-center gap-2 sm:gap-4 pb-2" style={{ WebkitOverflowScrolling: "touch" }}>
+          <div className="flex overflow-x-auto sm:flex-wrap justify-start sm:justify-center gap-2 sm:gap-4 pb-2 scroll-container">
             {categories.map((cat) => (
               <motion.button
                 key={cat.key}

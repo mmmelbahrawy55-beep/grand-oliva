@@ -78,9 +78,9 @@ export default function MobileFilterSheet({
             onDragEnd={(_, info) => {
               if (info.offset.y > 100) onClose();
             }}
-            className="fixed bottom-0 left-0 right-0 bg-[#111] rounded-t-3xl border-t border-[#c9a96e]/20 z-[90] max-h-[85vh] overflow-y-auto"
+            className="fixed bottom-0 left-0 right-0 bg-[#111] rounded-t-3xl border-t border-[#c9a96e]/20 z-[90] max-h-[85vh] overflow-y-auto overscroll-contain"
             dir={dir}
-            style={{ paddingBottom: "env(safe-area-inset-bottom, 0px)" }}
+            style={{ paddingBottom: "env(safe-area-inset-bottom, 0px)", WebkitOverflowScrolling: "touch" }}
           >
             <div
               className="w-10 h-1 rounded-full bg-[#333] mx-auto mt-3 cursor-grab active:cursor-grabbing"

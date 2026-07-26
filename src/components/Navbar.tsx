@@ -24,12 +24,40 @@ export default function Navbar() {
 
   useEffect(() => {
     if (isOpen) {
+      const scrollY = window.scrollY;
+      document.body.style.position = "fixed";
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = "100%";
       document.body.style.overflow = "hidden";
+      window.history.pushState({ navMenu: true }, "");
     } else {
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.width = "";
       document.body.style.overflow = "";
     }
-    return () => { document.body.style.overflow = ""; };
+    return () => {
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.width = "";
+      document.body.style.overflow = "";
+    };
   }, [isOpen]);
+
+  useEffect(() => {
+    const handleBack = (e: PopStateEvent) => {
+      if (isCartOpen) {
+        setIsCartOpen(false);
+        e.preventDefault();
+        window.history.pushState({ cartOpen: true }, "");
+      } else if (isOpen) {
+        setIsOpen(false);
+        e.preventDefault();
+      }
+    };
+    window.addEventListener("popstate", handleBack);
+    return () => window.removeEventListener("popstate", handleBack);
+  }, [isOpen, isCartOpen]);
 
   return (
     <>
