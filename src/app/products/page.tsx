@@ -10,10 +10,16 @@ import { Search, SlidersHorizontal, X, Grid, List, Filter } from "lucide-react";
 
 const ITEMS_PER_PAGE = 12;
 
+const sellableProducts = products.filter((p) => p.price > 0);
+const categoryCounts = {
+  all: sellableProducts.length,
+  Olives: sellableProducts.filter((p) => p.category === "Olives").length,
+  Pickles: sellableProducts.filter((p) => p.category === "Pickles").length,
+};
 const categories = [
-  { key: "all", ar: "الكل", en: "All", icon: "✨", count: 200 },
-  { key: "Olives", ar: "زيتون", en: "Olives", icon: "🫒", count: 100 },
-  { key: "Pickles", ar: "مخللات", en: "Pickles", icon: "🥒", count: 100 },
+  { key: "all", ar: "الكل", en: "All", icon: "✨", count: categoryCounts.all },
+  { key: "Olives", ar: "زيتون", en: "Olives", icon: "🫒", count: categoryCounts.Olives },
+  { key: "Pickles", ar: "مخللات", en: "Pickles", icon: "🥒", count: categoryCounts.Pickles },
 ];
 
 export default function ProductsPage() {
@@ -28,6 +34,7 @@ export default function ProductsPage() {
 
   const filteredProducts = useMemo(() => {
     return products
+      .filter((p) => p.price > 0)
       .filter((p) => activeCategory === "all" || p.category === activeCategory)
       .filter((p) => {
         if (!searchQuery) return true;
@@ -65,7 +72,7 @@ export default function ProductsPage() {
     currentPage * ITEMS_PER_PAGE
   );
 
-  const oliveProducts = useMemo(() => products.filter((p) => p.category === "Olives"), []);
+  const oliveProducts = useMemo(() => products.filter((p) => p.category === "Olives" && p.price > 0), []);
 
   return (
     <section className="pt-28 pb-20 bg-[#0a0a0a] min-h-screen" dir={dir}>

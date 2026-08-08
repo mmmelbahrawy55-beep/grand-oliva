@@ -121,8 +121,8 @@ export default function ContactPage() {
           >
             {[
               { icon: MapPin, title: t(locale, "footer.address"), value: locale === "ar" ? "القاهرة، مصر" : "Cairo, Egypt" },
-              { icon: Phone, title: t(locale, "footer.phone"), value: "+20 123 456 7890" },
-              { icon: Mail, title: t(locale, "footer.email"), value: "info@grandoliva.com" },
+              { icon: Phone, title: t(locale, "footer.phone"), value: "+20 128 836 7098" },
+              { icon: Mail, title: t(locale, "footer.email"), value: "grand_olivee@yahoo.com" },
               { icon: Clock, title: locale === "ar" ? "ساعات العمل" : "Working Hours", value: locale === "ar" ? "السبت - الخميس: 9 صباحاً - 6 مساءً" : "Sat - Thu: 9 AM - 6 PM" },
             ].map((item, i) => (
               <motion.div
@@ -141,6 +141,21 @@ export default function ContactPage() {
                 </div>
               </motion.div>
             ))}
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6 }}
+              className="bg-[#111111] rounded-2xl p-6 border border-[#2a2a2a] flex items-center gap-4"
+            >
+              <div className="w-14 h-14 bg-[#c9a96e]/10 rounded-xl flex items-center justify-center shrink-0">
+                <span className="text-[#c9a96e] font-bold text-lg" style={{ fontFamily: "'Playfair Display', serif" }}>MA</span>
+              </div>
+              <div>
+                <h3 className="font-bold text-white">Mohamed Attia</h3>
+                <p className="text-gray-500 text-sm">{locale === "ar" ? "المالك" : "Owner"}</p>
+              </div>
+            </motion.div>
 
             <div className="bg-gradient-to-br from-[#c9a96e]/20 to-[#c9a96e]/5 rounded-3xl p-8 border border-[#c9a96e]/20">
               <h3 className="text-xl font-bold text-white mb-4">

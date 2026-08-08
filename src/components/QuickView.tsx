@@ -113,13 +113,23 @@ export default function QuickView({ product, isOpen, onClose }: QuickViewProps) 
 
               {/* Rating */}
               <div className="flex items-center gap-3 mb-6">
-                <div className="flex gap-1">
-                  {[...Array(5)].map((_, i) => (
-                    <Star
-                      key={i}
-                      className={`w-4 h-4 ${i < Math.floor(product.rating) ? "fill-[#c9a96e] text-[#c9a96e]" : "text-gray-700"}`}
-                    />
-                  ))}
+                <div className="flex gap-0.5">
+                  {[...Array(5)].map((_, i) => {
+                    const fill = product.rating - i;
+                    if (fill >= 1) {
+                      return <Star key={i} className="w-4 h-4 fill-[#c9a96e] text-[#c9a96e]" />;
+                    } else if (fill > 0) {
+                      return (
+                        <div key={i} className="relative w-4 h-4">
+                          <Star className="absolute inset-0 w-4 h-4 text-[#2a2a2a]" />
+                          <div className="absolute inset-0 overflow-hidden" style={{ width: `${fill * 100}%` }}>
+                            <Star className="w-4 h-4 fill-[#c9a96e] text-[#c9a96e]" />
+                          </div>
+                        </div>
+                      );
+                    }
+                    return <Star key={i} className="w-4 h-4 text-[#2a2a2a]" />;
+                  })}
                 </div>
                 <span className="text-gray-500 text-sm">
                   {product.rating} ({product.reviews} {locale === "ar" ? "تقييم" : "reviews"})

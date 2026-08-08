@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     description: "أجود أنواع الزيتون والمخللات الطبيعية المصنوعة يدوياً بأجود المكونات من البحر الأبيض المتوسط",
     images: [
       {
-        url: "https://images.pexels.com/photos/16732695/pexels-photo-16732695.jpeg?w=1200&h=630&fit=crop&q=80",
+        url: "/product-images/product-14.jpg",
         width: 1200,
         height: 630,
         alt: "Grand Oliva - Premium Olives & Pickles",
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Grand Oliva | Premium Olives & Pickles",
     description: "Premium natural olives and pickles handcrafted from the finest Mediterranean ingredients",
-    images: ["https://images.pexels.com/photos/16732695/pexels-photo-16732695.jpeg?w=1200&h=630&fit=crop&q=80"],
+    images: ["/product-images/product-14.jpg"],
   },
   robots: {
     index: true,
@@ -69,8 +69,6 @@ export default function RootLayout({
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover" />
         <meta name="theme-color" content="#0a0a0a" />
-        <link rel="preconnect" href="https://images.pexels.com" />
-        <link rel="dns-prefetch" href="https://images.pexels.com" />
       </head>
       <body className="min-h-full flex flex-col antialiased">
         <ClientLayout>{children}</ClientLayout>

@@ -47,19 +47,28 @@ export default function ProductPage() {
     setTimeout(() => setAdded(false), 2000);
   };
 
-  const oliveImages = [
-    "https://images.pexels.com/photos/4109912/pexels-photo-4109912.jpeg?w=600&h=600&fit=crop&q=80",
-    "https://images.pexels.com/photos/4109911/pexels-photo-4109911.jpeg?w=600&h=600&fit=crop&q=80",
-    "https://images.pexels.com/photos/16732695/pexels-photo-16732695.jpeg?w=600&h=600&fit=crop&q=80",
-    "https://images.pexels.com/photos/4109910/pexels-photo-4109910.jpeg?w=600&h=600&fit=crop&q=80",
-  ];
-  const pickleImages = [
-    "https://images.pexels.com/photos/8599633/pexels-photo-8599633.jpeg?w=600&h=600&fit=crop&q=80",
-    "https://images.pexels.com/photos/8599634/pexels-photo-8599634.jpeg?w=600&h=600&fit=crop&q=80",
-    "https://images.pexels.com/photos/12181052/pexels-photo-12181052.jpeg?w=600&h=600&fit=crop&q=80",
-    "https://images.pexels.com/photos/8599635/pexels-photo-8599635.jpeg?w=600&h=600&fit=crop&q=80",
-  ];
-  const images = product.category === "Pickles" ? pickleImages : oliveImages;
+  const relatedProducts = products
+    .filter((p) => p.category === product.category && p.id !== product.id && p.price > 0)
+    .slice(0, 4);
+
+  const renderStars = (rating: number) => {
+    return [...Array(5)].map((_, i) => {
+      const fill = rating - i;
+      if (fill >= 1) {
+        return <Star key={i} className="w-5 h-5 fill-[#c9a96e] text-[#c9a96e]" />;
+      } else if (fill > 0) {
+        return (
+          <div key={i} className="relative w-5 h-5">
+            <Star className="absolute inset-0 w-5 h-5 text-[#2a2a2a]" />
+            <div className="absolute inset-0 overflow-hidden" style={{ width: `${fill * 100}%` }}>
+              <Star className="w-5 h-5 fill-[#c9a96e] text-[#c9a96e]" />
+            </div>
+          </div>
+        );
+      }
+      return <Star key={i} className="w-5 h-5 text-[#2a2a2a]" />;
+    });
+  };
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] pt-24 pb-24 lg:pb-16" dir={dir}>
@@ -85,41 +94,47 @@ export default function ProductPage() {
             <div className="relative mb-6">
               <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-[#2a2a2a] gold-glow">
                 <Image
-                  src={images[selectedImage]}
+                  src={product.image}
                   alt={name}
                   fill
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, 50vw"
+                  priority
                 />
               </div>
-              <button
-                onClick={() => setSelectedImage((p) => (p === 0 ? images.length - 1 : p - 1))}
-                className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-[#1a1a1a] border border-[#2a2a2a] rounded-xl flex items-center justify-center text-gray-400 hover:text-[#c9a96e] hover:border-[#c9a96e]/30 transition-all"
-              >
-                <ChevronLeft className="w-5 h-5" />
-              </button>
-              <button
-                onClick={() => setSelectedImage((p) => (p === images.length - 1 ? 0 : p + 1))}
-                className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-[#1a1a1a] border border-[#2a2a2a] rounded-xl flex items-center justify-center text-gray-400 hover:text-[#c9a96e] hover:border-[#c9a96e]/30 transition-all"
-              >
-                <ChevronRight className="w-5 h-5" />
-              </button>
+              {product.badge && (
+                <div className="absolute top-4 left-4 z-10">
+                  <span className="bg-[#c9a96e] text-[#0a0a0a] text-[10px] font-bold px-4 py-1.5 rounded-lg tracking-wider uppercase">
+                    {locale === "ar" ? product.badge_ar : product.badge}
+                  </span>
+                </div>
+              )}
             </div>
 
-            <div className="grid grid-cols-4 gap-3">
-              {images.map((img, i) => (
-                <motion.button
-                  key={i}
-                  whileHover={{ scale: 1.05 }}
-                  onClick={() => setSelectedImage(i)}
-                  className={`relative aspect-square rounded-xl overflow-hidden border-2 transition-all ${
-                    selectedImage === i ? "border-[#c9a96e]" : "border-[#2a2a2a] hover:border-[#c9a96e]/30"
-                  }`}
-                >
-                  <Image src={img} alt={`${name} ${i + 1}`} fill className="object-cover" sizes="100px" />
-                </motion.button>
-              ))}
-            </div>
+            {relatedProducts.length > 0 && (
+              <div className="mt-4">
+                <h3 className="text-sm text-gray-500 mb-3 font-medium">
+                  {locale === "ar" ? "منتجات مشابهة" : "Related Products"}
+                </h3>
+                <div className="grid grid-cols-4 gap-3">
+                  {relatedProducts.map((rp) => (
+                    <Link
+                      key={rp.id}
+                      href={`/products/${rp.id}`}
+                      className="relative aspect-square rounded-xl overflow-hidden border-2 border-[#2a2a2a] hover:border-[#c9a96e]/50 transition-all"
+                    >
+                      <Image
+                        src={rp.image}
+                        alt={locale === "ar" ? rp.name_ar : rp.name}
+                        fill
+                        className="object-cover"
+                        sizes="100px"
+                      />
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
           </motion.div>
 
           <motion.div
@@ -132,22 +147,22 @@ export default function ProductPage() {
               <span className="text-[#c9a96e] text-xs font-semibold tracking-[0.3em] uppercase">
                 {category}
               </span>
-              <h1 className="text-4xl md:text-5xl font-bold text-white mt-4 mb-6" style={{ fontFamily: "'Playfair Display', serif" }}>
+              <h1 className="text-3xl md:text-5xl font-bold text-white mt-4 mb-6" style={{ fontFamily: "'Playfair Display', serif" }}>
                 {name}
               </h1>
               <div className="flex items-center gap-4 mb-6">
-                <div className="flex items-center gap-1">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 fill-[#c9a96e] text-[#c9a96e]" />
-                  ))}
+                <div className="flex items-center gap-0.5">
+                  {renderStars(product.rating)}
                 </div>
                 <span className="text-gray-500 text-sm">
-                  {product.reviews} {locale === "ar" ? "تقييم" : "reviews"}
+                  {product.rating.toFixed(1)} ({product.reviews} {locale === "ar" ? "تقييم" : "reviews"})
                 </span>
               </div>
-              <div className="text-4xl font-bold text-gold mb-8" style={{ fontFamily: "'Playfair Display', serif" }}>
-                ${product.price.toFixed(2)}
-              </div>
+              {product.price > 0 && (
+                <div className="text-4xl font-bold text-gold mb-8" style={{ fontFamily: "'Playfair Display', serif" }}>
+                  ${product.price.toFixed(2)}
+                </div>
+              )}
             </div>
 
             <div className="border-t border-[#2a2a2a] pt-8">
@@ -155,46 +170,67 @@ export default function ProductPage() {
             </div>
 
             <div className="space-y-6">
-              <div className="flex items-center gap-6">
-                <div className="flex items-center border border-[#2a2a2a] rounded-xl overflow-hidden">
-                  <button
-                    onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    className="w-12 h-12 bg-[#1a1a1a] text-gray-400 hover:text-[#c9a96e] hover:bg-[#2a2a2a] transition-all flex items-center justify-center"
-                  >
-                    <Minus className="w-4 h-4" />
-                  </button>
-                  <span className="w-16 h-12 flex items-center justify-center text-white font-bold">{quantity}</span>
-                  <button
-                    onClick={() => setQuantity(quantity + 1)}
-                    className="w-12 h-12 bg-[#1a1a1a] text-gray-400 hover:text-[#c9a96e] hover:bg-[#2a2a2a] transition-all flex items-center justify-center"
-                  >
-                    <Plus className="w-4 h-4" />
-                  </button>
+              <div className="flex flex-wrap items-center gap-4 text-sm text-gray-400">
+                <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#111] border border-[#2a2a2a]">
+                  <span>🌍</span>
+                  <span>{locale === "ar" ? product.origin_ar : product.origin}</span>
                 </div>
-                <button
-                  onClick={handleAddToCart}
-                  className="flex-1 btn-gold py-4 rounded-xl font-bold text-lg inline-flex items-center justify-center gap-3"
-                >
-                  {added ? (
-                    <>
-                      <Check className="w-5 h-5" />
-                      {locale === "ar" ? "تمت الإضافة" : "Added!"}
-                    </>
-                  ) : (
-                    <>
-                      <ShoppingCart className="w-5 h-5" />
-                      {locale === "ar" ? "أضف للسلة" : "Add to Cart"}
-                    </>
-                  )}
-                </button>
-                <button className="w-12 h-12 border border-[#2a2a2a] rounded-xl flex items-center justify-center text-gray-400 hover:text-[#c9a96e] hover:border-[#c9a96e]/30 transition-all">
-                  <Heart className="w-5 h-5" />
-                </button>
-                <button className="w-12 h-12 border border-[#2a2a2a] rounded-xl flex items-center justify-center text-gray-400 hover:text-[#c9a96e] hover:border-[#c9a96e]/30 transition-all">
-                  <Share2 className="w-5 h-5" />
-                </button>
+                <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#111] border border-[#2a2a2a]">
+                  <span>⚖️</span>
+                  <span>{locale === "ar" ? product.weight_ar : product.weight}</span>
+                </div>
+                {product.stock > 0 && (
+                  <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#111] border border-[#2a2a2a]">
+                    <span className="w-2 h-2 rounded-full bg-green-500" />
+                    <span>{locale === "ar" ? "متوفر" : "In Stock"}</span>
+                  </div>
+                )}
               </div>
             </div>
+
+            {product.price > 0 && (
+              <div className="space-y-6">
+                <div className="flex items-center gap-6">
+                  <div className="flex items-center border border-[#2a2a2a] rounded-xl overflow-hidden">
+                    <button
+                      onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                      className="w-12 h-12 bg-[#1a1a1a] text-gray-400 hover:text-[#c9a96e] hover:bg-[#2a2a2a] transition-all flex items-center justify-center"
+                    >
+                      <Minus className="w-4 h-4" />
+                    </button>
+                    <span className="w-16 h-12 flex items-center justify-center text-white font-bold">{quantity}</span>
+                    <button
+                      onClick={() => setQuantity(quantity + 1)}
+                      className="w-12 h-12 bg-[#1a1a1a] text-gray-400 hover:text-[#c9a96e] hover:bg-[#2a2a2a] transition-all flex items-center justify-center"
+                    >
+                      <Plus className="w-4 h-4" />
+                    </button>
+                  </div>
+                  <button
+                    onClick={handleAddToCart}
+                    className="flex-1 btn-gold py-4 rounded-xl font-bold text-lg inline-flex items-center justify-center gap-3"
+                  >
+                    {added ? (
+                      <>
+                        <Check className="w-5 h-5" />
+                        {locale === "ar" ? "تمت الإضافة" : "Added!"}
+                      </>
+                    ) : (
+                      <>
+                        <ShoppingCart className="w-5 h-5" />
+                        {locale === "ar" ? "أضف للسلة" : "Add to Cart"}
+                      </>
+                    )}
+                  </button>
+                  <button className="w-12 h-12 border border-[#2a2a2a] rounded-xl flex items-center justify-center text-gray-400 hover:text-[#c9a96e] hover:border-[#c9a96e]/30 transition-all">
+                    <Heart className="w-5 h-5" />
+                  </button>
+                  <button className="w-12 h-12 border border-[#2a2a2a] rounded-xl flex items-center justify-center text-gray-400 hover:text-[#c9a96e] hover:border-[#c9a96e]/30 transition-all">
+                    <Share2 className="w-5 h-5" />
+                  </button>
+                </div>
+              </div>
+            )}
 
             <div className="border-t border-[#2a2a2a] pt-8 space-y-4">
               <div className="flex items-center gap-3 text-gray-400">
@@ -214,26 +250,27 @@ export default function ProductPage() {
         </div>
       </div>
 
-      {/* Sticky Mobile Add to Cart Bar - Only on small screens */}
-      <div className="lg:hidden fixed bottom-0 left-0 right-0 z-50 bg-[#111] border-t border-[#2a2a2a] safe-area-bottom">
-        <div className="flex items-center gap-3 px-4 py-3">
-          <div className="flex-1">
-            <div className="text-[#c9a96e] font-bold text-lg" style={{ fontFamily: "'Playfair Display', serif" }}>
-              ${product?.price}
+      {product.price > 0 && (
+        <div className="lg:hidden fixed bottom-0 left-0 right-0 z-50 bg-[#111] border-t border-[#2a2a2a] safe-area-bottom">
+          <div className="flex items-center gap-3 px-4 py-3">
+            <div className="flex-1">
+              <div className="text-[#c9a96e] font-bold text-lg" style={{ fontFamily: "'Playfair Display', serif" }}>
+                ${product.price.toFixed(2)}
+              </div>
+              <div className="text-gray-500 text-xs">
+                {locale === "ar" ? "شامل الضريبة" : "Tax included"}
+              </div>
             </div>
-            <div className="text-gray-500 text-xs">
-              {locale === "ar" ? "شامل الضريبة" : "Tax included"}
-            </div>
+            <button
+              onClick={handleAddToCart}
+              className="btn-gold px-8 py-3.5 rounded-xl font-bold text-sm flex items-center gap-2 flex-shrink-0"
+            >
+              <ShoppingCart className="w-4 h-4" />
+              {locale === "ar" ? "أضف للسلة" : "Add to Cart"}
+            </button>
           </div>
-          <button
-            onClick={handleAddToCart}
-            className="btn-gold px-8 py-3.5 rounded-xl font-bold text-sm flex items-center gap-2 flex-shrink-0"
-          >
-            <ShoppingCart className="w-4 h-4" />
-            {locale === "ar" ? "أضف للسلة" : "Add to Cart"}
-          </button>
         </div>
-      </div>
+      )}
     </div>
   );
 }

@@ -61,7 +61,7 @@ function Stats() {
 
   const stats = [
     { icon: Globe, value: 25, suffix: "+", label: locale === "ar" ? "دولة" : "Countries" },
-    { icon: Award, value: 50, suffix: "+", label: locale === "ar" ? "منتج فاخر" : "Products" },
+    { icon: Award, value: 42, suffix: "+", label: locale === "ar" ? "منتج فاخر" : "Products" },
     { icon: Heart, value: 10000, suffix: "+", label: locale === "ar" ? "عميل سعيد" : "Clients" },
     { icon: Leaf, value: 100, suffix: "%", label: locale === "ar" ? "طبيعي" : "Natural" },
   ];
@@ -100,10 +100,8 @@ function Categories() {
   const dir = useLocaleStore((s) => s.dir());
 
   const categories = [
-    { icon: "🫒", title: locale === "ar" ? "زيتون" : "Olives", count: 15 },
-    { icon: "🥒", title: locale === "ar" ? "مخللات" : "Pickles", count: 12 },
-    { icon: "🫙", title: locale === "ar" ? "صلصات" : "Sauces", count: 8 },
-    { icon: "🎁", title: locale === "ar" ? "هدايا" : "Gifts", count: 5 },
+    { icon: "🫒", title: locale === "ar" ? "زيتون" : "Olives", count: 25 },
+    { icon: "🥒", title: locale === "ar" ? "مخللات" : "Pickles", count: 17 },
   ];
 
   return (
@@ -127,7 +125,7 @@ function Categories() {
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 gap-6 max-w-2xl mx-auto">
             {categories.map((cat, i) => (
               <RevealItem key={i}>
                 <motion.a
@@ -135,17 +133,17 @@ function Categories() {
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 }}
+                  transition={{ delay: i * 0.15 }}
                   whileHover={{ y: -8, scale: 1.02 }}
-                  className="card-luxury card-glow rounded-2xl p-4 sm:p-8 text-center group cursor-pointer"
+                  className="card-luxury card-glow rounded-2xl p-8 sm:p-12 text-center group cursor-pointer"
                 >
                   <motion.div
                     whileHover={{ scale: 1.2, rotate: 10 }}
-                    className="text-5xl mb-4 transition-transform duration-300"
+                    className="text-6xl mb-6 transition-transform duration-300"
                   >
                     {cat.icon}
                   </motion.div>
-                  <div className="text-white font-bold text-lg mb-1">{cat.title}</div>
+                  <div className="text-white font-bold text-xl mb-2">{cat.title}</div>
                   <div className="text-[#c9a96e]/60 text-sm">
                     {cat.count} {locale === "ar" ? "منتج" : "products"}
                   </div>

@@ -60,8 +60,8 @@ export default function Footer() {
             </h3>
             <ul className="space-y-4 text-sm text-gray-500">
               <li>{locale === "ar" ? "القاهرة، مصر" : "Cairo, Egypt"}</li>
-              <li><a href="tel:+201234567890" className="hover:text-[#c9a96e] transition-colors">+20 123 456 7890</a></li>
-              <li><a href="mailto:info@grandoliva.com" className="hover:text-[#c9a96e] transition-colors">info@grandoliva.com</a></li>
+              <li><a href="tel:+201288367098" className="hover:text-[#c9a96e] transition-colors">+20 128 836 7098</a></li>
+              <li><a href="mailto:grand_olivee@yahoo.com" className="hover:text-[#c9a96e] transition-colors">grand_olivee@yahoo.com</a></li>
             </ul>
           </div>
 

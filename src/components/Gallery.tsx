@@ -5,12 +5,12 @@ import { useLocaleStore } from "@/lib/store";
 import Image from "next/image";
 
 const images = [
-  { src: "https://images.pexels.com/photos/16732695/pexels-photo-16732695.jpeg?w=800&h=600&fit=crop&q=80", alt: "Stuffed green olives" },
-  { src: "https://images.pexels.com/photos/4109912/pexels-photo-4109912.jpeg?w=600&h=600&fit=crop&q=80", alt: "Olives in olive oil" },
-  { src: "https://images.pexels.com/photos/8599633/pexels-photo-8599633.jpeg?w=600&h=600&fit=crop&q=80", alt: "Pickles in jar" },
-  { src: "https://images.pexels.com/photos/4109911/pexels-photo-4109911.jpeg?w=800&h=600&fit=crop&q=80", alt: "Olive platter with bread" },
-  { src: "https://images.pexels.com/photos/4109910/pexels-photo-4109910.jpeg?w=600&h=600&fit=crop&q=80", alt: "Mixed olives close-up" },
-  { src: "https://images.pexels.com/photos/12181052/pexels-photo-12181052.jpeg?w=600&h=600&fit=crop&q=80", alt: "Pickled cucumbers in jar" },
+  { src: "/product-images/product-14.jpg", alt: "مجموعة منتجات الراية" },
+  { src: "/product-images/product-51.jpg", alt: "زيتون أصفر مشوي بالحبة السوداء" },
+  { src: "/product-images/product-52.jpg", alt: "باذنجان محشي بالخضار" },
+  { src: "/product-images/product-37.jpg", alt: "زيتون وردي فاخر" },
+  { src: "/product-images/product-53.jpg", alt: "فلفل أحمر حار مخلل" },
+  { src: "/product-images/product-31.jpg", alt: "مخللات مشكلة في طبق" },
 ];
 
 export default function Gallery() {

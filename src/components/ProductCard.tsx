@@ -115,7 +115,22 @@ export default function ProductCard({ product, index = 0, onQuickView }: Product
             {category}
           </span>
           <div className="flex items-center gap-1">
-            <Star className="w-3.5 h-3.5 fill-[#c9a96e] text-[#c9a96e]" />
+            {[...Array(5)].map((_, i) => {
+              const fill = product.rating - i;
+              if (fill >= 1) {
+                return <Star key={i} className="w-3.5 h-3.5 fill-[#c9a96e] text-[#c9a96e]" />;
+              } else if (fill > 0) {
+                return (
+                  <div key={i} className="relative w-3.5 h-3.5">
+                    <Star className="absolute inset-0 w-3.5 h-3.5 text-[#2a2a2a]" />
+                    <div className="absolute inset-0 overflow-hidden" style={{ width: `${fill * 100}%` }}>
+                      <Star className="w-3.5 h-3.5 fill-[#c9a96e] text-[#c9a96e]" />
+                    </div>
+                  </div>
+                );
+              }
+              return <Star key={i} className="w-3.5 h-3.5 text-[#2a2a2a]" />;
+            })}
             <span className="text-xs text-gray-400">{product.rating}</span>
             <span className="text-[10px] text-gray-600">({product.reviews})</span>
           </div>
