@@ -67,7 +67,7 @@ function Stats() {
   ];
 
   return (
-    <section className="py-12 sm:py-20 bg-[#111] border-y border-[#2a2a2a]" dir={dir}>
+    <section className="py-12 sm:py-20 bg-[#0a0a0a] border-y border-[#2a2a2a]/40" dir={dir}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionReveal stagger>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
