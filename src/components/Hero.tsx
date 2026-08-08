@@ -304,7 +304,7 @@ export default function Hero() {
                   whileHover={{ scale: 1.02, y: -5 }}
                   transition={{ duration: 0.5 }}
                 >
-                  <Image src="/product-images/product-51.jpg" alt="Premium Olives" fill className="object-cover" sizes="460px" />
+                  <Image src="https://images.pexels.com/photos/4109913/pexels-photo-4109913.jpeg?w=800&h=800&fit=crop&q=80" alt="Premium Olives" fill className="object-cover" sizes="460px" />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/70 via-transparent to-transparent" />
 
                   {/* Floating badge */}
@@ -421,7 +421,7 @@ export default function Hero() {
           className="relative mb-8"
         >
           <div className="relative w-[260px] h-[260px] sm:w-[320px] sm:h-[320px] rounded-[2rem] overflow-hidden border border-[#c9a96e]/15 shadow-gold-glow">
-            <Image src="/product-images/product-51.jpg" alt="Premium Olives" fill className="object-cover" sizes="320px" />
+            <Image src="https://images.pexels.com/photos/4109913/pexels-photo-4109913.jpeg?w=600&h=600&fit=crop&q=80" alt="Premium Olives" fill className="object-cover" sizes="320px" />
             <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/60 via-transparent to-transparent" />
             <motion.div
               className="absolute top-3 right-3 bg-[#0a0a0a]/80 border border-[#c9a96e]/25 rounded-xl px-3 py-2"
