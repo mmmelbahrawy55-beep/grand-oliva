@@ -101,10 +101,10 @@ export default function Hero() {
           transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
         >
           <Image
-            src="/product-images/product-09.jpg"
+            src="https://images.pexels.com/photos/4109911/pexels-photo-4109911.jpeg?w=1920&h=1080&fit=crop&q=75"
             alt=""
             fill
-            className="object-cover opacity-30"
+            className="object-cover opacity-25"
             priority
             sizes="100vw"
           />
