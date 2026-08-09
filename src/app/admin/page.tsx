@@ -7,7 +7,7 @@ import { useProducts } from "@/lib/admin-helpers";
 import type { Product } from "@/lib/types";
 import Image from "next/image";
 import {
-  Search, X, Save, RotateCcw, LogOut, Package,
+  Search, X, Save, LogOut, Package,
   Edit3, ChevronDown, Check, Star, Plus,
   DollarSign, Tag, Globe, Weight, Image as ImageIcon
 } from "lucide-react";
@@ -610,7 +610,7 @@ function AddProductModal({
 }
 
 export default function AdminPage() {
-  const { isAuthenticated, login, logout, overrides, setOverride, removeOverride, resetAll } = useAdminStore();
+  const { isAuthenticated, login, logout, overrides, setOverride } = useAdminStore();
   const products = useProducts();
   const [search, setSearch] = useState("");
   const [categoryFilter, setCategoryFilter] = useState<"all" | "Olives" | "Pickles">("all");
@@ -667,11 +667,6 @@ export default function AdminPage() {
     showToast("تم تعديل المنتج بنجاح");
   };
 
-  const handleReset = (id: string) => {
-    removeOverride(id);
-    showToast("تم إعادة المنتج للوضع الأصلي");
-  };
-
   const handleAddProduct = (data: Omit<Product, "id">) => {
     const id = `product-${Date.now()}`;
     setOverride(id, data);
@@ -711,15 +706,6 @@ export default function AdminPage() {
               <Plus className="w-4 h-4" />
               <span className="hidden sm:inline">Add Product</span>
             </button>
-            {stats.edited > 0 && (
-              <button
-                onClick={() => { if (confirm("Reset all edits to defaults?")) { resetAll(); showToast("تم إعادة جميع المنتجات للوضع الأصلي"); } }}
-                className="px-4 py-2 rounded-xl border border-red-500/30 text-red-400 text-sm font-medium hover:bg-red-500/10 transition-all flex items-center gap-2"
-              >
-                <RotateCcw className="w-4 h-4" />
-                <span className="hidden sm:inline">Reset All</span>
-              </button>
-            )}
             <button
               onClick={logout}
               className="px-4 py-2 rounded-xl border border-[#2a2a2a] text-gray-400 text-sm font-medium hover:text-white hover:border-[#c9a96e]/30 transition-all flex items-center gap-2"
@@ -857,15 +843,6 @@ export default function AdminPage() {
                           >
                             <Edit3 className="w-4 h-4" />
                           </button>
-                          {isEdited && (
-                            <button
-                              onClick={() => handleReset(product.id)}
-                              className="w-9 h-9 rounded-lg bg-[#1a1a1a] border border-[#2a2a2a] flex items-center justify-center text-gray-400 hover:text-red-400 hover:border-red-400/30 transition-all"
-                              title="Reset to default"
-                            >
-                              <RotateCcw className="w-4 h-4" />
-                            </button>
-                          )}
                         </div>
                       </td>
                     </tr>
