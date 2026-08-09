@@ -6,10 +6,19 @@ import type { Product } from "@/lib/types";
 export function useProducts(): Product[] {
   const overrides = useAdminStore((s) => s.overrides);
   return useMemo(() => {
-    return baseProducts.map((p) => ({
+    const edited = baseProducts.map((p) => ({
       ...p,
       ...(overrides[p.id] || {}),
     }));
+
+    const newProducts: Product[] = [];
+    for (const [id, data] of Object.entries(overrides)) {
+      if (!baseProducts.find((p) => p.id === id) && data.name) {
+        newProducts.push({ id, ...data } as Product);
+      }
+    }
+
+    return [...edited, ...newProducts];
   }, [overrides]);
 }
 
