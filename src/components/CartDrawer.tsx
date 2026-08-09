@@ -14,10 +14,12 @@ interface CartDrawerProps {
 export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
   const { locale } = useLocaleStore();
   const dir = useLocaleStore((s) => s.dir());
-  const store = useCartStore();
-  const { items, removeItem, updateQuantity, clearCart } = store;
-  const total = store.getTotal();
-  const itemCount = store.getItemCount();
+  const items = useCartStore((s) => s.items);
+  const removeItem = useCartStore((s) => s.removeItem);
+  const updateQuantity = useCartStore((s) => s.updateQuantity);
+  const clearCart = useCartStore((s) => s.clearCart);
+  const total = useCartStore((s) => s.getTotal());
+  const itemCount = useCartStore((s) => s.getItemCount());
 
   return (
     <AnimatePresence>
@@ -104,7 +106,7 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                           {locale === "ar" ? item.product.name_ar : item.product.name}
                         </h3>
                         <p className="text-[#c9a96e] font-bold text-sm mt-1">
-                          ${item.product.price}
+                          ${item.product.price.toFixed(2)}
                         </p>
                         <div className="flex items-center gap-2 mt-3">
                           <button

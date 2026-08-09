@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { useLocaleStore } from "@/lib/store";
 import { testimonials } from "@/lib/data/products";
 import { Star, Quote } from "lucide-react";
-import Image from "next/image";
 
 export default function Testimonials() {
   const { locale } = useLocaleStore();
@@ -53,14 +52,8 @@ export default function Testimonials() {
                 {locale === "ar" ? t.content_ar : t.content}
               </p>
               <div className="flex items-center gap-3 pt-4 border-t border-[#2a2a2a]">
-                <div className="w-10 h-10 rounded-full overflow-hidden relative border border-[#c9a96e]/20">
-                  <Image
-                    src={t.avatar}
-                    alt={locale === "ar" ? t.name_ar : t.name}
-                    fill
-                    className="object-cover"
-                    sizes="40px"
-                  />
+                <div className="w-10 h-10 rounded-full bg-[#c9a96e]/10 border border-[#c9a96e]/20 flex items-center justify-center text-[#c9a96e] text-sm font-bold">
+                  {t.avatar}
                 </div>
                 <div>
                   <div className="font-semibold text-white text-sm">

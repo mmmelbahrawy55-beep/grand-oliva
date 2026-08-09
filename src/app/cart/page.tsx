@@ -27,7 +27,7 @@ export default function CartPage() {
             {t(locale, "cart_page.title")}
           </h1>
           <p className="text-gray-500 mt-2">
-            {itemCount} {locale === "ar" ? "منتج في السلة" : "items in cart"}
+            {itemCount} {locale === "ar" ? (itemCount === 1 ? "منتج في السلة" : "منتجات في السلة") : (itemCount === 1 ? "item in cart" : "items in cart")}
           </p>
         </motion.div>
 
@@ -75,7 +75,7 @@ export default function CartPage() {
                         {locale === "ar" ? item.product.name_ar : item.product.name}
                       </h3>
                       <p className="text-[#c9a96e] font-bold text-xl mt-1">
-                        ${item.product.price}
+                        ${item.product.price.toFixed(2)}
                       </p>
                     </div>
                     <div className="flex items-center gap-3">

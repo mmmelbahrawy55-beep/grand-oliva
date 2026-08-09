@@ -158,7 +158,7 @@ export default function QuickView({ product, isOpen, onClose }: QuickViewProps) 
 
               {/* Price */}
               <div className="mb-6">
-                <span className="text-3xl font-bold text-gold">${product.price}</span>
+                <span className="text-3xl font-bold text-gold">${product.price.toFixed(2)}</span>
               </div>
 
               {/* Quantity */}

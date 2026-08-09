@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { useLocaleStore } from "@/lib/store";
 import { Send, CheckCircle } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Newsletter() {
   const { locale } = useLocaleStore();
@@ -15,8 +15,14 @@ export default function Newsletter() {
     e.preventDefault();
     setSubmitted(true);
     setEmail("");
-    setTimeout(() => setSubmitted(false), 3000);
   };
+
+  useEffect(() => {
+    if (submitted) {
+      const timer = setTimeout(() => setSubmitted(false), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [submitted]);
 
   return (
     <section className="py-24 bg-[#0a0a0a] border-t border-[#2a2a2a]" dir={dir}>
