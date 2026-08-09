@@ -111,24 +111,24 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                         <div className="flex items-center gap-2 mt-3">
                           <button
                             onClick={() => updateQuantity(item.product.id, item.quantity - 1)}
-                            className="w-7 h-7 rounded-lg bg-[#222] border border-[#2a2a2a] flex items-center justify-center text-gray-400 hover:text-white hover:border-[#c9a96e]/30 transition-all"
+                            className="w-9 h-9 rounded-lg bg-[#222] border border-[#2a2a2a] flex items-center justify-center text-gray-400 hover:text-white hover:border-[#c9a96e]/30 transition-all active:scale-95"
                           >
-                            <Minus className="w-3 h-3" />
+                            <Minus className="w-3.5 h-3.5" />
                           </button>
-                          <span className="text-white text-sm font-medium w-6 text-center">
+                          <span className="text-white text-sm font-bold w-8 text-center">
                             {item.quantity}
                           </span>
                           <button
                             onClick={() => updateQuantity(item.product.id, item.quantity + 1)}
-                            className="w-7 h-7 rounded-lg bg-[#222] border border-[#2a2a2a] flex items-center justify-center text-gray-400 hover:text-white hover:border-[#c9a96e]/30 transition-all"
+                            className="w-9 h-9 rounded-lg bg-[#222] border border-[#2a2a2a] flex items-center justify-center text-gray-400 hover:text-white hover:border-[#c9a96e]/30 transition-all active:scale-95"
                           >
-                            <Plus className="w-3 h-3" />
+                            <Plus className="w-3.5 h-3.5" />
                           </button>
                         </div>
                       </div>
                       <button
                         onClick={() => removeItem(item.product.id)}
-                        className="text-gray-600 hover:text-red-500 transition-colors self-start"
+                        className="w-9 h-9 rounded-lg flex items-center justify-center text-gray-600 hover:text-red-500 hover:bg-red-500/10 transition-colors"
                       >
                         <Trash2 className="w-4 h-4" />
                       </button>
@@ -164,7 +164,7 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                 </Link>
                 <button
                   onClick={clearCart}
-                  className="w-full py-3 rounded-xl border border-[#2a2a2a] text-gray-500 text-sm hover:text-red-500 hover:border-red-500/30 transition-all"
+                  className="w-full py-3.5 rounded-xl border border-[#2a2a2a] text-gray-500 text-sm hover:text-red-500 hover:border-red-500/30 transition-all active:scale-[0.98]"
                 >
                   {locale === "ar" ? "تفريغ السلة" : "Clear Cart"}
                 </button>

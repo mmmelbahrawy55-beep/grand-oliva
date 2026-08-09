@@ -461,7 +461,7 @@ export default function Hero() {
           <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.97 }}>
             <Link
               href="/products"
-              className="px-8 py-4 rounded-2xl text-base font-semibold inline-flex items-center justify-center gap-3 bg-gradient-to-r from-[#c9a96e] to-[#b8985d] text-[#0a0a0a] shadow-[0_0_30px_rgba(201,169,110,0.3)] w-full"
+              className="px-8 py-4.5 rounded-2xl text-base font-semibold inline-flex items-center justify-center gap-3 bg-gradient-to-r from-[#c9a96e] to-[#b8985d] text-[#0a0a0a] shadow-[0_0_30px_rgba(201,169,110,0.3)] w-full active:scale-[0.97] transition-transform"
             >
               <span>{t(locale, "hero.cta")}</span>
               <ArrowRight className={`w-5 h-5 ${dir === "rtl" ? "rotate-180" : ""}`} />

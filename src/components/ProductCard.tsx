@@ -84,7 +84,7 @@ export default function ProductCard({ product, index = 0, onQuickView }: Product
         {/* Like */}
         <button
           onClick={(e) => { e.preventDefault(); setIsLiked(!isLiked); }}
-          className="absolute top-4 right-4 z-10 w-9 h-9 bg-[#0a0a0a]/80 rounded-lg flex items-center justify-center border border-[#2a2a2a] hover:border-[#c9a96e]/50 transition-all opacity-100 sm:opacity-0 sm:group-hover:opacity-100"
+          className="absolute top-3 right-3 md:top-4 md:right-4 z-10 w-10 h-10 bg-[#0a0a0a]/80 rounded-lg flex items-center justify-center border border-[#2a2a2a] hover:border-[#c9a96e]/50 transition-all opacity-100 sm:opacity-0 sm:group-hover:opacity-100 active:scale-95"
         >
           <Heart className={`w-4 h-4 ${isLiked ? "fill-[#c9a96e] text-[#c9a96e]" : "text-gray-500"}`} />
         </button>
@@ -93,14 +93,14 @@ export default function ProductCard({ product, index = 0, onQuickView }: Product
         <div className="absolute bottom-4 left-4 right-4 z-10 flex gap-2 opacity-100 sm:opacity-0 translate-y-0 sm:translate-y-4 sm:group-hover:opacity-100 sm:group-hover:translate-y-0 transition-all duration-500">
           <button
             onClick={handleQuickView}
-            className="flex-1 bg-[#0a0a0a]/90 text-white py-2.5 rounded-lg text-xs font-semibold flex items-center justify-center gap-2 border border-[#2a2a2a] hover:border-[#c9a96e]/50 transition-all"
+            className="flex-1 bg-[#0a0a0a]/90 text-white py-3 rounded-lg text-xs font-semibold flex items-center justify-center gap-2 border border-[#2a2a2a] hover:border-[#c9a96e]/50 transition-all active:scale-95"
           >
             <Eye className="w-3.5 h-3.5" />
             {locale === "ar" ? "عرض سريع" : "Quick View"}
           </button>
           <button
             onClick={handleAddToCart}
-            className="flex-1 btn-gold py-2.5 rounded-lg text-xs font-semibold flex items-center justify-center gap-2"
+            className="flex-1 btn-gold py-3 rounded-lg text-xs font-semibold flex items-center justify-center gap-2 active:scale-95 transition-transform"
           >
             <ShoppingCart className="w-3.5 h-3.5" />
             {locale === "ar" ? "أضف" : "Add"}
@@ -154,7 +154,7 @@ export default function ProductCard({ product, index = 0, onQuickView }: Product
           <span className={`text-xl sm:text-2xl font-bold text-gold ${product.featured ? "text-shimmer" : ""}`}>${product.price.toFixed(2)}</span>
           <button
             onClick={handleAddToCart}
-            className="w-10 h-10 rounded-xl bg-[#c9a96e]/10 magnetic-btn flex items-center justify-center text-[#c9a96e] hover:bg-[#c9a96e] hover:text-[#0a0a0a] transition-all duration-300"
+            className="w-11 h-11 rounded-xl bg-[#c9a96e]/10 magnetic-btn flex items-center justify-center text-[#c9a96e] hover:bg-[#c9a96e] hover:text-[#0a0a0a] transition-all duration-300 active:scale-95"
           >
             <ShoppingCart className="w-4 h-4" />
           </button>

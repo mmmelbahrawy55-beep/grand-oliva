@@ -494,3 +494,47 @@ body {
   text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
 }
+
+/* Android — prevent horizontal overscroll on entire page */
+html, body {
+  overscroll-behavior-x: none;
+}
+
+/* Prevent pull-to-refresh on the whole page on Android */
+html {
+  overscroll-behavior-y: none;
+}
+
+/* iOS — rubber-band scroll prevention on fixed containers */
+.fixed {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Better active states for touch devices */
+@media (hover: none) and (pointer: coarse) {
+  a:active, button:active {
+    opacity: 0.85;
+  }
+}
+
+/* iOS safe area for bottom-positioned elements */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .safe-area-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+/* Prevent text selection on interactive elements for cleaner mobile UX */
+button, [role="button"] {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Mobile: larger tap targets for links in lists */
+@media (pointer: coarse) {
+  li a {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+  }
+}

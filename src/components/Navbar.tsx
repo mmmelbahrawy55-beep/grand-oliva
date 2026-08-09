@@ -106,14 +106,14 @@ export default function Navbar() {
             <div className="flex items-center gap-3">
               <button
                 onClick={() => setLocale(locale === "ar" ? "en" : "ar")}
-                className="p-3 text-gray-500 hover:text-[#c9a96e] transition-colors duration-300 border border-transparent hover:border-[#c9a96e]/20 rounded-xl"
+                className="w-11 h-11 flex items-center justify-center text-gray-500 hover:text-[#c9a96e] transition-colors duration-300 border border-transparent hover:border-[#c9a96e]/20 rounded-xl active:scale-95"
               >
                 <Globe className="w-5 h-5" />
               </button>
 
               <button
                 onClick={() => setIsCartOpen(true)}
-                className="relative p-3 text-gray-500 hover:text-[#c9a96e] transition-colors duration-300 border border-transparent hover:border-[#c9a96e]/20 rounded-xl"
+                className="relative w-11 h-11 flex items-center justify-center text-gray-500 hover:text-[#c9a96e] transition-colors duration-300 border border-transparent hover:border-[#c9a96e]/20 rounded-xl active:scale-95"
               >
                 <ShoppingBag className="w-5 h-5" />
                 {itemCount > 0 && (
@@ -129,7 +129,7 @@ export default function Navbar() {
 
               <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="lg:hidden p-3 text-gray-500 hover:text-[#c9a96e] transition-colors"
+                className="lg:hidden w-11 h-11 flex items-center justify-center text-gray-500 hover:text-[#c9a96e] transition-colors active:scale-95"
               >
                 {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
               </button>
@@ -160,7 +160,7 @@ export default function Navbar() {
                     key={item}
                     href={item === "home" ? "/" : `/${item}`}
                     onClick={() => setIsOpen(false)}
-                    className="block px-4 py-3 text-gray-400 hover:text-[#c9a96e] font-medium tracking-wider uppercase text-base transition-colors"
+                    className="block px-4 py-3.5 text-gray-400 hover:text-[#c9a96e] hover:bg-[#c9a96e]/[0.05] font-medium tracking-wider uppercase text-base transition-colors rounded-xl active:scale-[0.98]"
                   >
                     {t(locale, `nav.${item}`)}
                   </Link>

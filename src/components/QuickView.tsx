@@ -64,7 +64,7 @@ export default function QuickView({ product, isOpen, onClose }: QuickViewProps) 
             {/* Close button */}
             <button
               onClick={onClose}
-              className="absolute top-4 right-4 z-10 w-10 h-10 rounded-xl bg-[#0a0a0a]/90 border border-[#2a2a2a] flex items-center justify-center text-gray-500 hover:text-white hover:border-[#c9a96e]/30 transition-all"
+              className="absolute top-3 right-3 md:top-4 md:right-4 z-10 w-11 h-11 rounded-xl bg-[#0a0a0a]/90 border border-[#2a2a2a] flex items-center justify-center text-gray-500 hover:text-white hover:border-[#c9a96e]/30 transition-all active:scale-95"
             >
               <X className="w-5 h-5" />
             </button>
@@ -92,7 +92,7 @@ export default function QuickView({ product, isOpen, onClose }: QuickViewProps) 
               {/* Like */}
               <button
                 onClick={() => setIsLiked(!isLiked)}
-                className="absolute bottom-4 left-4 w-10 h-10 bg-[#0a0a0a]/80 rounded-xl flex items-center justify-center border border-[#2a2a2a] hover:border-[#c9a96e]/50 transition-all"
+                className="absolute bottom-4 left-4 w-11 h-11 bg-[#0a0a0a]/80 rounded-xl flex items-center justify-center border border-[#2a2a2a] hover:border-[#c9a96e]/50 transition-all active:scale-95"
               >
                 <Heart className={`w-5 h-5 ${isLiked ? "fill-[#c9a96e] text-[#c9a96e]" : "text-gray-500"}`} />
               </button>
@@ -167,14 +167,14 @@ export default function QuickView({ product, isOpen, onClose }: QuickViewProps) 
                 <div className="flex items-center gap-2 bg-[#1a1a1a] rounded-xl border border-[#2a2a2a] p-1">
                   <button
                     onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    className="w-9 h-9 rounded-lg flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#222] transition-all"
+                    className="w-11 h-11 rounded-lg flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#222] transition-all active:scale-95"
                   >
                     <Minus className="w-4 h-4" />
                   </button>
-                  <span className="w-10 text-center font-bold text-white">{quantity}</span>
+                  <span className="w-10 text-center font-bold text-white text-lg">{quantity}</span>
                   <button
                     onClick={() => setQuantity(quantity + 1)}
-                    className="w-9 h-9 rounded-lg flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#222] transition-all"
+                    className="w-11 h-11 rounded-lg flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#222] transition-all active:scale-95"
                   >
                     <Plus className="w-4 h-4" />
                   </button>
@@ -184,7 +184,7 @@ export default function QuickView({ product, isOpen, onClose }: QuickViewProps) 
               {/* Add to cart */}
               <button
                 onClick={handleAddToCart}
-                className="btn-gold w-full py-4 rounded-xl font-bold flex items-center justify-center gap-3 text-base"
+                className="btn-gold w-full py-4 rounded-xl font-bold flex items-center justify-center gap-3 text-base active:scale-[0.98] transition-transform"
               >
                 <ShoppingCart className="w-5 h-5" />
                 {locale === "ar" ? "أضف إلى السلة" : "Add to Cart"}
