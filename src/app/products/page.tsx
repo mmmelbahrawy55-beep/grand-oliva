@@ -4,9 +4,11 @@ import { useState, useMemo, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLocaleStore } from "@/lib/store";
 import ProductCard from "@/components/ProductCard";
+import QuickView from "@/components/QuickView";
 import MobileFilterSheet from "@/components/MobileFilterSheet";
 import { products } from "@/lib/data/products";
 import { Search, SlidersHorizontal, X, Grid, List, Filter } from "lucide-react";
+import type { Product } from "@/lib/types";
 
 const ITEMS_PER_PAGE = 12;
 
@@ -31,6 +33,7 @@ export default function ProductsPage() {
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
   const [currentPage, setCurrentPage] = useState(1);
   const [filterOpen, setFilterOpen] = useState(false);
+  const [quickViewProduct, setQuickViewProduct] = useState<Product | null>(null);
 
   const filteredProducts = useMemo(() => {
     return products
@@ -208,7 +211,7 @@ export default function ProductsPage() {
             </motion.div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-8">
               {oliveProducts.slice(0, 8).map((product, i) => (
-                <ProductCard key={product.id} product={product} index={i} />
+                <ProductCard key={product.id} product={product} index={i} onQuickView={setQuickViewProduct} />
               ))}
             </div>
           </div>
@@ -227,7 +230,7 @@ export default function ProductsPage() {
             }`}
           >
             {paginatedProducts.map((product, i) => (
-              <ProductCard key={product.id} product={product} index={i} />
+              <ProductCard key={product.id} product={product} index={i} onQuickView={setQuickViewProduct} />
             ))}
           </motion.div>
         </AnimatePresence>
@@ -292,6 +295,12 @@ export default function ProductsPage() {
         onSortChange={(sort) => { setSortBy(sort); setCurrentPage(1); }}
         locale={locale}
         categories={categories.map((c) => ({ label: locale === "ar" ? c.ar : c.en, value: c.key, icon: c.icon }))}
+      />
+
+      <QuickView
+        product={quickViewProduct}
+        isOpen={!!quickViewProduct}
+        onClose={() => setQuickViewProduct(null)}
       />
     </section>
   );
