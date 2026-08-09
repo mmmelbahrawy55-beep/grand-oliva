@@ -1,10 +1,55 @@
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
 import type { Product } from "@/lib/types";
+
+const LOCAL_KEY = "grand-oliva-overrides-backup";
+
+function saveLocal(overrides: Record<string, Partial<Product>>) {
+  try {
+    localStorage.setItem(LOCAL_KEY, JSON.stringify(overrides));
+  } catch {}
+}
+
+function loadLocal(): Record<string, Partial<Product>> | null {
+  try {
+    const raw = localStorage.getItem(LOCAL_KEY);
+    if (!raw) return null;
+    return JSON.parse(raw);
+  } catch {
+    return null;
+  }
+}
+
+async function apiPost(body: Record<string, unknown>, retries = 2): Promise<boolean> {
+  for (let i = 0; i <= retries; i++) {
+    try {
+      const res = await fetch("/api/products", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+      if (res.ok) return true;
+    } catch {}
+    if (i < retries) await new Promise((r) => setTimeout(r, 500 * (i + 1)));
+  }
+  return false;
+}
+
+async function apiGet(retries = 2): Promise<Record<string, Partial<Product>> | null> {
+  for (let i = 0; i <= retries; i++) {
+    try {
+      const res = await fetch("/api/products");
+      if (res.ok) return await res.json();
+    } catch {}
+    if (i < retries) await new Promise((r) => setTimeout(r, 500 * (i + 1)));
+  }
+  return null;
+}
 
 interface AdminStore {
   overrides: Record<string, Partial<Product>>;
   isAuthenticated: boolean;
+  isOnline: boolean;
+  lastSync: number;
   setOverride: (id: string, data: Partial<Product>) => Promise<void>;
   removeOverride: (id: string) => Promise<void>;
   fetchOverrides: () => Promise<void>;
@@ -13,79 +58,63 @@ interface AdminStore {
   resetAll: () => Promise<void>;
 }
 
-export const useAdminStore = create<AdminStore>()(
-  persist(
-    (set) => ({
-      overrides: {},
-      isAuthenticated: false,
+export const useAdminStore = create<AdminStore>((set, get) => ({
+  overrides: {},
+  isAuthenticated: false,
+  isOnline: false,
+  lastSync: 0,
 
-      setOverride: async (id, data) => {
-        set((state) => ({
-          overrides: { ...state.overrides, [id]: { ...state.overrides[id], ...data } },
-        }));
-        try {
-          await fetch("/api/products", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ id, data }),
-          });
-        } catch (e) {
-          console.error("Failed to save override:", e);
-        }
-      },
+  setOverride: async (id, data) => {
+    const newOverrides = { ...get().overrides, [id]: { ...(get().overrides[id] || {}), ...data } };
+    set({ overrides: newOverrides });
+    saveLocal(newOverrides);
 
-      removeOverride: async (id) => {
-        set((state) => {
-          const { [id]: _, ...rest } = state.overrides;
-          return { overrides: rest };
-        });
-        try {
-          await fetch("/api/products", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ id, action: "remove" }),
-          });
-        } catch (e) {
-          console.error("Failed to remove override:", e);
-        }
-      },
-
-      fetchOverrides: async () => {
-        try {
-          const res = await fetch("/api/products");
-          const data = await res.json();
-          set({ overrides: data || {} });
-        } catch (e) {
-          console.error("Failed to fetch overrides:", e);
-        }
-      },
-
-      login: (password) => {
-        if (password === "grandoliva2024") {
-          set({ isAuthenticated: true });
-          return true;
-        }
-        return false;
-      },
-
-      logout: () => set({ isAuthenticated: false }),
-
-      resetAll: async () => {
-        set({ overrides: {} });
-        try {
-          await fetch("/api/products", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ action: "reset" }),
-          });
-        } catch (e) {
-          console.error("Failed to reset overrides:", e);
-        }
-      },
-    }),
-    {
-      name: "grand-oliva-admin",
-      partialize: (state) => ({ isAuthenticated: state.isAuthenticated }),
+    const ok = await apiPost({ id, data });
+    if (!ok) {
+      console.warn("Redis save failed, data backed up locally");
     }
-  )
-);
+  },
+
+  removeOverride: async (id) => {
+    const { [id]: _, ...rest } = get().overrides;
+    set({ overrides: rest });
+    saveLocal(rest);
+
+    await apiPost({ id, action: "remove" });
+  },
+
+  fetchOverrides: async () => {
+    const data = await apiGet();
+    if (data !== null) {
+      set({ overrides: data, isOnline: true, lastSync: Date.now() });
+      saveLocal(data);
+    } else {
+      const local = loadLocal();
+      if (local && Object.keys(local).length > 0) {
+        set({ overrides: local, isOnline: false });
+        for (const [id, data] of Object.entries(local)) {
+          await apiPost({ id, data });
+        }
+        set({ isOnline: true });
+      } else {
+        set({ isOnline: false });
+      }
+    }
+  },
+
+  login: (password) => {
+    if (password === "grandoliva2024") {
+      set({ isAuthenticated: true });
+      return true;
+    }
+    return false;
+  },
+
+  logout: () => set({ isAuthenticated: false }),
+
+  resetAll: async () => {
+    set({ overrides: {} });
+    saveLocal({});
+    await apiPost({ action: "reset" });
+  },
+}));

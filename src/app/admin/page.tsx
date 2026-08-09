@@ -644,7 +644,7 @@ function AddProductModal({
 }
 
 export default function AdminPage() {
-  const { isAuthenticated, login, logout, overrides, setOverride } = useAdminStore();
+  const { isAuthenticated, login, logout, overrides, setOverride, isOnline, lastSync } = useAdminStore();
   const products = useProducts();
   const [search, setSearch] = useState("");
   const [categoryFilter, setCategoryFilter] = useState<"all" | "Olives" | "Pickles">("all");
@@ -733,6 +733,10 @@ export default function AdminPage() {
             </div>
           </div>
           <div className="flex items-center gap-3">
+            <div className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium border ${isOnline ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/20" : "bg-red-500/10 text-red-400 border-red-500/20"}`}>
+              <span className={`w-2 h-2 rounded-full ${isOnline ? "bg-emerald-400 animate-pulse" : "bg-red-400"}`} />
+              {isOnline ? "Cloud Sync" : "Offline"}
+            </div>
             <button
               onClick={() => setShowAddModal(true)}
               className="px-4 py-2 rounded-xl bg-[#c9a96e] text-[#0a0a0a] text-sm font-bold flex items-center gap-2 hover:bg-[#d4b87a] transition-colors cursor-pointer"
