@@ -324,7 +324,7 @@ function EditModal({
               <p className="text-gray-500 text-sm">{product.id}</p>
             </div>
           </div>
-          <button onClick={onClose} className="w-10 h-10 rounded-xl bg-[#1a1a1a] border border-[#2a2a2a] flex items-center justify-center text-gray-400 hover:text-white transition-all">
+          <button type="button" onClick={(e) => { e.stopPropagation(); onClose(); }} className="w-10 h-10 rounded-xl bg-[#1a1a1a] border border-[#2a2a2a] flex items-center justify-center text-gray-400 hover:text-white hover:border-red-400/50 transition-all cursor-pointer relative z-10">
             <X className="w-5 h-5" />
           </button>
         </div>
@@ -526,7 +526,7 @@ function AddProductModal({
               <p className="text-gray-500 text-sm">منتج جديد</p>
             </div>
           </div>
-          <button onClick={onClose} className="w-10 h-10 rounded-xl bg-[#1a1a1a] border border-[#2a2a2a] flex items-center justify-center text-gray-400 hover:text-white transition-all">
+          <button type="button" onClick={(e) => { e.stopPropagation(); onClose(); }} className="w-10 h-10 rounded-xl bg-[#1a1a1a] border border-[#2a2a2a] flex items-center justify-center text-gray-400 hover:text-white hover:border-red-400/50 transition-all cursor-pointer relative z-10">
             <X className="w-5 h-5" />
           </button>
         </div>
