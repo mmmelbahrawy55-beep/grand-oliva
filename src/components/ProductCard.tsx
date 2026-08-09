@@ -20,7 +20,6 @@ export default function ProductCard({ product, index = 0, onQuickView }: Product
   const addItem = useCartStore((s) => s.addItem);
   const [isLiked, setIsLiked] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
-  const [isTapped, setIsTapped] = useState(false);
 
   const name = locale === "ar" ? product.name_ar : product.name;
   const description = locale === "ar" ? product.description_ar : product.description;
@@ -48,17 +47,11 @@ export default function ProductCard({ product, index = 0, onQuickView }: Product
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ delay: index * 0.06, duration: 0.5 }}
-      whileTap={{ scale: 0.97 }}
-      className="group card-luxury card-tap card-glow shadow-premium touch-feedback rounded-2xl overflow-hidden cursor-pointer"
+      className="group card-luxury card-glow shadow-premium rounded-2xl overflow-hidden cursor-pointer will-change-transform"
       dir={dir}
     >
       {/* Image */}
-      <div
-        className="relative aspect-[4/3] overflow-hidden bg-[#111]"
-        onTouchStart={() => setIsTapped(true)}
-        onTouchEnd={() => { requestAnimationFrame(() => setIsTapped(false)); }}
-      >
-        {/* Loading skeleton */}
+      <div className="relative aspect-[4/3] overflow-hidden bg-[#111]">
         {!imageLoaded && (
           <div className="absolute inset-0 bg-[#1a1a1a] animate-pulse" />
         )}
@@ -66,7 +59,7 @@ export default function ProductCard({ product, index = 0, onQuickView }: Product
           src={product.image}
           alt={name}
           fill
-          className={`object-cover transition-transform duration-200 ${isTapped ? "scale-110" : "scale-100"} group-hover:scale-110 ${imageLoaded ? "opacity-100" : "opacity-0"}`}
+          className={`object-cover card-image-zoom group-active:scale-110 ${imageLoaded ? "opacity-100" : "opacity-0"}`}
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
           onLoad={() => setImageLoaded(true)}
         />
@@ -89,8 +82,8 @@ export default function ProductCard({ product, index = 0, onQuickView }: Product
           <Heart className={`w-4 h-4 ${isLiked ? "fill-[#c9a96e] text-[#c9a96e]" : "text-gray-500"}`} />
         </button>
 
-        {/* Quick actions */}
-        <div className="absolute bottom-4 left-4 right-4 z-10 flex gap-2 opacity-100 sm:opacity-0 translate-y-0 sm:translate-y-4 sm:group-hover:opacity-100 sm:group-hover:translate-y-0 transition-all duration-500">
+        {/* Quick actions — always visible on mobile */}
+        <div className="absolute bottom-4 left-4 right-4 z-10 flex gap-2 opacity-100 sm:opacity-0 translate-y-0 sm:translate-y-4 sm:group-hover:opacity-100 sm:group-hover:translate-y-0 transition-all duration-300">
           <button
             onClick={handleQuickView}
             className="flex-1 bg-[#0a0a0a]/90 text-white py-3 rounded-lg text-xs font-semibold flex items-center justify-center gap-2 border border-[#2a2a2a] hover:border-[#c9a96e]/50 transition-all active:scale-95"
@@ -154,7 +147,7 @@ export default function ProductCard({ product, index = 0, onQuickView }: Product
           <span className={`text-xl sm:text-2xl font-bold text-gold ${product.featured ? "text-shimmer" : ""}`}>${product.price.toFixed(2)}</span>
           <button
             onClick={handleAddToCart}
-            className="w-11 h-11 rounded-xl bg-[#c9a96e]/10 magnetic-btn flex items-center justify-center text-[#c9a96e] hover:bg-[#c9a96e] hover:text-[#0a0a0a] transition-all duration-300 active:scale-95"
+            className="w-11 h-11 rounded-xl bg-[#c9a96e]/10 flex items-center justify-center text-[#c9a96e] hover:bg-[#c9a96e] hover:text-[#0a0a0a] transition-all duration-300 active:scale-95"
           >
             <ShoppingCart className="w-4 h-4" />
           </button>

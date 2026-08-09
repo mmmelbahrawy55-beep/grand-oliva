@@ -162,6 +162,302 @@ body {
 
 /* ===== PROFESSIONAL MOBILE STYLES ===== */
 
+/* ===== CART DRAWER CSS SLIDE ===== */
+@keyframes cartSlideIn {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+@keyframes cartSlideOut {
+  from { transform: translateX(0); }
+  to { transform: translateX(100%); }
+}
+@keyframes cartSlideInRtl {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+@keyframes cartSlideOutRtl {
+  from { transform: translateX(0); }
+  to { transform: translateX(-100%); }
+}
+
+.cart-slide-in {
+  animation: cartSlideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.cart-slide-out {
+  animation: cartSlideOut 0.25s ease-in forwards;
+}
+
+[dir="rtl"] .cart-slide-in {
+  animation-name: cartSlideInRtl;
+}
+[dir="rtl"] .cart-slide-out {
+  animation-name: cartSlideOutRtl;
+}
+
+/* ===== MODAL SCALE ANIMATION ===== */
+@keyframes modalScaleIn {
+  from { opacity: 0; transform: translate(-50%, -50%) scale(0.92); }
+  to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+@keyframes modalScaleOut {
+  from { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  to { opacity: 0; transform: translate(-50%, -50%) scale(0.92); }
+}
+@keyframes modalMobileIn {
+  from { opacity: 0; transform: scale(0.92) translateY(20px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+@keyframes modalMobileOut {
+  from { opacity: 1; transform: scale(1) translateY(0); }
+  to { opacity: 0; transform: scale(0.92) translateY(20px); }
+}
+
+.modal-scale-in {
+  animation: modalMobileIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.modal-scale-out {
+  animation: modalMobileOut 0.2s ease-in forwards;
+}
+
+@media (min-width: 768px) {
+  .modal-scale-in {
+    animation-name: modalScaleIn;
+  }
+  .modal-scale-out {
+    animation-name: modalScaleOut;
+  }
+}
+
+/* ===== HERO CSS-ONLY ANIMATIONS (GPU compositor thread) ===== */
+
+/* Ken Burns — CSS transform only, GPU accelerated */
+@keyframes kenBurns {
+  0% { transform: scale(1) translate(0, 0); }
+  25% { transform: scale(1.08) translate(-1%, -0.5%); }
+  50% { transform: scale(1.04) translate(0.5%, 0.2%); }
+  75% { transform: scale(1.1) translate(-0.5%, -0.8%); }
+  100% { transform: scale(1) translate(0, 0); }
+}
+.hero-ken-burns {
+  position: absolute;
+  inset: -5%;
+  width: 110%;
+  height: 110%;
+  animation: kenBurns 25s ease-in-out infinite;
+  will-change: transform;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+/* Floating gold orbs — CSS keyframes */
+@keyframes orbFloat1 {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.3; }
+  25% { transform: translate(15px, -30px) scale(1.2); opacity: 0.7; }
+  50% { transform: translate(-10px, 0) scale(0.9); opacity: 0.4; }
+  75% { transform: translate(5px, 20px) scale(1.1); opacity: 0.8; }
+}
+@keyframes orbFloat2 {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.4; }
+  33% { transform: translate(-20px, -15px) scale(1.15); opacity: 0.7; }
+  66% { transform: translate(10px, 10px) scale(0.85); opacity: 0.5; }
+}
+@keyframes orbFloat3 {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.3; }
+  50% { transform: translate(10px, -25px) scale(1.1); opacity: 0.6; }
+}
+.hero-orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(201,169,110,0.15) 0%, transparent 70%);
+  filter: blur(1px);
+  will-change: transform, opacity;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+.hero-orb-1 { left: 15%; top: 20%; width: 200px; height: 200px; animation: orbFloat1 8s ease-in-out infinite; }
+.hero-orb-2 { left: 70%; top: 60%; width: 150px; height: 150px; animation: orbFloat2 10s ease-in-out infinite 2s; }
+.hero-orb-3 { left: 85%; top: 15%; width: 120px; height: 120px; animation: orbFloat3 12s ease-in-out infinite 4s; }
+
+/* Gold particles — CSS only */
+@keyframes particleFloat {
+  0% { transform: translateY(0) translateX(0) scale(0.5); opacity: 0; }
+  20% { opacity: 0.8; }
+  40% { transform: translateY(-20px) translateX(5px) scale(1); opacity: 0.4; }
+  60% { opacity: 0.9; }
+  80% { transform: translateY(-40px) translateX(-5px) scale(0.8); opacity: 0.2; }
+  100% { transform: translateY(0) translateX(0) scale(0.5); opacity: 0; }
+}
+.hero-particle {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(201,169,110,0.6);
+  pointer-events: none;
+  will-change: transform, opacity;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+.hero-particle-1 { left: 15%; top: 30%; width: 4px; height: 4px; animation: particleFloat 6s ease-in-out infinite 0s; }
+.hero-particle-2 { left: 40%; top: 50%; width: 5px; height: 5px; animation: particleFloat 7s ease-in-out infinite 1s; }
+.hero-particle-3 { left: 65%; top: 25%; width: 3px; height: 3px; animation: particleFloat 8s ease-in-out infinite 2s; }
+.hero-particle-4 { left: 80%; top: 60%; width: 4px; height: 4px; animation: particleFloat 6.5s ease-in-out infinite 0.5s; }
+.hero-particle-5 { left: 25%; top: 70%; width: 5px; height: 5px; animation: particleFloat 7.5s ease-in-out infinite 1.5s; }
+.hero-particle-6 { left: 55%; top: 40%; width: 3px; height: 3px; animation: particleFloat 9s ease-in-out infinite 3s; }
+
+/* Gold lines sweep */
+@keyframes lineSweep1 {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+@keyframes lineSweep2 {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+.hero-line {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  will-change: transform;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+.hero-line-1 {
+  top: 25%;
+  background: linear-gradient(90deg, transparent, rgba(201,169,110,0.3), transparent);
+  animation: lineSweep1 8s linear infinite;
+}
+.hero-line-2 {
+  top: 66%;
+  background: linear-gradient(90deg, transparent, rgba(201,169,110,0.2), transparent);
+  animation: lineSweep2 12s linear infinite;
+}
+
+/* Glow ring rotation */
+@keyframes glowRingRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.hero-glow-ring {
+  background: linear-gradient(135deg, rgba(201,169,110,0.2), transparent, rgba(201,169,110,0.1));
+  animation: glowRingRotate 20s linear infinite;
+  will-change: transform;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+/* Dot pulse */
+@keyframes dotPulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.5); opacity: 0.5; }
+}
+.hero-dot-pulse {
+  animation: dotPulse 2s ease-in-out infinite;
+}
+
+/* Gold line width expand */
+@keyframes goldLineWidth {
+  from { width: 0; }
+  to { width: 48px; }
+}
+.hero-gold-line {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #c9a96e, transparent);
+  animation: goldLineWidth 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.55s forwards;
+}
+
+/* Mobile fade in animations — CSS only, no JS */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.hero-fade-in-up {
+  opacity: 0;
+  animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.hero-fade-in {
+  opacity: 0;
+  animation: fadeIn 0.5s ease forwards;
+}
+.hero-scale-in {
+  opacity: 0;
+  animation: scaleIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.hero-delay-1 { animation-delay: 0.2s; }
+.hero-delay-2 { animation-delay: 0.3s; }
+.hero-delay-3 { animation-delay: 0.4s; }
+.hero-delay-4 { animation-delay: 0.6s; }
+.hero-delay-5 { animation-delay: 0.7s; }
+.hero-delay-6 { animation-delay: 0.8s; }
+.hero-delay-7 { animation-delay: 1.0s; }
+
+/* ===== END HERO CSS ANIMATIONS ===== */
+
+/* Nav badge pop animation */
+@keyframes navBadgePop {
+  0% { transform: scale(0); }
+  60% { transform: scale(1.3); }
+  100% { transform: scale(1); }
+}
+.nav-badge-pop {
+  animation: navBadgePop 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Nav scroll transition */
+.nav-scrolled {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* ===== ANDROID SMOOTH SCROLL & GPU COMPOSITING ===== */
+
+/* Force GPU layer promotion for animated elements */
+@media (max-width: 1024px) {
+  .will-change-transform {
+    will-change: transform;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+  }
+}
+
+/* Smooth scroll containers with momentum */
+.scroll-touch {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+}
+
+/* Card hover — CSS only, GPU accelerated on touch */
+@media (hover: none) and (pointer: coarse) {
+  .card-luxury:active {
+    border-color: rgba(201, 169, 110, 0.3);
+    background: rgba(15, 15, 15, 0.4);
+    transform: scale(0.98);
+    transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+  }
+}
+
+/* Product card image zoom — CSS transition only */
+.card-image-zoom {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+.card-image-zoom:active {
+  transform: scale(1.05);
+}
+
 /* Smooth momentum scroll for iOS */
 @supports (-webkit-overflow-scrolling: touch) {
   .scroll-touch {
@@ -237,15 +533,6 @@ body {
   .keyboard-open {
     min-height: 100dvh;
   }
-}
-
-/* Mobile-specific safe area padding */
-.safe-area-bottom {
-  padding-bottom: env(safe-area-inset-bottom, 0px);
-}
-
-.safe-area-top {
-  padding-top: env(safe-area-inset-top, 0px);
 }
 
 /* Smooth page transitions */

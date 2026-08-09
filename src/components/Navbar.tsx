@@ -5,7 +5,6 @@ import Link from "next/link";
 import { useCartStore, useLocaleStore } from "@/lib/store";
 import { t } from "@/lib/i18n";
 import { ShoppingBag, Menu, X, Globe } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
 import CartDrawer from "./CartDrawer";
 
 export default function Navbar() {
@@ -18,7 +17,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -62,25 +61,21 @@ export default function Navbar() {
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        className={`fixed top-0 left-0 right-0 z-50 will-change-transform ${
           scrolled
-            ? "bg-[#0a0a0a]/95 border-b border-[#1a1a1a]"
+            ? "bg-[#0a0a0a]/95 border-b border-[#1a1a1a] nav-scrolled"
             : "bg-transparent"
         }`}
         dir={dir}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-[env(safe-area-inset-top)]">
           <div className="flex items-center justify-between h-16 sm:h-20 lg:h-24">
-            {/* Logo */}
             <Link href="/" className="flex items-center gap-2 sm:gap-4 group">
               <div className="w-12 h-12 border border-[#c9a96e]/40 rounded-xl flex items-center justify-center group-hover:border-[#c9a96e] transition-colors duration-500">
                 <span className="text-[#c9a96e] font-bold text-xl" style={{ fontFamily: "'Playfair Display', serif" }}>G</span>
               </div>
               <div className="hidden sm:block">
-                <span
-                  className="text-lg font-bold tracking-wider text-white"
-                  style={{ fontFamily: "'Playfair Display', serif" }}
-                >
+                <span className="text-lg font-bold tracking-wider text-white" style={{ fontFamily: "'Playfair Display', serif" }}>
                   GRAND OLIVA
                 </span>
                 <span className="block text-[10px] text-[#c9a96e]/60 tracking-[0.3em] uppercase">
@@ -89,7 +84,6 @@ export default function Navbar() {
               </div>
             </Link>
 
-            {/* Desktop nav */}
             <div className="hidden lg:flex items-center gap-1">
               {(["home", "products", "about", "contact"] as const).map((item) => (
                 <Link
@@ -102,7 +96,6 @@ export default function Navbar() {
               ))}
             </div>
 
-            {/* Actions */}
             <div className="flex items-center gap-3">
               <button
                 onClick={() => setLocale(locale === "ar" ? "en" : "ar")}
@@ -117,13 +110,9 @@ export default function Navbar() {
               >
                 <ShoppingBag className="w-5 h-5" />
                 {itemCount > 0 && (
-                  <motion.span
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    className="absolute -top-1 -right-1 w-5 h-5 bg-[#c9a96e] text-[#0a0a0a] text-[10px] rounded-full flex items-center justify-center font-bold"
-                  >
+                  <span className="absolute -top-1 -right-1 w-5 h-5 bg-[#c9a96e] text-[#0a0a0a] text-[10px] rounded-full flex items-center justify-center font-bold nav-badge-pop">
                     {itemCount}
-                  </motion.span>
+                  </span>
                 )}
               </button>
 
@@ -137,41 +126,25 @@ export default function Navbar() {
           </div>
         </div>
 
-        <AnimatePresence>
-          {isOpen && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="lg:hidden fixed inset-0 bg-black/60 z-40"
-              onClick={() => setIsOpen(false)}
-            />
-          )}
-          {isOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              className="lg:hidden bg-[#0a0a0a] border-t border-[#2a2a2a]"
-            >
-              <div className="px-4 py-6 space-y-1">
-                {(["home", "products", "about", "contact"] as const).map((item) => (
-                  <Link
-                    key={item}
-                    href={item === "home" ? "/" : `/${item}`}
-                    onClick={() => setIsOpen(false)}
-                    className="block px-4 py-3.5 text-gray-400 hover:text-[#c9a96e] hover:bg-[#c9a96e]/[0.05] font-medium tracking-wider uppercase text-base transition-colors rounded-xl active:scale-[0.98]"
-                  >
-                    {t(locale, `nav.${item}`)}
-                  </Link>
-                ))}
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        {/* Mobile menu — CSS transitions, no framer-motion */}
+        <div className={`lg:hidden fixed inset-0 bg-black/60 z-40 transition-opacity duration-300 ${isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`} onClick={() => setIsOpen(false)} />
+        <div className={`lg:hidden bg-[#0a0a0a] border-t border-[#2a2a2a] overflow-hidden transition-all duration-300 ease-out ${isOpen ? "max-h-[50vh] opacity-100" : "max-h-0 opacity-0"}`}>
+          <div className="px-4 py-6 space-y-1">
+            {(["home", "products", "about", "contact"] as const).map((item, i) => (
+              <Link
+                key={item}
+                href={item === "home" ? "/" : `/${item}`}
+                onClick={() => setIsOpen(false)}
+                className="block px-4 py-3.5 text-gray-400 hover:text-[#c9a96e] hover:bg-[#c9a96e]/[0.05] font-medium tracking-wider uppercase text-base transition-colors rounded-xl active:scale-[0.98]"
+                style={{ transitionDelay: isOpen ? `${i * 50}ms` : "0ms" }}
+              >
+                {t(locale, `nav.${item}`)}
+              </Link>
+            ))}
+          </div>
+        </div>
       </nav>
 
-      {/* Cart Drawer */}
       <CartDrawer isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
     </>
   );
