@@ -1,8 +1,10 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useLocaleStore, useCartStore } from "@/lib/store";
 import { t } from "@/lib/i18n";
+import { CartPageSkeleton } from "@/components/Skeleton";
 import { Minus, Plus, Trash2, ShoppingBag, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -14,6 +16,14 @@ export default function CartPage() {
   const { items, removeItem, updateQuantity, clearCart } = store;
   const total = store.getTotal();
   const itemCount = store.getItemCount();
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const t = setTimeout(() => setIsLoading(false), 300);
+    return () => clearTimeout(t);
+  }, []);
+
+  if (isLoading) return <CartPageSkeleton />;
 
   return (
     <section className="pt-28 pb-20 bg-[#0a0a0a] min-h-screen" dir={dir}>

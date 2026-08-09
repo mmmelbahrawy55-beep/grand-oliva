@@ -52,10 +52,11 @@ export default function ContactPage() {
               </h2>
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div>
-                  <label className="block text-sm font-medium text-gray-400 mb-2">
+                  <label htmlFor="contact-name" className="block text-sm font-medium text-gray-400 mb-2">
                     {locale === "ar" ? "الاسم" : "Name"}
                   </label>
                   <input
+                    id="contact-name"
                     type="text"
                     required
                     value={formData.name}
@@ -65,10 +66,11 @@ export default function ContactPage() {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-400 mb-2">
+                  <label htmlFor="contact-email" className="block text-sm font-medium text-gray-400 mb-2">
                     {locale === "ar" ? "البريد الإلكتروني" : "Email"}
                   </label>
                   <input
+                    id="contact-email"
                     type="email"
                     required
                     value={formData.email}
@@ -78,10 +80,11 @@ export default function ContactPage() {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-400 mb-2">
+                  <label htmlFor="contact-subject" className="block text-sm font-medium text-gray-400 mb-2">
                     {locale === "ar" ? "الموضوع" : "Subject"}
                   </label>
                   <input
+                    id="contact-subject"
                     type="text"
                     required
                     value={formData.subject}
@@ -91,10 +94,11 @@ export default function ContactPage() {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-400 mb-2">
+                  <label htmlFor="contact-message" className="block text-sm font-medium text-gray-400 mb-2">
                     {locale === "ar" ? "الرسالة" : "Message"}
                   </label>
                   <textarea
+                    id="contact-message"
                     required
                     rows={5}
                     value={formData.message}

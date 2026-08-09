@@ -78,8 +78,9 @@ export default function Footer() {
                 type="email"
                 placeholder={locale === "ar" ? "بريدك الإلكتروني" : "Your email"}
                 className="flex-1 bg-[#111] border border-[#2a2a2a] rounded-lg px-4 py-3 text-sm text-white placeholder:text-gray-600 focus:border-[#c9a96e]/50 outline-none transition-colors"
+                aria-label={locale === "ar" ? "البريد الإلكتروني للنشرة" : "Newsletter email"}
               />
-              <button className="btn-gold px-6 py-3 rounded-lg text-xs font-bold tracking-wider uppercase">
+              <button className="btn-gold px-6 py-3 rounded-lg text-xs font-bold tracking-wider uppercase" aria-label={locale === "ar" ? "اشترك في النشرة" : "Subscribe to newsletter"}>
                 {locale === "ar" ? "اشترك" : "Join"}
               </button>
             </div>
@@ -93,10 +94,10 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} Grand Oliva. {t(locale, "footer.rights")}
           </p>
           <div className="flex gap-2">
-            <a href="https://facebook.com/grandoliva" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#c9a96e] text-xs transition-colors py-2.5 px-3 rounded-lg hover:bg-[#c9a96e]/[0.05]">Facebook</a>
-            <a href="https://instagram.com/grandoliva" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#c9a96e] text-xs transition-colors py-2.5 px-3 rounded-lg hover:bg-[#c9a96e]/[0.05]">Instagram</a>
-            <a href="https://twitter.com/grandoliva" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#c9a96e] text-xs transition-colors py-2.5 px-3 rounded-lg hover:bg-[#c9a96e]/[0.05]">Twitter</a>
-            <a href="https://youtube.com/grandoliva" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#c9a96e] text-xs transition-colors py-2.5 px-3 rounded-lg hover:bg-[#c9a96e]/[0.05]">YouTube</a>
+            <a href="https://facebook.com/grandoliva" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#c9a96e] text-xs transition-colors py-2.5 px-3 rounded-lg hover:bg-[#c9a96e]/[0.05]" aria-label="Follow us on Facebook">Facebook</a>
+            <a href="https://instagram.com/grandoliva" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#c9a96e] text-xs transition-colors py-2.5 px-3 rounded-lg hover:bg-[#c9a96e]/[0.05]" aria-label="Follow us on Instagram">Instagram</a>
+            <a href="https://twitter.com/grandoliva" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#c9a96e] text-xs transition-colors py-2.5 px-3 rounded-lg hover:bg-[#c9a96e]/[0.05]" aria-label="Follow us on Twitter">Twitter</a>
+            <a href="https://youtube.com/grandoliva" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#c9a96e] text-xs transition-colors py-2.5 px-3 rounded-lg hover:bg-[#c9a96e]/[0.05]" aria-label="Subscribe on YouTube">YouTube</a>
           </div>
         </div>
 

@@ -49,6 +49,7 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
           <button
             onClick={onClose}
             className="w-11 h-11 rounded-xl bg-[#1a1a1a] border border-[#2a2a2a] flex items-center justify-center text-gray-500 hover:text-white hover:border-[#c9a96e]/30 transition-all active:scale-95"
+            aria-label="Close cart"
           >
             <X className="w-5 h-5" />
           </button>
@@ -95,15 +96,17 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                     <button
                       onClick={() => updateQuantity(item.product.id, item.quantity - 1)}
                       className="w-9 h-9 rounded-lg bg-[#222] border border-[#2a2a2a] flex items-center justify-center text-gray-400 hover:text-white hover:border-[#c9a96e]/30 transition-all active:scale-90"
+                      aria-label={`Decrease quantity of ${item.product.name}`}
                     >
                       <Minus className="w-3.5 h-3.5" />
                     </button>
-                    <span className="text-white text-sm font-bold w-8 text-center">
+                    <span className="text-white text-sm font-bold w-8 text-center" aria-label={`Quantity: ${item.quantity}`}>
                       {item.quantity}
                     </span>
                     <button
                       onClick={() => updateQuantity(item.product.id, item.quantity + 1)}
                       className="w-9 h-9 rounded-lg bg-[#222] border border-[#2a2a2a] flex items-center justify-center text-gray-400 hover:text-white hover:border-[#c9a96e]/30 transition-all active:scale-90"
+                      aria-label={`Increase quantity of ${item.product.name}`}
                     >
                       <Plus className="w-3.5 h-3.5" />
                     </button>
@@ -112,6 +115,7 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                 <button
                   onClick={() => removeItem(item.product.id)}
                   className="w-9 h-9 rounded-lg flex items-center justify-center text-gray-600 hover:text-red-500 hover:bg-red-500/10 transition-colors active:scale-90"
+                  aria-label={`Remove ${item.product.name} from cart`}
                 >
                   <Trash2 className="w-4 h-4" />
                 </button>

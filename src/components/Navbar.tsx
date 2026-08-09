@@ -67,6 +67,7 @@ export default function Navbar() {
             : "bg-transparent"
         }`}
         dir={dir}
+        aria-label="Main navigation"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-[env(safe-area-inset-top)]">
           <div className="flex items-center justify-between h-16 sm:h-20 lg:h-24">
@@ -100,6 +101,7 @@ export default function Navbar() {
               <button
                 onClick={() => setLocale(locale === "ar" ? "en" : "ar")}
                 className="w-11 h-11 flex items-center justify-center text-gray-500 hover:text-[#c9a96e] transition-colors duration-300 border border-transparent hover:border-[#c9a96e]/20 rounded-xl active:scale-95"
+                aria-label={locale === "ar" ? "Switch to English" : "التبديل إلى العربية"}
               >
                 <Globe className="w-5 h-5" />
               </button>
@@ -107,6 +109,7 @@ export default function Navbar() {
               <button
                 onClick={() => setIsCartOpen(true)}
                 className="relative w-11 h-11 flex items-center justify-center text-gray-500 hover:text-[#c9a96e] transition-colors duration-300 border border-transparent hover:border-[#c9a96e]/20 rounded-xl active:scale-95"
+                aria-label={`${locale === "ar" ? "سلة المشتريات" : "Shopping cart"} — ${itemCount} ${locale === "ar" ? "عناصر" : "items"}`}
               >
                 <ShoppingBag className="w-5 h-5" />
                 {itemCount > 0 && (
@@ -119,6 +122,8 @@ export default function Navbar() {
               <button
                 onClick={() => setIsOpen(!isOpen)}
                 className="lg:hidden w-11 h-11 flex items-center justify-center text-gray-500 hover:text-[#c9a96e] transition-colors active:scale-95"
+                aria-label={isOpen ? "Close menu" : "Open menu"}
+                aria-expanded={isOpen}
               >
                 {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
               </button>

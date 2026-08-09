@@ -40,10 +40,11 @@ export const metadata: Metadata = {
     description: "أجود أنواع الزيتون والمخللات الطبيعية المصنوعة يدوياً بأجود المكونات من البحر الأبيض المتوسط",
     images: [
       {
-        url: "/product-images/product-14.jpg",
+        url: "/og-image.svg",
         width: 1200,
         height: 630,
-        alt: "Grand Oliva - Premium Olives & Pickles",
+        alt: "Grand Oliva - Premium Olives & Pickles | أجود أنواع الزيتون والمخللات",
+        type: "image/svg+xml",
       },
     ],
   },
@@ -51,7 +52,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Grand Oliva | Premium Olives & Pickles",
     description: "Premium natural olives and pickles handcrafted from the finest Mediterranean ingredients",
-    images: ["/product-images/product-14.jpg"],
+    images: ["/og-image.svg"],
   },
   robots: {
     index: true,
@@ -74,8 +75,15 @@ export default function RootLayout({
         <meta name="format-detection" content="telephone=yes" />
         <link rel="preconnect" href="https://images.pexels.com" />
         <link rel="dns-prefetch" href="https://images.pexels.com" />
+        <link rel="manifest" href="/manifest.json" />
+        <link rel="apple-touch-icon" href="/icons/icon-192.svg" />
       </head>
       <body className="min-h-full flex flex-col antialiased">
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.serviceWorker.register('/sw.js').catch(()=>{})})}`,
+          }}
+        />
         <ClientLayout>{children}</ClientLayout>
       </body>
     </html>

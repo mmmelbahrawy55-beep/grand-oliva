@@ -6,6 +6,7 @@ import { useLocaleStore } from "@/lib/store";
 import ProductCard from "@/components/ProductCard";
 import QuickView from "@/components/QuickView";
 import MobileFilterSheet from "@/components/MobileFilterSheet";
+import { ProductsPageSkeleton } from "@/components/Skeleton";
 import { useProducts } from "@/lib/admin-helpers";
 import { Search, SlidersHorizontal, X, Grid, List, Filter } from "lucide-react";
 import type { Product } from "@/lib/types";
@@ -16,6 +17,7 @@ export default function ProductsPage() {
   const { locale } = useLocaleStore();
   const dir = useLocaleStore((s) => s.dir());
   const products = useProducts();
+  const [isLoading, setIsLoading] = useState(true);
   const [activeCategory, setActiveCategory] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [sortBy, setSortBy] = useState("featured");
@@ -23,6 +25,13 @@ export default function ProductsPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const [filterOpen, setFilterOpen] = useState(false);
   const [quickViewProduct, setQuickViewProduct] = useState<Product | null>(null);
+
+  useEffect(() => {
+    if (products.length > 0) {
+      const t = setTimeout(() => setIsLoading(false), 400);
+      return () => clearTimeout(t);
+    }
+  }, [products]);
 
   const sellableProducts = useMemo(() => products.filter((p) => p.price > 0), [products]);
   const categoryCounts = useMemo(() => ({
@@ -77,6 +86,8 @@ export default function ProductsPage() {
 
   const oliveProducts = useMemo(() => sellableProducts.filter((p) => p.category === "Olives"), [sellableProducts]);
 
+  if (isLoading) return <ProductsPageSkeleton />;
+
   return (
     <section className="pt-28 pb-20 bg-[#0a0a0a] min-h-screen" dir={dir}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -110,11 +121,13 @@ export default function ProductsPage() {
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder={locale === "ar" ? "ابحث عن منتج..." : "Search products..."}
               className="w-full bg-[#111] border border-[#2a2a2a] text-white placeholder-gray-500 rounded-2xl focus:border-[#c9a96e] focus:ring-2 focus:ring-[#c9a96e]/20 outline-none transition-all py-3 px-10 sm:py-4 sm:px-12 text-base sm:text-lg"
+              aria-label={locale === "ar" ? "بحث عن منتجات" : "Search products"}
             />
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery("")}
                 className={`absolute ${dir === "rtl" ? "left-4" : "right-4"} top-1/2 -translate-y-1/2 text-gray-500 hover:text-[#c9a96e]`}
+                aria-label="Clear search"
               >
                 <X className="w-5 h-5" />
               </button>
