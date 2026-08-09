@@ -204,7 +204,30 @@ function EditModal({
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <Field label="Stock" value={form.stock} onChange={(v) => setForm({ ...form, stock: v })} type="number" icon={<Package className="w-4 h-4" />} />
-                  <Field label="Category" value={form.category} onChange={(v) => setForm({ ...form, category: v })} icon={<Tag className="w-4 h-4" />} />
+                  <div>
+                    <label className="text-gray-400 text-xs font-medium tracking-wider uppercase mb-2 block">Category</label>
+                    <div className="relative">
+                      <div className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-600">
+                        <Tag className="w-4 h-4" />
+                      </div>
+                      <select
+                        value={form.category}
+                        onChange={(e) => {
+                          const val = e.target.value;
+                          setForm({
+                            ...form,
+                            category: val,
+                            category_ar: val === "Olives" ? "زيتون" : "مخللات",
+                          });
+                        }}
+                        className="w-full bg-[#1a1a1a] border border-[#2a2a2a] text-white rounded-xl pl-10 pr-4 py-3 text-sm focus:border-[#c9a96e]/50 outline-none transition-all appearance-none cursor-pointer"
+                      >
+                        <option value="Olives">🫒 Olives (زيتون)</option>
+                        <option value="Pickles">🥒 Pickles (مخللات)</option>
+                      </select>
+                      <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500 pointer-events-none" />
+                    </div>
+                  </div>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <Field label="Category (AR)" value={form.category_ar} onChange={(v) => setForm({ ...form, category_ar: v })} dir="rtl" />
