@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAdminStore } from "@/lib/admin-store";
 import { useProducts } from "@/lib/admin-helpers";
@@ -8,7 +8,7 @@ import type { Product } from "@/lib/types";
 import Image from "next/image";
 import {
   Search, X, Save, RotateCcw, LogOut, Package,
-  Edit3, Eye, ChevronDown, Check, Star, Plus,
+  Edit3, ChevronDown, Check, Star, Plus,
   DollarSign, Tag, Globe, Weight, Image as ImageIcon
 } from "lucide-react";
 
@@ -125,7 +125,7 @@ function SuccessToast({ message, onClose }: { message: string; onClose: () => vo
       initial={{ opacity: 0, y: -20, scale: 0.9 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       exit={{ opacity: 0, y: -20, scale: 0.9 }}
-      className="fixed top-4 right-4 z-[200] bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 px-5 py-3 rounded-xl flex items-center gap-3 backdrop-blur-sm"
+      className="fixed top-24 right-4 z-[200] bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 px-5 py-3 rounded-xl flex items-center gap-3 backdrop-blur-sm cursor-pointer"
       onClick={onClose}
     >
       <div className="w-8 h-8 rounded-full bg-emerald-500/20 flex items-center justify-center flex-shrink-0">
@@ -147,12 +147,10 @@ function SuccessToast({ message, onClose }: { message: string; onClose: () => vo
 
 function EditModal({
   product,
-  isOpen,
   onClose,
   onSave,
 }: {
   product: Product;
-  isOpen: boolean;
   onClose: () => void;
   onSave: (id: string, data: Partial<Product>) => void;
 }) {
@@ -202,196 +200,190 @@ function EditModal({
     onClose();
   };
 
-  if (!isOpen) return null;
-
   return (
-    <AnimatePresence>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 bg-black/80 z-[100] flex items-start justify-center pt-10 px-4 overflow-y-auto pb-10"
+      onClick={onClose}
+    >
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        className="fixed inset-0 bg-black/80 z-[100] flex items-start justify-center pt-10 px-4 overflow-y-auto pb-10"
-        onClick={onClose}
+        initial={{ opacity: 0, y: 20, scale: 0.95 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        exit={{ opacity: 0, y: 20, scale: 0.95 }}
+        className="w-full max-w-3xl bg-[#111] rounded-2xl border border-[#2a2a2a] overflow-hidden"
+        onClick={(e) => e.stopPropagation()}
       >
-        <motion.div
-          initial={{ opacity: 0, y: 20, scale: 0.95 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          exit={{ opacity: 0, y: 20, scale: 0.95 }}
-          className="w-full max-w-3xl bg-[#111] rounded-2xl border border-[#2a2a2a] overflow-hidden"
-          onClick={(e) => e.stopPropagation()}
-        >
-          {/* Header */}
-          <div className="flex items-center justify-between p-6 border-b border-[#2a2a2a]">
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-xl overflow-hidden relative border border-[#2a2a2a]">
-                <Image src={form.image} alt={form.name} fill className="object-cover" sizes="48px" />
-              </div>
-              <div>
-                <h2 className="text-lg font-bold text-white">Edit Product</h2>
-                <p className="text-gray-500 text-sm">{product.id}</p>
-              </div>
+        {/* Header */}
+        <div className="flex items-center justify-between p-6 border-b border-[#2a2a2a]">
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 rounded-xl overflow-hidden relative border border-[#2a2a2a]">
+              <Image src={form.image} alt={form.name} fill className="object-cover" sizes="48px" />
             </div>
-            <button onClick={onClose} className="w-10 h-10 rounded-xl bg-[#1a1a1a] border border-[#2a2a2a] flex items-center justify-center text-gray-400 hover:text-white transition-all">
-              <X className="w-5 h-5" />
+            <div>
+              <h2 className="text-lg font-bold text-white">Edit Product</h2>
+              <p className="text-gray-500 text-sm">{product.id}</p>
+            </div>
+          </div>
+          <button onClick={onClose} className="w-10 h-10 rounded-xl bg-[#1a1a1a] border border-[#2a2a2a] flex items-center justify-center text-gray-400 hover:text-white transition-all">
+            <X className="w-5 h-5" />
+          </button>
+        </div>
+
+        {/* Tabs */}
+        <div className="flex border-b border-[#2a2a2a]">
+          {[
+            { key: "en", label: "English" },
+            { key: "ar", label: "العربية" },
+            { key: "details", label: "Details" },
+          ].map((tab) => (
+            <button
+              key={tab.key}
+              onClick={() => setActiveTab(tab.key as typeof activeTab)}
+              className={`flex-1 py-3 text-sm font-medium transition-all ${
+                activeTab === tab.key
+                  ? "text-[#c9a96e] border-b-2 border-[#c9a96e]"
+                  : "text-gray-500 hover:text-gray-300"
+              }`}
+            >
+              {tab.label}
             </button>
-          </div>
+          ))}
+        </div>
 
-          {/* Tabs */}
-          <div className="flex border-b border-[#2a2a2a]">
-            {[
-              { key: "en", label: "English" },
-              { key: "ar", label: "العربية" },
-              { key: "details", label: "Details" },
-            ].map((tab) => (
-              <button
-                key={tab.key}
-                onClick={() => setActiveTab(tab.key as typeof activeTab)}
-                className={`flex-1 py-3 text-sm font-medium transition-all ${
-                  activeTab === tab.key
-                    ? "text-[#c9a96e] border-b-2 border-[#c9a96e]"
-                    : "text-gray-500 hover:text-gray-300"
-                }`}
-              >
-                {tab.label}
-              </button>
-            ))}
-          </div>
+        {/* Content */}
+        <div className="p-6 space-y-5">
+          {activeTab === "en" && (
+            <>
+              <Field label="Product Name (EN)" value={form.name} onChange={(v) => setForm({ ...form, name: v })} />
+              <Field label="Description (EN)" value={form.description} onChange={(v) => setForm({ ...form, description: v })} textarea />
+              <Field label="Badge (EN)" value={form.badge} onChange={(v) => setForm({ ...form, badge: v })} placeholder="e.g. Premium, Best Seller, Spicy" />
+            </>
+          )}
 
-          {/* Content */}
-          <div className="p-6 space-y-5">
-            {activeTab === "en" && (
-              <>
-                <Field label="Product Name (EN)" value={form.name} onChange={(v) => setForm({ ...form, name: v })} />
-                <Field label="Description (EN)" value={form.description} onChange={(v) => setForm({ ...form, description: v })} textarea />
-                <Field label="Badge (EN)" value={form.badge} onChange={(v) => setForm({ ...form, badge: v })} placeholder="e.g. Premium, Best Seller, Spicy" />
-              </>
-            )}
+          {activeTab === "ar" && (
+            <>
+              <Field label="اسم المنتج (AR)" value={form.name_ar} onChange={(v) => setForm({ ...form, name_ar: v })} dir="rtl" />
+              <Field label="الوصف (AR)" value={form.description_ar} onChange={(v) => setForm({ ...form, description_ar: v })} textarea dir="rtl" />
+              <Field label="البادج (AR)" value={form.badge_ar} onChange={(v) => setForm({ ...form, badge_ar: v })} dir="rtl" placeholder="مثلاً فاخر، الأكثر مبيعاً، حار" />
+            </>
+          )}
 
-            {activeTab === "ar" && (
-              <>
-                <Field label="اسم المنتج (AR)" value={form.name_ar} onChange={(v) => setForm({ ...form, name_ar: v })} dir="rtl" />
-                <Field label="الوصف (AR)" value={form.description_ar} onChange={(v) => setForm({ ...form, description_ar: v })} textarea dir="rtl" />
-                <Field label="البادج (AR)" value={form.badge_ar} onChange={(v) => setForm({ ...form, badge_ar: v })} dir="rtl" placeholder="مثلاً فاخر، الأكثر مبيعاً، حار" />
-              </>
-            )}
-
-            {activeTab === "details" && (
-              <>
-                <div className="grid grid-cols-2 gap-4">
-                  <Field label="Price ($)" value={form.price} onChange={(v) => setForm({ ...form, price: v })} type="number" icon={<DollarSign className="w-4 h-4" />} />
-                  <Field label="Rating" value={form.rating} onChange={(v) => setForm({ ...form, rating: v })} type="number" icon={<Star className="w-4 h-4" />} />
-                </div>
-                <div className="grid grid-cols-2 gap-4">
-                  <Field label="Stock" value={form.stock} onChange={(v) => setForm({ ...form, stock: v })} type="number" icon={<Package className="w-4 h-4" />} />
-                  <div>
-                    <label className="text-gray-400 text-xs font-medium tracking-wider uppercase mb-2 block">Category</label>
-                    <div className="relative">
-                      <div className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-600">
-                        <Tag className="w-4 h-4" />
-                      </div>
-                      <select
-                        value={form.category}
-                        onChange={(e) => {
-                          const val = e.target.value;
-                          setForm({
-                            ...form,
-                            category: val,
-                            category_ar: val === "Olives" ? "زيتون" : "مخللات",
-                          });
-                        }}
-                        className="w-full bg-[#1a1a1a] border border-[#2a2a2a] text-white rounded-xl pl-10 pr-4 py-3 text-sm focus:border-[#c9a96e]/50 outline-none transition-all appearance-none cursor-pointer"
-                      >
-                        <option value="Olives">🫒 Olives (زيتون)</option>
-                        <option value="Pickles">🥒 Pickles (مخللات)</option>
-                      </select>
-                      <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500 pointer-events-none" />
-                    </div>
-                  </div>
-                </div>
-                <div className="grid grid-cols-2 gap-4">
-                  <Field label="Category (AR)" value={form.category_ar} onChange={(v) => setForm({ ...form, category_ar: v })} dir="rtl" />
-                  <Field label="Origin" value={form.origin} onChange={(v) => setForm({ ...form, origin: v })} icon={<Globe className="w-4 h-4" />} />
-                </div>
-                <div className="grid grid-cols-2 gap-4">
-                  <Field label="Origin (AR)" value={form.origin_ar} onChange={(v) => setForm({ ...form, origin_ar: v })} dir="rtl" />
-                  <Field label="Weight" value={form.weight} onChange={(v) => setForm({ ...form, weight: v })} icon={<Weight className="w-4 h-4" />} />
-                </div>
-                <Field label="Weight (AR)" value={form.weight_ar} onChange={(v) => setForm({ ...form, weight_ar: v })} dir="rtl" />
-
-                {/* Image Field with Live Preview */}
+          {activeTab === "details" && (
+            <>
+              <div className="grid grid-cols-2 gap-4">
+                <Field label="Price ($)" value={form.price} onChange={(v) => setForm({ ...form, price: v })} type="number" icon={<DollarSign className="w-4 h-4" />} />
+                <Field label="Rating" value={form.rating} onChange={(v) => setForm({ ...form, rating: v })} type="number" icon={<Star className="w-4 h-4" />} />
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <Field label="Stock" value={form.stock} onChange={(v) => setForm({ ...form, stock: v })} type="number" icon={<Package className="w-4 h-4" />} />
                 <div>
-                  <Field label="Image Path" value={form.image} onChange={(v) => { setForm({ ...form, image: v }); setImageError(false); }} icon={<ImageIcon className="w-4 h-4" />} />
-                  <div className="mt-3 flex gap-4">
-                    <div className="w-32 h-32 rounded-xl overflow-hidden relative border border-[#2a2a2a] bg-[#1a1a1a] flex-shrink-0">
-                      {!imageError && form.image ? (
-                        <Image
-                          src={form.image}
-                          alt="Preview"
-                          fill
-                          className="object-cover"
-                          sizes="128px"
-                          onError={() => setImageError(true)}
-                        />
-                      ) : (
-                        <div className="w-full h-full flex flex-col items-center justify-center text-gray-600">
-                          <ImageIcon className="w-8 h-8 mb-1" />
-                          <span className="text-[10px]">Invalid image</span>
-                        </div>
-                      )}
+                  <label className="text-gray-400 text-xs font-medium tracking-wider uppercase mb-2 block">Category</label>
+                  <div className="relative">
+                    <div className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-600">
+                      <Tag className="w-4 h-4" />
                     </div>
-                    <div className="flex-1">
-                      <p className="text-gray-500 text-xs mb-2">Live Preview</p>
-                      <div className="grid grid-cols-3 gap-2">
-                        {["/product-images/01.webp", "/product-images/02.webp", "/product-images/03.webp"].map((img) => (
-                          <button
-                            key={img}
-                            onClick={() => { setForm({ ...form, image: img }); setImageError(false); }}
-                            className="relative w-full aspect-square rounded-lg overflow-hidden border border-[#2a2a2a] hover:border-[#c9a96e]/50 transition-all"
-                          >
-                            <Image src={img} alt="" fill className="object-cover" sizes="64px" />
-                          </button>
-                        ))}
-                      </div>
-                      <p className="text-gray-600 text-[10px] mt-2">Quick select from products</p>
-                    </div>
+                    <select
+                      value={form.category}
+                      onChange={(e) => {
+                        const val = e.target.value;
+                        setForm({
+                          ...form,
+                          category: val,
+                          category_ar: val === "Olives" ? "زيتون" : "مخللات",
+                        });
+                      }}
+                      className="w-full bg-[#1a1a1a] border border-[#2a2a2a] text-white rounded-xl pl-10 pr-4 py-3 text-sm focus:border-[#c9a96e]/50 outline-none transition-all appearance-none cursor-pointer"
+                    >
+                      <option value="Olives">🫒 Olives (زيتون)</option>
+                      <option value="Pickles">🥒 Pickles (مخللات)</option>
+                    </select>
+                    <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500 pointer-events-none" />
                   </div>
                 </div>
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <Field label="Category (AR)" value={form.category_ar} onChange={(v) => setForm({ ...form, category_ar: v })} dir="rtl" />
+                <Field label="Origin" value={form.origin} onChange={(v) => setForm({ ...form, origin: v })} icon={<Globe className="w-4 h-4" />} />
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <Field label="Origin (AR)" value={form.origin_ar} onChange={(v) => setForm({ ...form, origin_ar: v })} dir="rtl" />
+                <Field label="Weight" value={form.weight} onChange={(v) => setForm({ ...form, weight: v })} icon={<Weight className="w-4 h-4" />} />
+              </div>
+              <Field label="Weight (AR)" value={form.weight_ar} onChange={(v) => setForm({ ...form, weight_ar: v })} dir="rtl" />
 
-                <label className="flex items-center gap-3 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={form.featured}
-                    onChange={(e) => setForm({ ...form, featured: e.target.checked })}
-                    className="w-5 h-5 rounded border-[#2a2a2a] bg-[#1a1a1a] text-[#c9a96e] focus:ring-[#c9a96e]/20"
-                  />
-                  <span className="text-gray-300 text-sm">Featured Product</span>
-                </label>
-              </>
-            )}
-          </div>
+              {/* Image Field with Live Preview */}
+              <div>
+                <Field label="Image Path" value={form.image} onChange={(v) => { setForm({ ...form, image: v }); setImageError(false); }} icon={<ImageIcon className="w-4 h-4" />} />
+                <div className="mt-3 flex gap-4">
+                  <div className="w-32 h-32 rounded-xl overflow-hidden relative border border-[#2a2a2a] bg-[#1a1a1a] flex-shrink-0">
+                    {!imageError && form.image ? (
+                      <Image
+                        src={form.image}
+                        alt="Preview"
+                        fill
+                        className="object-cover"
+                        sizes="128px"
+                        onError={() => setImageError(true)}
+                      />
+                    ) : (
+                      <div className="w-full h-full flex flex-col items-center justify-center text-gray-600">
+                        <ImageIcon className="w-8 h-8 mb-1" />
+                        <span className="text-[10px]">Invalid image</span>
+                      </div>
+                    )}
+                  </div>
+                  <div className="flex-1">
+                    <p className="text-gray-500 text-xs mb-2">Quick select</p>
+                    <div className="grid grid-cols-3 gap-2">
+                      {["/product-images/01.webp", "/product-images/02.webp", "/product-images/03.webp"].map((img) => (
+                        <button
+                          key={img}
+                          onClick={() => { setForm({ ...form, image: img }); setImageError(false); }}
+                          className="relative w-full aspect-square rounded-lg overflow-hidden border border-[#2a2a2a] hover:border-[#c9a96e]/50 transition-all"
+                        >
+                          <Image src={img} alt="" fill className="object-cover" sizes="64px" />
+                        </button>
+                      ))}
+                    </div>
+                    <p className="text-gray-600 text-[10px] mt-2">Quick select from products</p>
+                  </div>
+                </div>
+              </div>
 
-          {/* Footer */}
-          <div className="flex gap-3 p-6 border-t border-[#2a2a2a]">
-            <button onClick={onClose} className="flex-1 py-3 rounded-xl border border-[#2a2a2a] text-gray-400 font-medium hover:text-white hover:border-[#c9a96e]/30 transition-all">
-              Cancel
-            </button>
-            <button onClick={handleSave} className="flex-1 btn-gold py-3 rounded-xl font-bold flex items-center justify-center gap-2">
-              <Save className="w-4 h-4" />
-              Save Changes
-            </button>
-          </div>
-        </motion.div>
+              <label className="flex items-center gap-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={form.featured}
+                  onChange={(e) => setForm({ ...form, featured: e.target.checked })}
+                  className="w-5 h-5 rounded border-[#2a2a2a] bg-[#1a1a1a] text-[#c9a96e] focus:ring-[#c9a96e]/20"
+                />
+                <span className="text-gray-300 text-sm">Featured Product</span>
+              </label>
+            </>
+          )}
+        </div>
+
+        {/* Footer */}
+        <div className="flex gap-3 p-6 border-t border-[#2a2a2a]">
+          <button onClick={onClose} className="flex-1 py-3 rounded-xl border border-[#2a2a2a] text-gray-400 font-medium hover:text-white hover:border-[#c9a96e]/30 transition-all">
+            Cancel
+          </button>
+          <button onClick={handleSave} className="flex-1 btn-gold py-3 rounded-xl font-bold flex items-center justify-center gap-2">
+            <Save className="w-4 h-4" />
+            Save Changes
+          </button>
+        </div>
       </motion.div>
-    </AnimatePresence>
+    </motion.div>
   );
 }
 
 function AddProductModal({
-  isOpen,
   onClose,
   onAdd,
 }: {
-  isOpen: boolean;
   onClose: () => void;
   onAdd: (data: Omit<Product, "id">) => void;
 }) {
@@ -419,7 +411,6 @@ function AddProductModal({
   const [imageError, setImageError] = useState(false);
 
   const handleAdd = () => {
-    const id = `product-${Date.now()}`;
     onAdd({
       name: form.name || "New Product",
       name_ar: form.name_ar || "منتج جديد",
@@ -444,181 +435,177 @@ function AddProductModal({
     onClose();
   };
 
-  if (!isOpen) return null;
-
   return (
-    <AnimatePresence>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 bg-black/80 z-[100] flex items-start justify-center pt-10 px-4 overflow-y-auto pb-10"
+      onClick={onClose}
+    >
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        className="fixed inset-0 bg-black/80 z-[100] flex items-start justify-center pt-10 px-4 overflow-y-auto pb-10"
-        onClick={onClose}
+        initial={{ opacity: 0, y: 20, scale: 0.95 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        exit={{ opacity: 0, y: 20, scale: 0.95 }}
+        className="w-full max-w-3xl bg-[#111] rounded-2xl border border-[#2a2a2a] overflow-hidden"
+        onClick={(e) => e.stopPropagation()}
       >
-        <motion.div
-          initial={{ opacity: 0, y: 20, scale: 0.95 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          exit={{ opacity: 0, y: 20, scale: 0.95 }}
-          className="w-full max-w-3xl bg-[#111] rounded-2xl border border-[#2a2a2a] overflow-hidden"
-          onClick={(e) => e.stopPropagation()}
-        >
-          {/* Header */}
-          <div className="flex items-center justify-between p-6 border-b border-[#2a2a2a]">
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-xl bg-[#c9a96e]/10 border border-[#c9a96e]/20 flex items-center justify-center">
-                <Plus className="w-6 h-6 text-[#c9a96e]" />
-              </div>
-              <div>
-                <h2 className="text-lg font-bold text-white">Add New Product</h2>
-                <p className="text-gray-500 text-sm">منتج جديد</p>
-              </div>
+        {/* Header */}
+        <div className="flex items-center justify-between p-6 border-b border-[#2a2a2a]">
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 rounded-xl bg-[#c9a96e]/10 border border-[#c9a96e]/20 flex items-center justify-center">
+              <Plus className="w-6 h-6 text-[#c9a96e]" />
             </div>
-            <button onClick={onClose} className="w-10 h-10 rounded-xl bg-[#1a1a1a] border border-[#2a2a2a] flex items-center justify-center text-gray-400 hover:text-white transition-all">
-              <X className="w-5 h-5" />
+            <div>
+              <h2 className="text-lg font-bold text-white">Add New Product</h2>
+              <p className="text-gray-500 text-sm">منتج جديد</p>
+            </div>
+          </div>
+          <button onClick={onClose} className="w-10 h-10 rounded-xl bg-[#1a1a1a] border border-[#2a2a2a] flex items-center justify-center text-gray-400 hover:text-white transition-all">
+            <X className="w-5 h-5" />
+          </button>
+        </div>
+
+        {/* Tabs */}
+        <div className="flex border-b border-[#2a2a2a]">
+          {[
+            { key: "en", label: "English" },
+            { key: "ar", label: "العربية" },
+            { key: "details", label: "Details" },
+          ].map((tab) => (
+            <button
+              key={tab.key}
+              onClick={() => setActiveTab(tab.key as typeof activeTab)}
+              className={`flex-1 py-3 text-sm font-medium transition-all ${
+                activeTab === tab.key
+                  ? "text-[#c9a96e] border-b-2 border-[#c9a96e]"
+                  : "text-gray-500 hover:text-gray-300"
+              }`}
+            >
+              {tab.label}
             </button>
-          </div>
+          ))}
+        </div>
 
-          {/* Tabs */}
-          <div className="flex border-b border-[#2a2a2a]">
-            {[
-              { key: "en", label: "English" },
-              { key: "ar", label: "العربية" },
-              { key: "details", label: "Details" },
-            ].map((tab) => (
-              <button
-                key={tab.key}
-                onClick={() => setActiveTab(tab.key as typeof activeTab)}
-                className={`flex-1 py-3 text-sm font-medium transition-all ${
-                  activeTab === tab.key
-                    ? "text-[#c9a96e] border-b-2 border-[#c9a96e]"
-                    : "text-gray-500 hover:text-gray-300"
-                }`}
-              >
-                {tab.label}
-              </button>
-            ))}
-          </div>
+        {/* Content */}
+        <div className="p-6 space-y-5">
+          {activeTab === "en" && (
+            <>
+              <Field label="Product Name (EN)" value={form.name} onChange={(v) => setForm({ ...form, name: v })} placeholder="e.g. Kalamata Olives" />
+              <Field label="Description (EN)" value={form.description} onChange={(v) => setForm({ ...form, description: v })} textarea placeholder="Premium olives from..." />
+              <Field label="Badge (EN)" value={form.badge} onChange={(v) => setForm({ ...form, badge: v })} placeholder="e.g. Premium, Best Seller" />
+            </>
+          )}
 
-          {/* Content */}
-          <div className="p-6 space-y-5">
-            {activeTab === "en" && (
-              <>
-                <Field label="Product Name (EN)" value={form.name} onChange={(v) => setForm({ ...form, name: v })} placeholder="e.g. Kalamata Olives" />
-                <Field label="Description (EN)" value={form.description} onChange={(v) => setForm({ ...form, description: v })} textarea placeholder="Premium olives from..." />
-                <Field label="Badge (EN)" value={form.badge} onChange={(v) => setForm({ ...form, badge: v })} placeholder="e.g. Premium, Best Seller" />
-              </>
-            )}
+          {activeTab === "ar" && (
+            <>
+              <Field label="اسم المنتج (AR)" value={form.name_ar} onChange={(v) => setForm({ ...form, name_ar: v })} dir="rtl" placeholder="زيتون كالاماتا" />
+              <Field label="الوصف (AR)" value={form.description_ar} onChange={(v) => setForm({ ...form, description_ar: v })} textarea dir="rtl" placeholder="زيتون فاخر من..." />
+              <Field label="البادج (AR)" value={form.badge_ar} onChange={(v) => setForm({ ...form, badge_ar: v })} dir="rtl" placeholder="مثلاً فاخر، الأكثر مبيعاً" />
+            </>
+          )}
 
-            {activeTab === "ar" && (
-              <>
-                <Field label="اسم المنتج (AR)" value={form.name_ar} onChange={(v) => setForm({ ...form, name_ar: v })} dir="rtl" placeholder="زيتون كالاماتا" />
-                <Field label="الوصف (AR)" value={form.description_ar} onChange={(v) => setForm({ ...form, description_ar: v })} textarea dir="rtl" placeholder="زيتون فاخر من..." />
-                <Field label="البادج (AR)" value={form.badge_ar} onChange={(v) => setForm({ ...form, badge_ar: v })} dir="rtl" placeholder="مثلاً فاخر، الأكثر مبيعاً" />
-              </>
-            )}
-
-            {activeTab === "details" && (
-              <>
-                <div className="grid grid-cols-2 gap-4">
-                  <Field label="Price ($)" value={form.price} onChange={(v) => setForm({ ...form, price: v })} type="number" icon={<DollarSign className="w-4 h-4" />} placeholder="9.99" />
-                  <Field label="Rating" value={form.rating} onChange={(v) => setForm({ ...form, rating: v })} type="number" icon={<Star className="w-4 h-4" />} />
-                </div>
-                <div className="grid grid-cols-2 gap-4">
-                  <Field label="Stock" value={form.stock} onChange={(v) => setForm({ ...form, stock: v })} type="number" icon={<Package className="w-4 h-4" />} />
-                  <div>
-                    <label className="text-gray-400 text-xs font-medium tracking-wider uppercase mb-2 block">Category</label>
-                    <div className="relative">
-                      <div className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-600">
-                        <Tag className="w-4 h-4" />
-                      </div>
-                      <select
-                        value={form.category}
-                        onChange={(e) => {
-                          const val = e.target.value;
-                          setForm({
-                            ...form,
-                            category: val as "Olives" | "Pickles",
-                            category_ar: val === "Olives" ? "زيتون" : "مخللات",
-                          });
-                        }}
-                        className="w-full bg-[#1a1a1a] border border-[#2a2a2a] text-white rounded-xl pl-10 pr-4 py-3 text-sm focus:border-[#c9a96e]/50 outline-none transition-all appearance-none cursor-pointer"
-                      >
-                        <option value="Olives">🫒 Olives (زيتون)</option>
-                        <option value="Pickles">🥒 Pickles (مخللات)</option>
-                      </select>
-                      <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500 pointer-events-none" />
-                    </div>
-                  </div>
-                </div>
-                <div className="grid grid-cols-2 gap-4">
-                  <Field label="Origin" value={form.origin} onChange={(v) => setForm({ ...form, origin: v })} icon={<Globe className="w-4 h-4" />} placeholder="Morocco" />
-                  <Field label="Weight" value={form.weight} onChange={(v) => setForm({ ...form, weight: v })} icon={<Weight className="w-4 h-4" />} placeholder="500g" />
-                </div>
-
-                {/* Image Field with Live Preview */}
+          {activeTab === "details" && (
+            <>
+              <div className="grid grid-cols-2 gap-4">
+                <Field label="Price ($)" value={form.price} onChange={(v) => setForm({ ...form, price: v })} type="number" icon={<DollarSign className="w-4 h-4" />} placeholder="9.99" />
+                <Field label="Rating" value={form.rating} onChange={(v) => setForm({ ...form, rating: v })} type="number" icon={<Star className="w-4 h-4" />} />
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <Field label="Stock" value={form.stock} onChange={(v) => setForm({ ...form, stock: v })} type="number" icon={<Package className="w-4 h-4" />} />
                 <div>
-                  <Field label="Image Path" value={form.image} onChange={(v) => { setForm({ ...form, image: v }); setImageError(false); }} icon={<ImageIcon className="w-4 h-4" />} />
-                  <div className="mt-3 flex gap-4">
-                    <div className="w-32 h-32 rounded-xl overflow-hidden relative border border-[#2a2a2a] bg-[#1a1a1a] flex-shrink-0">
-                      {!imageError && form.image ? (
-                        <Image
-                          src={form.image}
-                          alt="Preview"
-                          fill
-                          className="object-cover"
-                          sizes="128px"
-                          onError={() => setImageError(true)}
-                        />
-                      ) : (
-                        <div className="w-full h-full flex flex-col items-center justify-center text-gray-600">
-                          <ImageIcon className="w-8 h-8 mb-1" />
-                          <span className="text-[10px]">No image</span>
-                        </div>
-                      )}
+                  <label className="text-gray-400 text-xs font-medium tracking-wider uppercase mb-2 block">Category</label>
+                  <div className="relative">
+                    <div className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-600">
+                      <Tag className="w-4 h-4" />
                     </div>
-                    <div className="flex-1">
-                      <p className="text-gray-500 text-xs mb-2">Quick select</p>
-                      <div className="grid grid-cols-3 gap-2">
-                        {["/product-images/01.webp", "/product-images/02.webp", "/product-images/03.webp", "/product-images/04.webp", "/product-images/05.webp", "/product-images/06.webp"].map((img) => (
-                          <button
-                            key={img}
-                            onClick={() => { setForm({ ...form, image: img }); setImageError(false); }}
-                            className="relative w-full aspect-square rounded-lg overflow-hidden border border-[#2a2a2a] hover:border-[#c9a96e]/50 transition-all"
-                          >
-                            <Image src={img} alt="" fill className="object-cover" sizes="64px" />
-                          </button>
-                        ))}
+                    <select
+                      value={form.category}
+                      onChange={(e) => {
+                        const val = e.target.value;
+                        setForm({
+                          ...form,
+                          category: val as "Olives" | "Pickles",
+                          category_ar: val === "Olives" ? "زيتون" : "مخللات",
+                        });
+                      }}
+                      className="w-full bg-[#1a1a1a] border border-[#2a2a2a] text-white rounded-xl pl-10 pr-4 py-3 text-sm focus:border-[#c9a96e]/50 outline-none transition-all appearance-none cursor-pointer"
+                    >
+                      <option value="Olives">🫒 Olives (زيتون)</option>
+                      <option value="Pickles">🥒 Pickles (مخللات)</option>
+                    </select>
+                    <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500 pointer-events-none" />
+                  </div>
+                </div>
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <Field label="Origin" value={form.origin} onChange={(v) => setForm({ ...form, origin: v })} icon={<Globe className="w-4 h-4" />} placeholder="Morocco" />
+                <Field label="Weight" value={form.weight} onChange={(v) => setForm({ ...form, weight: v })} icon={<Weight className="w-4 h-4" />} placeholder="500g" />
+              </div>
+
+              {/* Image Field with Live Preview */}
+              <div>
+                <Field label="Image Path" value={form.image} onChange={(v) => { setForm({ ...form, image: v }); setImageError(false); }} icon={<ImageIcon className="w-4 h-4" />} />
+                <div className="mt-3 flex gap-4">
+                  <div className="w-32 h-32 rounded-xl overflow-hidden relative border border-[#2a2a2a] bg-[#1a1a1a] flex-shrink-0">
+                    {!imageError && form.image ? (
+                      <Image
+                        src={form.image}
+                        alt="Preview"
+                        fill
+                        className="object-cover"
+                        sizes="128px"
+                        onError={() => setImageError(true)}
+                      />
+                    ) : (
+                      <div className="w-full h-full flex flex-col items-center justify-center text-gray-600">
+                        <ImageIcon className="w-8 h-8 mb-1" />
+                        <span className="text-[10px]">No image</span>
                       </div>
+                    )}
+                  </div>
+                  <div className="flex-1">
+                    <p className="text-gray-500 text-xs mb-2">Quick select</p>
+                    <div className="grid grid-cols-3 gap-2">
+                      {["/product-images/01.webp", "/product-images/02.webp", "/product-images/03.webp", "/product-images/04.webp", "/product-images/05.webp", "/product-images/06.webp"].map((img) => (
+                        <button
+                          key={img}
+                          onClick={() => { setForm({ ...form, image: img }); setImageError(false); }}
+                          className="relative w-full aspect-square rounded-lg overflow-hidden border border-[#2a2a2a] hover:border-[#c9a96e]/50 transition-all"
+                        >
+                          <Image src={img} alt="" fill className="object-cover" sizes="64px" />
+                        </button>
+                      ))}
                     </div>
                   </div>
                 </div>
+              </div>
 
-                <label className="flex items-center gap-3 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={form.featured}
-                    onChange={(e) => setForm({ ...form, featured: e.target.checked })}
-                    className="w-5 h-5 rounded border-[#2a2a2a] bg-[#1a1a1a] text-[#c9a96e] focus:ring-[#c9a96e]/20"
-                  />
-                  <span className="text-gray-300 text-sm">Featured Product</span>
-                </label>
-              </>
-            )}
-          </div>
+              <label className="flex items-center gap-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={form.featured}
+                  onChange={(e) => setForm({ ...form, featured: e.target.checked })}
+                  className="w-5 h-5 rounded border-[#2a2a2a] bg-[#1a1a1a] text-[#c9a96e] focus:ring-[#c9a96e]/20"
+                />
+                <span className="text-gray-300 text-sm">Featured Product</span>
+              </label>
+            </>
+          )}
+        </div>
 
-          {/* Footer */}
-          <div className="flex gap-3 p-6 border-t border-[#2a2a2a]">
-            <button onClick={onClose} className="flex-1 py-3 rounded-xl border border-[#2a2a2a] text-gray-400 font-medium hover:text-white hover:border-[#c9a96e]/30 transition-all">
-              Cancel
-            </button>
-            <button onClick={handleAdd} className="flex-1 btn-gold py-3 rounded-xl font-bold flex items-center justify-center gap-2">
-              <Plus className="w-4 h-4" />
-              Add Product
-            </button>
-          </div>
-        </motion.div>
+        {/* Footer */}
+        <div className="flex gap-3 p-6 border-t border-[#2a2a2a]">
+          <button onClick={onClose} className="flex-1 py-3 rounded-xl border border-[#2a2a2a] text-gray-400 font-medium hover:text-white hover:border-[#c9a96e]/30 transition-all">
+            Cancel
+          </button>
+          <button onClick={handleAdd} className="flex-1 btn-gold py-3 rounded-xl font-bold flex items-center justify-center gap-2">
+            <Plus className="w-4 h-4" />
+            Add Product
+          </button>
+        </div>
       </motion.div>
-    </AnimatePresence>
+    </motion.div>
   );
 }
 
@@ -630,6 +617,13 @@ export default function AdminPage() {
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
   const [showAddModal, setShowAddModal] = useState(false);
   const [toast, setToast] = useState<{ message: string; key: number } | null>(null);
+
+  useEffect(() => {
+    if (toast) {
+      const timer = setTimeout(() => setToast(null), 2500);
+      return () => clearTimeout(timer);
+    }
+  }, [toast]);
 
   const showToast = (message: string) => {
     setToast({ message, key: Date.now() });
@@ -651,10 +645,19 @@ export default function AdminPage() {
 
   const stats = useMemo(() => {
     const edited = Object.keys(overrides).length;
+    const newProducts = Object.entries(overrides).filter(
+      ([id]) => !products.find((p) => p.id === id)
+    ).length;
     return {
-      total: products.length,
-      olives: products.filter((p) => p.category === "Olives").length,
-      pickles: products.filter((p) => p.category === "Pickles").length,
+      total: products.length + newProducts,
+      olives: products.filter((p) => p.category === "Olives").length + Object.values(overrides).filter((o, i) => {
+        const id = Object.keys(overrides)[i];
+        return !products.find((p) => p.id === id) && o.category === "Olives";
+      }).length,
+      pickles: products.filter((p) => p.category === "Pickles").length + Object.values(overrides).filter((o, i) => {
+        const id = Object.keys(overrides)[i];
+        return !products.find((p) => p.id === id) && o.category === "Pickles";
+      }).length,
       edited,
     };
   }, [products, overrides]);
@@ -688,7 +691,7 @@ export default function AdminPage() {
         )}
       </AnimatePresence>
 
-      {/* Header - not sticky to avoid overlapping site nav */}
+      {/* Header */}
       <div className="border-b border-[#2a2a2a] bg-[#111] relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
           <div className="flex items-center gap-4">
@@ -702,7 +705,7 @@ export default function AdminPage() {
           </div>
           <div className="flex items-center gap-3">
             <button
-              onClick={() => { setShowAddModal(true); }}
+              onClick={() => setShowAddModal(true)}
               className="px-4 py-2 rounded-xl bg-[#c9a96e] text-[#0a0a0a] text-sm font-bold flex items-center gap-2 hover:bg-[#d4b87a] transition-colors cursor-pointer"
             >
               <Plus className="w-4 h-4" />
@@ -881,24 +884,27 @@ export default function AdminPage() {
         </div>
       </div>
 
-      {/* Edit Modal */}
-      {editingProduct && (
-        <EditModal
-          product={editingProduct}
-          isOpen={true}
-          onClose={() => setEditingProduct(null)}
-          onSave={handleSave}
-        />
-      )}
+      {/* Edit Modal - AnimatePresence in PARENT */}
+      <AnimatePresence>
+        {editingProduct && (
+          <EditModal
+            key={editingProduct.id}
+            product={editingProduct}
+            onClose={() => setEditingProduct(null)}
+            onSave={handleSave}
+          />
+        )}
+      </AnimatePresence>
 
-      {/* Add Product Modal */}
-      {showAddModal && (
-        <AddProductModal
-          isOpen={true}
-          onClose={() => setShowAddModal(false)}
-          onAdd={handleAddProduct}
-        />
-      )}
+      {/* Add Product Modal - AnimatePresence in PARENT */}
+      <AnimatePresence>
+        {showAddModal && (
+          <AddProductModal
+            onClose={() => setShowAddModal(false)}
+            onAdd={handleAddProduct}
+          />
+        )}
+      </AnimatePresence>
     </div>
   );
 }
