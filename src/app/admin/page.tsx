@@ -119,6 +119,105 @@ function Field({
   );
 }
 
+function ImageUpload({
+  value,
+  onChange,
+  quickSelect = [],
+}: {
+  value: string;
+  onChange: (v: string) => void;
+  quickSelect?: string[];
+}) {
+  const [imageError, setImageError] = useState(false);
+  const [dragActive, setDragActive] = useState(false);
+
+  const handleFile = (file: File) => {
+    if (!file.type.startsWith("image/")) return;
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const result = e.target?.result as string;
+      onChange(result);
+      setImageError(false);
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const handleDrop = (e: React.DragEvent) => {
+    e.preventDefault();
+    setDragActive(false);
+    if (e.dataTransfer.files?.[0]) handleFile(e.dataTransfer.files[0]);
+  };
+
+  return (
+    <div>
+      <Field label="Product Image" value={value} onChange={(v) => { onChange(v); setImageError(false); }} icon={<ImageIcon className="w-4 h-4" />} placeholder="Paste image URL or upload file..." />
+
+      <div className="mt-3 flex gap-4">
+        {/* Preview */}
+        <div className="w-36 h-36 rounded-xl overflow-hidden relative border border-[#2a2a2a] bg-[#1a1a1a] flex-shrink-0">
+          {!imageError && value ? (
+            <Image
+              src={value}
+              alt="Preview"
+              fill
+              className="object-cover"
+              sizes="144px"
+              onError={() => setImageError(true)}
+            />
+          ) : (
+            <div className="w-full h-full flex flex-col items-center justify-center text-gray-600">
+              <ImageIcon className="w-8 h-8 mb-1" />
+              <span className="text-[10px]">No image</span>
+            </div>
+          )}
+        </div>
+
+        <div className="flex-1 space-y-3">
+          {/* Upload button */}
+          <label
+            onDragOver={(e) => { e.preventDefault(); setDragActive(true); }}
+            onDragLeave={() => setDragActive(false)}
+            onDrop={handleDrop}
+            className={`flex items-center justify-center gap-2 py-3 px-4 rounded-xl border-2 border-dashed cursor-pointer transition-all ${
+              dragActive
+                ? "border-[#c9a96e] bg-[#c9a96e]/10"
+                : "border-[#2a2a2a] bg-[#1a1a1a] hover:border-[#c9a96e]/50"
+            }`}
+          >
+            <input
+              type="file"
+              accept="image/*"
+              className="hidden"
+              onChange={(e) => { if (e.target.files?.[0]) handleFile(e.target.files[0]); }}
+            />
+            <ImageIcon className="w-4 h-4 text-gray-400" />
+            <span className="text-gray-400 text-xs font-medium">Upload from device</span>
+          </label>
+
+          {/* Quick select */}
+          {quickSelect.length > 0 && (
+            <>
+              <p className="text-gray-500 text-[10px]">Quick select</p>
+              <div className="grid grid-cols-4 gap-2">
+                {quickSelect.map((img) => (
+                  <button
+                    key={img}
+                    type="button"
+                    onClick={() => { onChange(img); setImageError(false); }}
+                    className="relative w-full aspect-square rounded-lg overflow-hidden border border-[#2a2a2a] hover:border-[#c9a96e]/50 transition-all"
+                  >
+                    <Image src={img} alt="" fill className="object-cover" sizes="64px" />
+                  </button>
+                ))}
+              </div>
+            </>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function SuccessToast({ message, onClose }: { message: string; onClose: () => void }) {
   return (
     <motion.div
@@ -175,7 +274,6 @@ function EditModal({
   });
 
   const [activeTab, setActiveTab] = useState<"en" | "ar" | "details">("en");
-  const [imageError, setImageError] = useState(false);
 
   const handleSave = () => {
     onSave(product.id, {
@@ -313,44 +411,12 @@ function EditModal({
               </div>
               <Field label="Weight (AR)" value={form.weight_ar} onChange={(v) => setForm({ ...form, weight_ar: v })} dir="rtl" />
 
-              {/* Image Field with Live Preview */}
-              <div>
-                <Field label="Image Path" value={form.image} onChange={(v) => { setForm({ ...form, image: v }); setImageError(false); }} icon={<ImageIcon className="w-4 h-4" />} />
-                <div className="mt-3 flex gap-4">
-                  <div className="w-32 h-32 rounded-xl overflow-hidden relative border border-[#2a2a2a] bg-[#1a1a1a] flex-shrink-0">
-                    {!imageError && form.image ? (
-                      <Image
-                        src={form.image}
-                        alt="Preview"
-                        fill
-                        className="object-cover"
-                        sizes="128px"
-                        onError={() => setImageError(true)}
-                      />
-                    ) : (
-                      <div className="w-full h-full flex flex-col items-center justify-center text-gray-600">
-                        <ImageIcon className="w-8 h-8 mb-1" />
-                        <span className="text-[10px]">Invalid image</span>
-                      </div>
-                    )}
-                  </div>
-                  <div className="flex-1">
-                    <p className="text-gray-500 text-xs mb-2">Quick select</p>
-                    <div className="grid grid-cols-3 gap-2">
-                      {["/product-images/01.webp", "/product-images/02.webp", "/product-images/03.webp"].map((img) => (
-                        <button
-                          key={img}
-                          onClick={() => { setForm({ ...form, image: img }); setImageError(false); }}
-                          className="relative w-full aspect-square rounded-lg overflow-hidden border border-[#2a2a2a] hover:border-[#c9a96e]/50 transition-all"
-                        >
-                          <Image src={img} alt="" fill className="object-cover" sizes="64px" />
-                        </button>
-                      ))}
-                    </div>
-                    <p className="text-gray-600 text-[10px] mt-2">Quick select from products</p>
-                  </div>
-                </div>
-              </div>
+              {/* Image Upload */}
+              <ImageUpload
+                value={form.image}
+                onChange={(v) => setForm({ ...form, image: v })}
+                quickSelect={["/product-images/01.webp", "/product-images/02.webp", "/product-images/03.webp", "/product-images/04.webp", "/product-images/05.webp", "/product-images/06.webp"]}
+              />
 
               <label className="flex items-center gap-3 cursor-pointer">
                 <input
@@ -408,7 +474,6 @@ function AddProductModal({
   });
 
   const [activeTab, setActiveTab] = useState<"en" | "ar" | "details">("en");
-  const [imageError, setImageError] = useState(false);
 
   const handleAdd = () => {
     onAdd({
@@ -543,43 +608,12 @@ function AddProductModal({
                 <Field label="Weight" value={form.weight} onChange={(v) => setForm({ ...form, weight: v })} icon={<Weight className="w-4 h-4" />} placeholder="500g" />
               </div>
 
-              {/* Image Field with Live Preview */}
-              <div>
-                <Field label="Image Path" value={form.image} onChange={(v) => { setForm({ ...form, image: v }); setImageError(false); }} icon={<ImageIcon className="w-4 h-4" />} />
-                <div className="mt-3 flex gap-4">
-                  <div className="w-32 h-32 rounded-xl overflow-hidden relative border border-[#2a2a2a] bg-[#1a1a1a] flex-shrink-0">
-                    {!imageError && form.image ? (
-                      <Image
-                        src={form.image}
-                        alt="Preview"
-                        fill
-                        className="object-cover"
-                        sizes="128px"
-                        onError={() => setImageError(true)}
-                      />
-                    ) : (
-                      <div className="w-full h-full flex flex-col items-center justify-center text-gray-600">
-                        <ImageIcon className="w-8 h-8 mb-1" />
-                        <span className="text-[10px]">No image</span>
-                      </div>
-                    )}
-                  </div>
-                  <div className="flex-1">
-                    <p className="text-gray-500 text-xs mb-2">Quick select</p>
-                    <div className="grid grid-cols-3 gap-2">
-                      {["/product-images/01.webp", "/product-images/02.webp", "/product-images/03.webp", "/product-images/04.webp", "/product-images/05.webp", "/product-images/06.webp"].map((img) => (
-                        <button
-                          key={img}
-                          onClick={() => { setForm({ ...form, image: img }); setImageError(false); }}
-                          className="relative w-full aspect-square rounded-lg overflow-hidden border border-[#2a2a2a] hover:border-[#c9a96e]/50 transition-all"
-                        >
-                          <Image src={img} alt="" fill className="object-cover" sizes="64px" />
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
+              {/* Image Upload */}
+              <ImageUpload
+                value={form.image}
+                onChange={(v) => setForm({ ...form, image: v })}
+                quickSelect={["/product-images/01.webp", "/product-images/02.webp", "/product-images/03.webp", "/product-images/04.webp", "/product-images/05.webp", "/product-images/06.webp"]}
+              />
 
               <label className="flex items-center gap-3 cursor-pointer">
                 <input
