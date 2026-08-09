@@ -2,7 +2,7 @@
 
 import { useParams } from "next/navigation";
 import { useCartStore, useLocaleStore } from "@/lib/store";
-import { products } from "@/lib/data/products";
+import { useProducts } from "@/lib/admin-helpers";
 import { motion } from "framer-motion";
 import { Star, ShoppingCart, Heart, Share2, ChevronLeft, ChevronRight, Minus, Plus, Check } from "lucide-react";
 import Link from "next/link";
@@ -15,6 +15,7 @@ export default function ProductPage() {
   const { locale } = useLocaleStore();
   const dir = useLocaleStore((s) => s.dir());
   const addItem = useCartStore((s) => s.addItem);
+  const products = useProducts();
   const [quantity, setQuantity] = useState(1);
   const [selectedImage, setSelectedImage] = useState(0);
   const [added, setAdded] = useState(false);

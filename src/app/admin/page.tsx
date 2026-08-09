@@ -3,8 +3,7 @@
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAdminStore } from "@/lib/admin-store";
-import { getProducts } from "@/lib/admin-helpers";
-import { products as baseProducts } from "@/lib/data/products";
+import { useProducts } from "@/lib/admin-helpers";
 import type { Product } from "@/lib/types";
 import Image from "next/image";
 import {
@@ -300,14 +299,11 @@ function Field({
 
 export default function AdminPage() {
   const { isAuthenticated, login, logout, overrides, setOverride, removeOverride, resetAll } = useAdminStore();
+  const products = useProducts();
   const [search, setSearch] = useState("");
   const [categoryFilter, setCategoryFilter] = useState<"all" | "Olives" | "Pickles">("all");
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
   const [showSuccess, setShowSuccess] = useState(false);
-
-  const products = useMemo(() => {
-    return getProducts();
-  }, [overrides]);
 
   const filteredProducts = useMemo(() => {
     return products

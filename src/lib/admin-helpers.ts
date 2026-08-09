@@ -1,18 +1,23 @@
 import { products as baseProducts } from "@/lib/data/products";
 import { useAdminStore } from "@/lib/admin-store";
+import { useMemo } from "react";
 import type { Product } from "@/lib/types";
 
-export function getProducts(): Product[] {
-  const overrides = useAdminStore.getState().overrides;
-  return baseProducts.map((p) => ({
-    ...p,
-    ...(overrides[p.id] || {}),
-  }));
+export function useProducts(): Product[] {
+  const overrides = useAdminStore((s) => s.overrides);
+  return useMemo(() => {
+    return baseProducts.map((p) => ({
+      ...p,
+      ...(overrides[p.id] || {}),
+    }));
+  }, [overrides]);
 }
 
-export function getProductById(id: string): Product | undefined {
-  const base = baseProducts.find((p) => p.id === id);
-  if (!base) return undefined;
-  const overrides = useAdminStore.getState().overrides;
-  return { ...base, ...(overrides[id] || {}) };
+export function useProductById(id: string): Product | undefined {
+  const products = useProducts();
+  return useMemo(() => products.find((p) => p.id === id), [products, id]);
+}
+
+export function getProductsStatic(): Product[] {
+  return baseProducts;
 }

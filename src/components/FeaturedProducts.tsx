@@ -6,7 +6,7 @@ import { t } from "@/lib/i18n";
 import ProductCard from "./ProductCard";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { products } from "@/lib/data/products";
+import { useProducts } from "@/lib/admin-helpers";
 import { useState } from "react";
 import QuickView from "./QuickView";
 import type { Product } from "@/lib/types";
@@ -14,6 +14,7 @@ import type { Product } from "@/lib/types";
 export default function FeaturedProducts() {
   const { locale } = useLocaleStore();
   const dir = useLocaleStore((s) => s.dir());
+  const products = useProducts();
   const featured = products.filter((p) => p.featured && p.price > 0).slice(0, 8);
   const [quickViewProduct, setQuickViewProduct] = useState<Product | null>(null);
   const [isQuickViewOpen, setIsQuickViewOpen] = useState(false);

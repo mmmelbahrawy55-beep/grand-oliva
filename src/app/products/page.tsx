@@ -6,27 +6,16 @@ import { useLocaleStore } from "@/lib/store";
 import ProductCard from "@/components/ProductCard";
 import QuickView from "@/components/QuickView";
 import MobileFilterSheet from "@/components/MobileFilterSheet";
-import { products } from "@/lib/data/products";
+import { useProducts } from "@/lib/admin-helpers";
 import { Search, SlidersHorizontal, X, Grid, List, Filter } from "lucide-react";
 import type { Product } from "@/lib/types";
 
 const ITEMS_PER_PAGE = 12;
 
-const sellableProducts = products.filter((p) => p.price > 0);
-const categoryCounts = {
-  all: sellableProducts.length,
-  Olives: sellableProducts.filter((p) => p.category === "Olives").length,
-  Pickles: sellableProducts.filter((p) => p.category === "Pickles").length,
-};
-const categories = [
-  { key: "all", ar: "الكل", en: "All", icon: "✨", count: categoryCounts.all },
-  { key: "Olives", ar: "زيتون", en: "Olives", icon: "🫒", count: categoryCounts.Olives },
-  { key: "Pickles", ar: "مخللات", en: "Pickles", icon: "🥒", count: categoryCounts.Pickles },
-];
-
 export default function ProductsPage() {
   const { locale } = useLocaleStore();
   const dir = useLocaleStore((s) => s.dir());
+  const products = useProducts();
   const [activeCategory, setActiveCategory] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [sortBy, setSortBy] = useState("featured");
@@ -35,9 +24,20 @@ export default function ProductsPage() {
   const [filterOpen, setFilterOpen] = useState(false);
   const [quickViewProduct, setQuickViewProduct] = useState<Product | null>(null);
 
+  const sellableProducts = useMemo(() => products.filter((p) => p.price > 0), [products]);
+  const categoryCounts = useMemo(() => ({
+    all: sellableProducts.length,
+    Olives: sellableProducts.filter((p) => p.category === "Olives").length,
+    Pickles: sellableProducts.filter((p) => p.category === "Pickles").length,
+  }), [sellableProducts]);
+  const categories = [
+    { key: "all", ar: "الكل", en: "All", icon: "✨", count: categoryCounts.all },
+    { key: "Olives", ar: "زيتون", en: "Olives", icon: "🫒", count: categoryCounts.Olives },
+    { key: "Pickles", ar: "مخللات", en: "Pickles", icon: "🥒", count: categoryCounts.Pickles },
+  ];
+
   const filteredProducts = useMemo(() => {
-    return products
-      .filter((p) => p.price > 0)
+    return sellableProducts
       .filter((p) => activeCategory === "all" || p.category === activeCategory)
       .filter((p) => {
         if (!searchQuery) return true;
@@ -75,7 +75,7 @@ export default function ProductsPage() {
     currentPage * ITEMS_PER_PAGE
   );
 
-  const oliveProducts = useMemo(() => products.filter((p) => p.category === "Olives" && p.price > 0), []);
+  const oliveProducts = useMemo(() => sellableProducts.filter((p) => p.category === "Olives"), [sellableProducts]);
 
   return (
     <section className="pt-28 pb-20 bg-[#0a0a0a] min-h-screen" dir={dir}>

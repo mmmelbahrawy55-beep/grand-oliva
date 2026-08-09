@@ -3,6 +3,7 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FloatingCartButton from "@/components/FloatingCartButton";
+import AdminProvider from "@/components/AdminProvider";
 import { Toaster } from "react-hot-toast";
 import { useLocaleStore } from "@/lib/store";
 import { useEffect } from "react";
@@ -21,7 +22,7 @@ export default function ClientLayout({
   }, [locale, dir]);
 
   return (
-    <>
+    <AdminProvider>
       <Toaster
         position={dir === "rtl" ? "top-left" : "top-right"}
         toastOptions={{
@@ -38,6 +39,6 @@ export default function ClientLayout({
       <main className="flex-1 bg-[#0a0a0a] relative z-10">{children}</main>
       <FloatingCartButton />
       <Footer />
-    </>
+    </AdminProvider>
   );
 }
