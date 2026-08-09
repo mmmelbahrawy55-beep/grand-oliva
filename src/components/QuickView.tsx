@@ -53,7 +53,7 @@ export default function QuickView({ product, isOpen, onClose }: QuickViewProps) 
       >
         {/* Modal inner */}
         <div
-          className={`w-full md:w-[900px] md:max-h-[80vh] bg-[#111] rounded-2xl border border-[#2a2a2a] overflow-hidden flex flex-col md:flex-row will-change-transform transition-all duration-300 ease-out ${
+          className={`w-full md:w-[900px] h-[90vh] md:max-h-[80vh] bg-[#111] rounded-2xl border border-[#2a2a2a] overflow-hidden flex flex-col md:flex-row will-change-transform transition-all duration-300 ease-out ${
             isOpen ? "opacity-100 scale-100 translate-y-0" : "opacity-0 scale-95 translate-y-4"
           }`}
           onClick={(e) => e.stopPropagation()}
@@ -68,7 +68,7 @@ export default function QuickView({ product, isOpen, onClose }: QuickViewProps) 
           </button>
 
           {/* Image */}
-          <div className="relative w-full md:w-1/2 aspect-square md:aspect-auto bg-[#0a0a0a]">
+          <div className="relative w-full md:w-1/2 aspect-square md:h-full md:min-h-0 bg-[#0a0a0a] shrink-0">
             <Image
               src={product.image}
               alt={name}
@@ -96,7 +96,7 @@ export default function QuickView({ product, isOpen, onClose }: QuickViewProps) 
           </div>
 
           {/* Details */}
-          <div className="w-full md:w-1/2 p-6 md:p-8 overflow-y-auto scroll-touch">
+          <div className="w-full md:w-1/2 p-6 md:p-8 overflow-y-auto min-h-0 flex-1 scroll-touch">
             <span className="text-[10px] font-semibold text-[#c9a96e] tracking-[0.2em] uppercase">
               {category}
             </span>
