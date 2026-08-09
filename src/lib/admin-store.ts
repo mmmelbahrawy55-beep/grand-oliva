@@ -54,7 +54,11 @@ export const useAdminStore = create<AdminStore>()(
         try {
           const res = await fetch("/api/products");
           const data = await res.json();
-          set({ overrides: data });
+          if (Object.keys(data).length > 0) {
+            set((state) => ({
+              overrides: { ...data, ...state.overrides },
+            }));
+          }
         } catch (e) {
           console.error("Failed to fetch overrides:", e);
         }
