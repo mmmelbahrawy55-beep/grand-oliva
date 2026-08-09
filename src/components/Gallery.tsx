@@ -40,7 +40,7 @@ export default function Gallery() {
           </div>
         </motion.div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 auto-rows-[200px] md:auto-rows-[250px]">
           {images.map((img, i) => (
             <motion.div
               key={i}
@@ -49,9 +49,7 @@ export default function Gallery() {
               viewport={{ once: true }}
               transition={{ delay: i * 0.08 }}
               whileHover={{ scale: 1.02 }}
-              className={`relative overflow-hidden rounded-2xl border border-[#2a2a2a] hover:border-[#c9a96e]/30 transition-all duration-500 ${
-                i === 0 || i === 5 ? "md:col-span-2 md:row-span-2 aspect-[4/3] md:aspect-auto" : "aspect-square"
-              }`}
+              className="relative overflow-hidden rounded-2xl border border-[#2a2a2a] hover:border-[#c9a96e]/30 transition-all duration-500"
             >
               <Image
                 src={img.src}
