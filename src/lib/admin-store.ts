@@ -56,7 +56,7 @@ export const useAdminStore = create<AdminStore>()(
           const data = await res.json();
           if (Object.keys(data).length > 0) {
             set((state) => ({
-              overrides: { ...data, ...state.overrides },
+              overrides: { ...state.overrides, ...data },
             }));
           }
         } catch (e) {
