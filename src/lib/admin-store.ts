@@ -15,7 +15,7 @@ interface AdminStore {
 
 export const useAdminStore = create<AdminStore>()(
   persist(
-    (set, get) => ({
+    (set) => ({
       overrides: {},
       isAuthenticated: false,
 
@@ -54,11 +54,7 @@ export const useAdminStore = create<AdminStore>()(
         try {
           const res = await fetch("/api/products");
           const data = await res.json();
-          if (Object.keys(data).length > 0) {
-            set((state) => ({
-              overrides: { ...state.overrides, ...data },
-            }));
-          }
+          set({ overrides: data || {} });
         } catch (e) {
           console.error("Failed to fetch overrides:", e);
         }
@@ -87,6 +83,9 @@ export const useAdminStore = create<AdminStore>()(
         }
       },
     }),
-    { name: "grand-oliva-admin" }
+    {
+      name: "grand-oliva-admin",
+      partialize: (state) => ({ isAuthenticated: state.isAuthenticated }),
+    }
   )
 );
