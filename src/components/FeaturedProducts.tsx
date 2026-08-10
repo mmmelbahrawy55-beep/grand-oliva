@@ -15,7 +15,7 @@ export default function FeaturedProducts() {
   const { locale } = useLocaleStore();
   const dir = useLocaleStore((s) => s.dir());
   const products = useProducts();
-  const featured = products.filter((p) => p.featured && p.price > 0).slice(0, 8);
+  const featured = products.filter((p) => p.featured).slice(0, 8);
   const [quickViewProduct, setQuickViewProduct] = useState<Product | null>(null);
   const [isQuickViewOpen, setIsQuickViewOpen] = useState(false);
 

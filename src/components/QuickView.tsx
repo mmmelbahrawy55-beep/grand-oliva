@@ -1,10 +1,9 @@
 "use client";
 
-import { useLocaleStore, useCartStore } from "@/lib/store";
-import { X, Star, ShoppingCart, Heart, Minus, Plus, Check } from "lucide-react";
+import { useLocaleStore } from "@/lib/store";
+import { X, Star, Heart, MessageCircle, Check } from "lucide-react";
 import Image from "next/image";
 import type { Product } from "@/lib/types";
-import toast from "react-hot-toast";
 import { useState } from "react";
 
 interface QuickViewProps {
@@ -16,8 +15,6 @@ interface QuickViewProps {
 export default function QuickView({ product, isOpen, onClose }: QuickViewProps) {
   const { locale } = useLocaleStore();
   const dir = useLocaleStore((s) => s.dir());
-  const addItem = useCartStore((s) => s.addItem);
-  const [quantity, setQuantity] = useState(1);
   const [isLiked, setIsLiked] = useState(false);
 
   if (!product) return null;
@@ -28,15 +25,11 @@ export default function QuickView({ product, isOpen, onClose }: QuickViewProps) 
   const origin = locale === "ar" ? product.origin_ar : product.origin;
   const weight = locale === "ar" ? product.weight_ar : product.weight;
 
-  const handleAddToCart = () => {
-    for (let i = 0; i < quantity; i++) {
-      addItem(product);
-    }
-    toast.success(locale === "ar" ? `تمت إضافة ${quantity} منتجات` : `Added ${quantity} items`, {
-      style: { background: "#1a1a1a", color: "#fff", border: "1px solid #2a2a2a" },
-    });
-    onClose();
-  };
+  const whatsappUrl = `https://wa.me/201288367098?text=${encodeURIComponent(
+    locale === "ar"
+      ? `مرحباً، أنا مهتم بمنتج "${name}"`
+      : `Hello, I'm interested in "${name}"`
+  )}`;
 
   return (
     <>
@@ -139,39 +132,15 @@ export default function QuickView({ product, isOpen, onClose }: QuickViewProps) 
               </div>
             </div>
 
-            <div className="mb-6">
-              <span className="text-3xl font-bold text-gold">${(product.price ?? 0).toFixed(2)}</span>
-            </div>
-
-            <div className="flex items-center gap-4 mb-6">
-              <span className="text-gray-500 text-sm">{locale === "ar" ? "الكمية" : "Quantity"}</span>
-              <div className="flex items-center gap-2 bg-[#1a1a1a] rounded-xl border border-[#2a2a2a] p-1">
-                <button
-                  onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                  className="w-11 h-11 rounded-lg flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#222] transition-all active:scale-90"
-                  aria-label="Decrease quantity"
-                >
-                  <Minus className="w-4 h-4" />
-                </button>
-                <span className="w-10 text-center font-bold text-white text-lg">{quantity}</span>
-                <button
-                  onClick={() => setQuantity(quantity + 1)}
-                  className="w-11 h-11 rounded-lg flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#222] transition-all active:scale-90"
-                  aria-label="Increase quantity"
-                >
-                  <Plus className="w-4 h-4" />
-                </button>
-              </div>
-            </div>
-
-            <button
-              onClick={handleAddToCart}
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               className="btn-gold w-full py-4 rounded-xl font-bold flex items-center justify-center gap-3 text-base active:scale-[0.98] transition-transform"
-              aria-label={`Add ${name} to cart`}
             >
-              <ShoppingCart className="w-5 h-5" />
-              {locale === "ar" ? "أضف إلى السلة" : "Add to Cart"}
-            </button>
+              <MessageCircle className="w-5 h-5" />
+              {locale === "ar" ? "استفسر عبر واتساب" : "Inquire on WhatsApp"}
+            </a>
 
             <div className="flex items-center gap-2 mt-4 justify-center">
               <Check className="w-4 h-4 text-emerald-500" />

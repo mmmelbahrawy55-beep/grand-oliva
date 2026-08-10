@@ -1,10 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useLocaleStore, useCartStore } from "@/lib/store";
-import { ShoppingCart, Eye, Star, Heart } from "lucide-react";
+import { useLocaleStore } from "@/lib/store";
+import { Eye, Star, Heart, MessageCircle } from "lucide-react";
 import type { Product } from "@/lib/types";
-import toast from "react-hot-toast";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -17,7 +16,6 @@ interface ProductCardProps {
 export default function ProductCard({ product, index = 0, onQuickView }: ProductCardProps) {
   const { locale } = useLocaleStore();
   const dir = useLocaleStore((s) => s.dir());
-  const addItem = useCartStore((s) => s.addItem);
   const [isLiked, setIsLiked] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
 
@@ -26,14 +24,11 @@ export default function ProductCard({ product, index = 0, onQuickView }: Product
   const category = locale === "ar" ? product.category_ar : product.category;
   const badge = locale === "ar" ? product.badge_ar : product.badge;
 
-  const handleAddToCart = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    addItem(product);
-    toast.success(locale === "ar" ? "تمت الإضافة إلى السلة" : "Added to cart", {
-      style: { background: "#1a1a1a", color: "#fff", border: "1px solid #2a2a2a" },
-    });
-  };
+  const whatsappUrl = `https://wa.me/201288367098?text=${encodeURIComponent(
+    locale === "ar"
+      ? `مرحباً، أنا مهتم بمنتج "${name}"`
+      : `Hello, I'm interested in "${name}"`
+  )}`;
 
   const handleQuickView = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -94,14 +89,16 @@ export default function ProductCard({ product, index = 0, onQuickView }: Product
             <Eye className="w-3.5 h-3.5" />
             {locale === "ar" ? "عرض سريع" : "Quick View"}
           </button>
-          <button
-            onClick={handleAddToCart}
+          <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             className="flex-1 btn-gold py-3 rounded-lg text-xs font-semibold flex items-center justify-center gap-2 active:scale-95 transition-transform"
-            aria-label={`Add ${name} to cart`}
+            aria-label={`Contact on WhatsApp for ${name}`}
           >
-            <ShoppingCart className="w-3.5 h-3.5" />
-            {locale === "ar" ? "أضف" : "Add"}
-          </button>
+            <MessageCircle className="w-3.5 h-3.5" />
+            {locale === "ar" ? "استفسار" : "Inquire"}
+          </a>
         </div>
       </div>
 
@@ -147,15 +144,16 @@ export default function ProductCard({ product, index = 0, onQuickView }: Product
           <span>⚖️ {locale === "ar" ? product.weight_ar : product.weight}</span>
         </div>
 
-        <div className="flex items-center justify-between pt-4 border-t border-[#2a2a2a]">
-          <span className={`text-xl sm:text-2xl font-bold text-gold ${product.featured ? "text-shimmer" : ""}`}>${(product.price ?? 0).toFixed(2)}</span>
-          <button
-            onClick={handleAddToCart}
+        <div className="flex items-center justify-end pt-4 border-t border-[#2a2a2a]">
+          <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             className="w-11 h-11 rounded-xl bg-[#c9a96e]/10 flex items-center justify-center text-[#c9a96e] hover:bg-[#c9a96e] hover:text-[#0a0a0a] transition-all duration-300 active:scale-95"
-            aria-label={`Add ${name} to cart`}
+            aria-label={`Contact on WhatsApp for ${name}`}
           >
-            <ShoppingCart className="w-4 h-4" />
-          </button>
+            <MessageCircle className="w-4 h-4" />
+          </a>
         </div>
       </div>
     </motion.div>

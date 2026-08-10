@@ -17,7 +17,7 @@ function Features() {
   const dir = useLocaleStore((s) => s.dir());
 
   const features = [
-    { icon: Truck, title: locale === "ar" ? "توصيل سريع" : "Fast Delivery", desc: locale === "ar" ? "توصيل مجاني فوق 50$" : "Free shipping over $50" },
+    { icon: Truck, title: locale === "ar" ? "توصيل سريع" : "Fast Delivery", desc: locale === "ar" ? "توصيل لجميع المحافظات" : "Delivery to all regions" },
     { icon: ShieldCheck, title: locale === "ar" ? "جودة مضمونة" : "Quality Assured", desc: locale === "ar" ? "ضمان على كل المنتجات" : "Guarantee on all products" },
     { icon: Clock, title: locale === "ar" ? "توصيل في الوقت" : "On-Time", desc: locale === "ar" ? "التزام بالمواعيد" : "Always on schedule" },
     { icon: Headphones, title: locale === "ar" ? "دعم 24/7" : "24/7 Support", desc: locale === "ar" ? "فريق الدعم متاح دائماً" : "Team always available" },
@@ -181,9 +181,14 @@ function CTA() {
               ? "اكتشف نكهة الأصالة مع تشكيلتنا الفاخرة"
               : "Discover authenticity with our premium collection"}
           </p>
-          <Link href="/products" className="btn-gold px-12 py-5 rounded-xl text-lg font-bold inline-block">
-            {locale === "ar" ? "تسوق الآن" : "Shop Now"}
-          </Link>
+          <a
+            href="https://wa.me/201288367098?text=Hello%2C%20I'm%20interested%20in%20your%20products"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-gold px-12 py-5 rounded-xl text-lg font-bold inline-block"
+          >
+            {locale === "ar" ? "تواصل معنا الآن" : "Contact Us Now"}
+          </a>
         </motion.div>
       </div>
     </section>

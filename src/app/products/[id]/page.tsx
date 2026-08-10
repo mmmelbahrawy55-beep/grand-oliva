@@ -1,24 +1,20 @@
 "use client";
 
 import { useParams } from "next/navigation";
-import { useCartStore, useLocaleStore } from "@/lib/store";
+import { useLocaleStore } from "@/lib/store";
 import { useProducts } from "@/lib/admin-helpers";
 import { motion } from "framer-motion";
-import { Star, ShoppingCart, Heart, Share2, ChevronLeft, ChevronRight, Minus, Plus, Check } from "lucide-react";
+import { Star, Heart, Share2, ChevronLeft, ChevronRight, Check, MessageCircle } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
-import toast from "react-hot-toast";
 import Image from "next/image";
 
 export default function ProductPage() {
   const params = useParams();
   const { locale } = useLocaleStore();
   const dir = useLocaleStore((s) => s.dir());
-  const addItem = useCartStore((s) => s.addItem);
   const products = useProducts();
-  const [quantity, setQuantity] = useState(1);
   const [selectedImage, setSelectedImage] = useState(0);
-  const [added, setAdded] = useState(false);
 
   const product = products.find((p) => p.id === params.id);
 
@@ -39,17 +35,14 @@ export default function ProductPage() {
   const description = locale === "ar" ? product.description_ar : product.description;
   const category = locale === "ar" ? product.category_ar : product.category;
 
-  const handleAddToCart = () => {
-    for (let i = 0; i < quantity; i++) {
-      addItem(product);
-    }
-    setAdded(true);
-    toast.success(locale === "ar" ? "تمت الإضافة للسلة!" : "Added to cart!");
-    setTimeout(() => setAdded(false), 2000);
-  };
+  const whatsappUrl = `https://wa.me/201288367098?text=${encodeURIComponent(
+    locale === "ar"
+      ? `مرحباً، أنا مهتم بمنتج "${name}"`
+      : `Hello, I'm interested in "${name}"`
+  )}`;
 
   const relatedProducts = products
-    .filter((p) => p.category === product.category && p.id !== product.id && p.price > 0)
+    .filter((p) => p.category === product.category && p.id !== product.id)
     .slice(0, 4);
 
   const renderStars = (rating: number) => {
@@ -159,11 +152,6 @@ export default function ProductPage() {
                   {product.rating.toFixed(1)} ({product.reviews} {locale === "ar" ? "تقييم" : "reviews"})
                 </span>
               </div>
-              {product.price > 0 && (
-                <div className="text-4xl font-bold text-gold mb-8" style={{ fontFamily: "'Playfair Display', serif" }}>
-${(product.price ?? 0).toFixed(2)}
-                </div>
-              )}
             </div>
 
             <div className="border-t border-[#2a2a2a] pt-8">
@@ -189,54 +177,32 @@ ${(product.price ?? 0).toFixed(2)}
               </div>
             </div>
 
-            {product.price > 0 && (
-              <div className="space-y-6">
-                <div className="flex items-center gap-6">
-                  <div className="flex items-center border border-[#2a2a2a] rounded-xl overflow-hidden">
-                    <button
-                      onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                      className="w-12 h-12 bg-[#1a1a1a] text-gray-400 hover:text-[#c9a96e] hover:bg-[#2a2a2a] transition-all flex items-center justify-center"
-                    >
-                      <Minus className="w-4 h-4" />
-                    </button>
-                    <span className="w-16 h-12 flex items-center justify-center text-white font-bold">{quantity}</span>
-                    <button
-                      onClick={() => setQuantity(quantity + 1)}
-                      className="w-12 h-12 bg-[#1a1a1a] text-gray-400 hover:text-[#c9a96e] hover:bg-[#2a2a2a] transition-all flex items-center justify-center"
-                    >
-                      <Plus className="w-4 h-4" />
-                    </button>
-                  </div>
-                  <button
-                    onClick={handleAddToCart}
-                    className="flex-1 btn-gold py-4 rounded-xl font-bold text-lg inline-flex items-center justify-center gap-3"
-                  >
-                    {added ? (
-                      <>
-                        <Check className="w-5 h-5" />
-                        {locale === "ar" ? "تمت الإضافة" : "Added!"}
-                      </>
-                    ) : (
-                      <>
-                        <ShoppingCart className="w-5 h-5" />
-                        {locale === "ar" ? "أضف للسلة" : "Add to Cart"}
-                      </>
-                    )}
-                  </button>
-                  <button className="w-12 h-12 border border-[#2a2a2a] rounded-xl flex items-center justify-center text-gray-400 hover:text-[#c9a96e] hover:border-[#c9a96e]/30 transition-all">
-                    <Heart className="w-5 h-5" />
-                  </button>
-                  <button className="w-12 h-12 border border-[#2a2a2a] rounded-xl flex items-center justify-center text-gray-400 hover:text-[#c9a96e] hover:border-[#c9a96e]/30 transition-all">
-                    <Share2 className="w-5 h-5" />
-                  </button>
-                </div>
+            <div className="space-y-4">
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-gold w-full py-4 rounded-xl font-bold text-lg inline-flex items-center justify-center gap-3"
+              >
+                <MessageCircle className="w-5 h-5" />
+                {locale === "ar" ? "استفسر عبر واتساب" : "Inquire on WhatsApp"}
+              </a>
+              <div className="flex items-center gap-3">
+                <button className="flex-1 border border-[#2a2a2a] py-3 rounded-xl flex items-center justify-center gap-2 text-gray-400 hover:text-[#c9a96e] hover:border-[#c9a96e]/30 transition-all">
+                  <Heart className="w-5 h-5" />
+                  {locale === "ar" ? "أضف للمفضلة" : "Favorite"}
+                </button>
+                <button className="flex-1 border border-[#2a2a2a] py-3 rounded-xl flex items-center justify-center gap-2 text-gray-400 hover:text-[#c9a96e] hover:border-[#c9a96e]/30 transition-all">
+                  <Share2 className="w-5 h-5" />
+                  {locale === "ar" ? "مشاركة" : "Share"}
+                </button>
               </div>
-            )}
+            </div>
 
             <div className="border-t border-[#2a2a2a] pt-8 space-y-4">
               <div className="flex items-center gap-3 text-gray-400">
                 <Check className="w-5 h-5 text-[#c9a96e]" />
-                <span>{locale === "ar" ? "توصيل مجاني فوق 50$" : "Free shipping over $50"}</span>
+                <span>{locale === "ar" ? "توصيل مجاني" : "Free delivery"}</span>
               </div>
               <div className="flex items-center gap-3 text-gray-400">
                 <Check className="w-5 h-5 text-[#c9a96e]" />
@@ -251,27 +217,28 @@ ${(product.price ?? 0).toFixed(2)}
         </div>
       </div>
 
-      {product.price > 0 && (
-        <div className="lg:hidden fixed bottom-0 left-0 right-0 z-50 bg-[#111] border-t border-[#2a2a2a] safe-area-bottom">
-          <div className="flex items-center gap-3 px-4 py-3">
-            <div className="flex-1">
-              <div className="text-[#c9a96e] font-bold text-lg" style={{ fontFamily: "'Playfair Display', serif" }}>
-                ${product.price.toFixed(2)}
-              </div>
-              <div className="text-gray-500 text-xs">
-                {locale === "ar" ? "شامل الضريبة" : "Tax included"}
-              </div>
+      {/* Mobile sticky WhatsApp bar */}
+      <div className="lg:hidden fixed bottom-0 left-0 right-0 z-50 bg-[#111] border-t border-[#2a2a2a] safe-area-bottom">
+        <div className="flex items-center gap-3 px-4 py-3">
+          <div className="flex-1">
+            <div className="text-white font-bold text-sm">
+              {name}
             </div>
-            <button
-              onClick={handleAddToCart}
-              className="btn-gold px-8 py-3.5 rounded-xl font-bold text-sm flex items-center gap-2 flex-shrink-0"
-            >
-              <ShoppingCart className="w-4 h-4" />
-              {locale === "ar" ? "أضف للسلة" : "Add to Cart"}
-            </button>
+            <div className="text-gray-500 text-xs">
+              {locale === "ar" ? "تواصل معنا للسعر" : "Contact for pricing"}
+            </div>
           </div>
+          <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-gold px-8 py-3.5 rounded-xl font-bold text-sm flex items-center gap-2 flex-shrink-0"
+          >
+            <MessageCircle className="w-4 h-4" />
+            WhatsApp
+          </a>
         </div>
-      )}
+      </div>
     </div>
   );
 }

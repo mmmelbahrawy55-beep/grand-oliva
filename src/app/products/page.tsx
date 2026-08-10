@@ -33,7 +33,7 @@ export default function ProductsPage() {
     }
   }, [products]);
 
-  const sellableProducts = useMemo(() => products.filter((p) => p.price > 0), [products]);
+  const sellableProducts = useMemo(() => products, [products]);
   const categoryCounts = useMemo(() => ({
     all: sellableProducts.length,
     Olives: sellableProducts.filter((p) => p.category === "Olives").length,
