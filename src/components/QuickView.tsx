@@ -32,31 +32,27 @@ export default function QuickView({ product, isOpen, onClose }: QuickViewProps) 
   )}`;
 
   return (
-    <>
-      {/* Backdrop + Centering wrapper */}
+    <div
+      onClick={onClose}
+      className={`fixed inset-0 z-[90] flex items-center justify-center p-4 bg-black/70 transition-opacity duration-300 ${isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
+      dir={dir}
+    >
       <div
-        onClick={onClose}
-        className={`fixed inset-0 z-[90] flex items-center justify-center p-4 bg-black/70 transition-opacity duration-300 ${isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
-        dir={dir}
+        className={`relative w-full md:w-[900px] max-h-[90vh] bg-[#111] rounded-2xl border border-[#2a2a2a] overflow-hidden flex flex-col md:flex-row will-change-transform transition-all duration-300 ease-out ${
+          isOpen ? "opacity-100 scale-100 translate-y-0" : "opacity-0 scale-95 translate-y-4"
+        }`}
+        onClick={(e) => e.stopPropagation()}
       >
-        {/* Modal inner */}
-        <div
-          className={`relative w-full md:w-[900px] h-[90vh] md:max-h-[80vh] bg-[#111] rounded-2xl border border-[#2a2a2a] overflow-hidden flex flex-col md:flex-row will-change-transform transition-all duration-300 ease-out ${
-            isOpen ? "opacity-100 scale-100 translate-y-0" : "opacity-0 scale-95 translate-y-4"
-          }`}
-          onClick={(e) => e.stopPropagation()}
+        <button
+          onClick={onClose}
+          className="absolute top-3 right-3 md:top-4 md:right-4 z-10 w-11 h-11 rounded-xl bg-[#0a0a0a]/90 border border-[#2a2a2a] flex items-center justify-center text-gray-500 hover:text-white hover:border-[#c9a96e]/30 transition-all active:scale-95"
+          aria-label="Close quick view"
         >
-          {/* Close button */}
-          <button
-            onClick={onClose}
-            className="absolute top-3 right-3 md:top-4 md:right-4 z-10 w-11 h-11 rounded-xl bg-[#0a0a0a]/90 border border-[#2a2a2a] flex items-center justify-center text-gray-500 hover:text-white hover:border-[#c9a96e]/30 transition-all active:scale-95"
-            aria-label="Close quick view"
-          >
-            <X className="w-5 h-5" />
-          </button>
+          <X className="w-5 h-5" />
+        </button>
 
-          {/* Image */}
-          <div className="relative w-full md:w-1/2 aspect-square md:h-full md:min-h-0 bg-[#0a0a0a] shrink-0">
+        <div className="relative w-full md:w-1/2 shrink-0">
+          <div className="aspect-square md:aspect-[4/5]">
             <Image
               src={product.image}
               alt={name}
@@ -64,27 +60,28 @@ export default function QuickView({ product, isOpen, onClose }: QuickViewProps) 
               className="object-cover"
               sizes="(max-width: 768px) 100vw, 450px"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/60 to-transparent md:bg-gradient-to-r" />
-
-            {product.badge && (
-              <div className="absolute top-4 left-4">
-                <span className="bg-[#c9a96e] text-[#0a0a0a] text-[10px] font-bold px-4 py-1.5 rounded-lg tracking-wider uppercase">
-                  {locale === "ar" ? product.badge_ar : product.badge}
-                </span>
-              </div>
-            )}
-
-            <button
-              onClick={() => setIsLiked(!isLiked)}
-              className="absolute bottom-4 left-4 w-11 h-11 bg-[#0a0a0a]/80 rounded-xl flex items-center justify-center border border-[#2a2a2a] hover:border-[#c9a96e]/50 transition-all active:scale-95"
-              aria-label={isLiked ? "Remove from favorites" : "Add to favorites"}
-            >
-              <Heart className={`w-5 h-5 ${isLiked ? "fill-[#c9a96e] text-[#c9a96e]" : "text-gray-500"}`} />
-            </button>
           </div>
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/60 to-transparent md:bg-gradient-to-r" />
 
-          {/* Details */}
-          <div className="w-full md:w-1/2 p-6 md:p-8 overflow-y-auto min-h-0 flex-1 scroll-touch">
+          {product.badge && (
+            <div className="absolute top-4 left-4">
+              <span className="bg-[#c9a96e] text-[#0a0a0a] text-[10px] font-bold px-4 py-1.5 rounded-lg tracking-wider uppercase">
+                {locale === "ar" ? product.badge_ar : product.badge}
+              </span>
+            </div>
+          )}
+
+          <button
+            onClick={() => setIsLiked(!isLiked)}
+            className="absolute bottom-4 left-4 w-11 h-11 bg-[#0a0a0a]/80 rounded-xl flex items-center justify-center border border-[#2a2a2a] hover:border-[#c9a96e]/50 transition-all active:scale-95"
+            aria-label={isLiked ? "Remove from favorites" : "Add to favorites"}
+          >
+            <Heart className={`w-5 h-5 ${isLiked ? "fill-[#c9a96e] text-[#c9a96e]" : "text-gray-500"}`} />
+          </button>
+        </div>
+
+        <div className="w-full md:w-1/2 flex flex-col min-h-0 overflow-y-auto overscroll-contain">
+          <div className="p-6 md:p-8">
             <span className="text-[10px] font-semibold text-[#c9a96e] tracking-[0.2em] uppercase">
               {category}
             </span>
@@ -146,6 +143,6 @@ export default function QuickView({ product, isOpen, onClose }: QuickViewProps) 
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
