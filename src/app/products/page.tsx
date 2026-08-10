@@ -61,9 +61,9 @@ export default function ProductsPage() {
       .sort((a, b) => {
         switch (sortBy) {
           case "price-low":
-            return a.price - b.price;
+            return (a.price ?? 0) - (b.price ?? 0);
           case "price-high":
-            return b.price - a.price;
+            return (b.price ?? 0) - (a.price ?? 0);
           case "rating":
             return b.rating - a.rating;
           case "name":

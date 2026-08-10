@@ -850,7 +850,7 @@ export default function AdminPage() {
                         </span>
                       </td>
                       <td className="px-6 py-4">
-                        <span className="text-[#c9a96e] font-bold text-sm">${product.price.toFixed(2)}</span>
+                        <span className="text-[#c9a96e] font-bold text-sm">${(product.price ?? 0).toFixed(2)}</span>
                       </td>
                       <td className="px-6 py-4 hidden lg:table-cell">
                         <div className="flex items-center gap-1">

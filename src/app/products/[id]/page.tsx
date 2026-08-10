@@ -161,7 +161,7 @@ export default function ProductPage() {
               </div>
               {product.price > 0 && (
                 <div className="text-4xl font-bold text-gold mb-8" style={{ fontFamily: "'Playfair Display', serif" }}>
-                  ${product.price.toFixed(2)}
+${(product.price ?? 0).toFixed(2)}
                 </div>
               )}
             </div>

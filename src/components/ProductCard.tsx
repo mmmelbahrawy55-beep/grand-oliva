@@ -148,7 +148,7 @@ export default function ProductCard({ product, index = 0, onQuickView }: Product
         </div>
 
         <div className="flex items-center justify-between pt-4 border-t border-[#2a2a2a]">
-          <span className={`text-xl sm:text-2xl font-bold text-gold ${product.featured ? "text-shimmer" : ""}`}>${product.price.toFixed(2)}</span>
+          <span className={`text-xl sm:text-2xl font-bold text-gold ${product.featured ? "text-shimmer" : ""}`}>${(product.price ?? 0).toFixed(2)}</span>
           <button
             onClick={handleAddToCart}
             className="w-11 h-11 rounded-xl bg-[#c9a96e]/10 flex items-center justify-center text-[#c9a96e] hover:bg-[#c9a96e] hover:text-[#0a0a0a] transition-all duration-300 active:scale-95"

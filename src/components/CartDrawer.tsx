@@ -90,7 +90,7 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                     {locale === "ar" ? item.product.name_ar : item.product.name}
                   </h3>
                   <p className="text-[#c9a96e] font-bold text-sm mt-1">
-                    ${item.product.price.toFixed(2)}
+                    ${(item.product.price ?? 0).toFixed(2)}
                   </p>
                   <div className="flex items-center gap-2 mt-3">
                     <button

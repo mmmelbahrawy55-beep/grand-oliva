@@ -387,7 +387,7 @@ export default function CheckoutPage() {
                           {locale === "ar" ? "الكمية" : "Qty"}: {item.quantity}
                         </p>
                         <p className="text-[#c9a96e] text-sm font-semibold mt-1">
-                          ${(item.product.price * item.quantity).toFixed(2)}
+                          ${((item.product.price ?? 0) * item.quantity).toFixed(2)}
                         </p>
                       </div>
                     </div>

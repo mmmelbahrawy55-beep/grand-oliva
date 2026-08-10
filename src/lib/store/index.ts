@@ -48,7 +48,7 @@ export const useCartStore = create<CartStore>()(
       clearCart: () => set({ items: [] }),
       getTotal: () =>
         get().items.reduce(
-          (total, item) => total + item.product.price * item.quantity,
+          (total, item) => total + (item.product.price ?? 0) * item.quantity,
           0
         ),
       getItemCount: () =>
