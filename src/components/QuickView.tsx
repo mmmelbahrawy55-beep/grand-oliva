@@ -33,20 +33,15 @@ export default function QuickView({ product, isOpen, onClose }: QuickViewProps) 
 
   return (
     <>
-      {/* Backdrop */}
+      {/* Backdrop + Centering wrapper */}
       <div
         onClick={onClose}
-        className={`fixed inset-0 bg-black/70 z-[80] transition-opacity duration-300 ${isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
-      />
-
-      {/* Centering wrapper — handles position, animation handles scale/opacity */}
-      <div
-        className={`fixed inset-0 z-[90] flex items-center justify-center p-4 pointer-events-none ${isOpen ? "pointer-events-auto" : ""}`}
+        className={`fixed inset-0 z-[90] flex items-center justify-center p-4 bg-black/70 transition-opacity duration-300 ${isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
         dir={dir}
       >
         {/* Modal inner */}
         <div
-          className={`w-full md:w-[900px] h-[90vh] md:max-h-[80vh] bg-[#111] rounded-2xl border border-[#2a2a2a] overflow-hidden flex flex-col md:flex-row will-change-transform transition-all duration-300 ease-out ${
+          className={`relative w-full md:w-[900px] h-[90vh] md:max-h-[80vh] bg-[#111] rounded-2xl border border-[#2a2a2a] overflow-hidden flex flex-col md:flex-row will-change-transform transition-all duration-300 ease-out ${
             isOpen ? "opacity-100 scale-100 translate-y-0" : "opacity-0 scale-95 translate-y-4"
           }`}
           onClick={(e) => e.stopPropagation()}
