@@ -34,33 +34,29 @@ export default function QuickView({ product, isOpen, onClose }: QuickViewProps) 
   return (
     <div
       onClick={onClose}
-      className={`fixed inset-0 z-[90] flex items-center justify-center p-4 bg-black/70 transition-opacity duration-300 ${isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
+      className={`fixed inset-0 z-[90] flex items-center justify-center p-2 sm:p-4 bg-black/70 transition-opacity duration-300 ${isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
       dir={dir}
     >
       <div
-        className={`relative w-full md:w-[900px] max-h-[90vh] bg-[#111] rounded-2xl border border-[#2a2a2a] overflow-hidden flex flex-col md:flex-row will-change-transform transition-all duration-300 ease-out ${
-          isOpen ? "opacity-100 scale-100 translate-y-0" : "opacity-0 scale-95 translate-y-4"
-        }`}
+        className="relative w-full md:w-[900px] h-[85vh] bg-[#111] rounded-2xl border border-[#2a2a2a] overflow-hidden flex flex-col md:flex-row"
         onClick={(e) => e.stopPropagation()}
       >
         <button
           onClick={onClose}
-          className="absolute top-3 right-3 md:top-4 md:right-4 z-10 w-11 h-11 rounded-xl bg-[#0a0a0a]/90 border border-[#2a2a2a] flex items-center justify-center text-gray-500 hover:text-white hover:border-[#c9a96e]/30 transition-all active:scale-95"
+          className="absolute top-3 right-3 md:top-4 md:right-4 z-20 w-11 h-11 rounded-xl bg-[#0a0a0a]/90 border border-[#2a2a2a] flex items-center justify-center text-gray-500 hover:text-white hover:border-[#c9a96e]/30 transition-all active:scale-95"
           aria-label="Close quick view"
         >
           <X className="w-5 h-5" />
         </button>
 
-        <div className="relative w-full md:w-1/2 shrink-0">
-          <div className="aspect-square md:aspect-[4/5]">
-            <Image
-              src={product.image}
-              alt={name}
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, 450px"
-            />
-          </div>
+        <div className="relative w-full md:w-1/2 shrink-0 h-48 sm:h-56 md:h-full bg-[#0a0a0a]">
+          <Image
+            src={product.image}
+            alt={name}
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, 450px"
+          />
           <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/60 to-transparent md:bg-gradient-to-r" />
 
           {product.badge && (
@@ -80,7 +76,10 @@ export default function QuickView({ product, isOpen, onClose }: QuickViewProps) 
           </button>
         </div>
 
-        <div className="w-full md:w-1/2 flex flex-col min-h-0 overflow-y-auto overscroll-contain">
+        <div
+          className="w-full md:w-1/2 flex-1 min-h-0 overflow-y-auto overscroll-contain scroll-touch"
+          style={{ touchAction: "pan-y" }}
+        >
           <div className="p-6 md:p-8">
             <span className="text-[10px] font-semibold text-[#c9a96e] tracking-[0.2em] uppercase">
               {category}
