@@ -424,10 +424,8 @@ body {
 /* Force GPU layer promotion for animated elements */
 @media (max-width: 1024px) {
   .will-change-transform {
-    will-change: transform;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-    transform: translateZ(0);
   }
 }
 
@@ -501,12 +499,12 @@ input, select, textarea {
   font-size: 16px !important;
 }
 
-/* Prevent horizontal overflow on mobile — use overflow clip instead of overflow hidden to avoid scroll issues on Android */
+/* Prevent horizontal overflow on mobile — hidden keeps native scroll working on Android */
 html {
-  overflow-x: clip;
+  overflow-x: hidden;
 }
 body {
-  overflow-x: clip;
+  overflow-x: hidden;
 }
 
 /* Android-specific: fix overscroll bounce causing white flash */
@@ -523,7 +521,6 @@ body {
 
 /* Android fixed element rendering fix */
 .will-change-transform {
-  will-change: transform;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 }
@@ -787,14 +784,8 @@ html, body {
   overscroll-behavior-x: none;
 }
 
-/* Prevent pull-to-refresh on the whole page on Android */
-html {
-  overscroll-behavior-y: none;
-}
-
-/* iOS — rubber-band scroll prevention on fixed containers */
-.fixed {
-  -webkit-overflow-scrolling: touch;
+html, body {
+  overflow-x: hidden;
 }
 
 /* Better active states for touch devices */
